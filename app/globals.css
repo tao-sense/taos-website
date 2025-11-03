@@ -1,0 +1,29 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --bg: #0b0b0b;
+  --fg: #ffffff;
+  --gold: #d4af37;
+}
+
+html, body {
+  height: 100%;
+}
+
+body {
+  @apply bg-black text-white;
+}
+
+.container {
+  @apply max-w-6xl mx-auto px-4;
+}
+
+html, body {
+  overflow-x: hidden; /* prevent horizontal scroll */
+}
+
+html {
+  scroll-behavior: smooth;
+}

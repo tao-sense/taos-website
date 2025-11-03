@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+
+  <!-- Core pages -->
+  <url><loc>https://taosense.uk/</loc></url>
+  <url><loc>https://taosense.uk/about</loc></url>
+  <url><loc>https://taosense.uk/contact</loc></url>
+  <url><loc>https://taosense.uk/faq</loc></url>
+  <url><loc>https://taosense.uk/pricing</loc></url>
+  <url><loc>https://taosense.uk/client-stories</loc></url>
+
+  <!-- Offerings -->
+  <url><loc>https://taosense.uk/offerings</loc></url>
+  <url><loc>https://taosense.uk/offerings/tantra</loc></url>
+  <url><loc>https://taosense.uk/offerings/workshops</loc></url>
+  <url><loc>https://taosense.uk/offerings/coaching</loc></url>
+
+  <!-- Legal & Policy -->
+  <url><loc>https://taosense.uk/privacy</loc></url>
+  <url><loc>https://taosense.uk/terms</loc></url>
+
+</urlset>

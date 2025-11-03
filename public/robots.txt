@@ -1,0 +1,17 @@
+# ===============================
+# TAOS | The Art of Sensuality
+# Robots.txt - Crawl Permissions
+# ===============================
+
+User-agent: *
+# ✅ Allow all public pages
+Allow: /
+
+# 🚫 Block all private/admin/api routes
+Disallow: /admin/
+Disallow: /dashboard/
+Disallow: /account/
+Disallow: /api/
+
+# 🗺️ Sitemap location
+Sitemap: https://taosense.uk/sitemap.xml
