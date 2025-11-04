@@ -84,7 +84,7 @@ export default function Footer() {
           <h4 className="text-gold font-semibold mb-4">Follow Us</h4>
           <div className="flex flex-col space-y-3 text-sm">
             <Link
-              href="https://instagram.com"
+              href="https://instagram.com/tao_sense"
               target="_blank"
               className="flex items-center space-x-2 hover:text-gold"
             >
