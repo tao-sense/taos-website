@@ -16,7 +16,7 @@ export default function ClientWorkshopReply({ name }: { name: string }) {
     >
       <div style={{ textAlign: "center", marginBottom: "24px" }}>
         <img
-          src="https://taosense.uk/images/taos-logo.png"
+          src="https://theartofsensuality.com/images/taos-logo.png"
           alt="TAOS Logo"
           width="160"
           style={{ marginBottom: "12px" }}
