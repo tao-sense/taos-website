@@ -8,16 +8,31 @@ export async function POST(req: Request) {
   try {
     const { name, email, phone, message } = await req.json();
 
+    // 🧩 Diagnostic logging
+    console.log("🧩 EMAIL_TO value detected as:", process.env.EMAIL_TO);
+
     if (!name || !email || !message) {
       console.error("❌ Missing required fields");
-      return NextResponse.json({ error: "Missing required fields" }, { status: 400 });
+      return NextResponse.json(
+        { error: "Missing required fields" },
+        { status: 400 }
+      );
+    }
+
+    // ⚠️ Prevent silent failure if EMAIL_TO is missing
+    if (!process.env.EMAIL_TO) {
+      console.error("🚨 EMAIL_TO environment variable not found!");
+      return NextResponse.json(
+        { error: "Server email configuration missing" },
+        { status: 500 }
+      );
     }
 
     console.log("📬 Sending admin email to:", process.env.EMAIL_TO);
 
-    // 1️⃣ Send notification to admin (sandbox sender for deliverability)
+    // 1️⃣ Send notification to admin
     await resend.emails.send({
-      from: "TAOS Website <onboarding@resend.dev>",
+      from: "TAOS Website <onboarding@resend.dev>", // safe Resend sender
       to: process.env.EMAIL_TO!,
       subject: `New Contact Form Message from ${name}`,
       text: `
@@ -50,6 +65,9 @@ This message was sent from theartofsensuality.com
     return NextResponse.json({ success: true });
   } catch (err) {
     console.error("💥 Contact form error:", err);
-    return NextResponse.json({ error: "Failed to send message" }, { status: 500 });
+    return NextResponse.json(
+      { error: "Failed to send message" },
+      { status: 500 }
+    );
   }
 }
