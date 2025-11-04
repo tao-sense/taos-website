@@ -30,9 +30,9 @@ export async function POST(req: Request) {
 
     console.log("📬 Sending admin email to:", process.env.EMAIL_TO);
 
-    // 1️⃣ Send notification to admin
+    // 1️⃣ Send notification to admin (using your verified sender)
     await resend.emails.send({
-      from: "TAOS Website <onboarding@resend.dev>", // safe Resend sender
+      from: "touch@taosense.uk", // verified domain sender
       to: process.env.EMAIL_TO!,
       subject: `New Contact Form Message from ${name}`,
       text: `
