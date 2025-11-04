@@ -12,26 +12,23 @@ export async function POST(req: Request) {
 
     if (!name || !email || !message) {
       console.error("❌ Missing required fields");
-      return NextResponse.json(
-        { error: "Missing required fields" },
-        { status: 400 }
-      );
+      return NextResponse.json({ error: "Missing required fields" }, { status: 400 });
     }
 
     if (!process.env.EMAIL_TO) {
       console.error("🚨 EMAIL_TO environment variable not found!");
-      return NextResponse.json(
-        { error: "Server email configuration missing" },
-        { status: 500 }
-      );
+      return NextResponse.json({ error: "Server email configuration missing" }, { status: 500 });
     }
 
-    console.log("📬 Attempting admin email via Resend API...");
+    // Clean up any accidental whitespace or hidden characters
+    const adminRecipient = process.env.EMAIL_TO.trim();
 
-    // 1️⃣ Send admin notification and capture response
+    console.log("📬 Sending admin email to cleaned address:", adminRecipient);
+
+    // 1️⃣ Send admin notification
     const adminRes = await resend.emails.send({
       from: "TAOS Website <touch@taosense.uk>",
-      to: process.env.EMAIL_TO!,
+      to: `Wesley Tan <${adminRecipient}>`,
       subject: `New Contact Form Message from ${name}`,
       text: `
 You’ve received a new message from the TAOS contact form:
@@ -44,14 +41,13 @@ Message:
 ${message}
 
 ---
-This message was sent from theartofsensuality.com
+Sent from theartofsensuality.com
       `,
     });
 
-    // 🧠 Log the full response for debugging
     console.log("📨 Admin email API response:", JSON.stringify(adminRes, null, 2));
 
-    // 2️⃣ Send client auto-reply and capture response
+    // 2️⃣ Send client auto-reply
     const clientRes = await resend.emails.send({
       from: "The Art of Sensuality <touch@taosense.uk>",
       to: email,
@@ -64,9 +60,6 @@ This message was sent from theartofsensuality.com
     return NextResponse.json({ success: true });
   } catch (err) {
     console.error("💥 Contact form error:", err);
-    return NextResponse.json(
-      { error: "Failed to send message" },
-      { status: 500 }
-    );
+    return NextResponse.json({ error: "Failed to send message" }, { status: 500 });
   }
 }
