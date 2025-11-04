@@ -9,10 +9,13 @@ export async function POST(req: Request) {
     const { name, email, phone, message } = await req.json();
 
     if (!name || !email || !message) {
+      console.error("❌ Missing required fields");
       return NextResponse.json({ error: "Missing required fields" }, { status: 400 });
     }
 
-    // 1️⃣ Send notification to admin (use Resend sandbox sender)
+    console.log("📬 Sending admin email to:", process.env.EMAIL_TO);
+
+    // 1️⃣ Send notification to admin (sandbox sender for deliverability)
     await resend.emails.send({
       from: "TAOS Website <onboarding@resend.dev>",
       to: process.env.EMAIL_TO!,
@@ -32,7 +35,9 @@ This message was sent from theartofsensuality.com
       `,
     });
 
-    // 2️⃣ Send branded auto-reply to the client
+    console.log("✅ Admin email sent (Resend request complete)");
+
+    // 2️⃣ Auto-reply to client
     await resend.emails.send({
       from: "The Art of Sensuality <touch@taosense.uk>",
       to: email,
@@ -40,9 +45,11 @@ This message was sent from theartofsensuality.com
       react: ClientContactReply({ name }),
     });
 
+    console.log("✅ Client auto-reply sent");
+
     return NextResponse.json({ success: true });
   } catch (err) {
-    console.error("Contact form error:", err);
+    console.error("💥 Contact form error:", err);
     return NextResponse.json({ error: "Failed to send message" }, { status: 500 });
   }
 }
