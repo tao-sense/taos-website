@@ -141,7 +141,7 @@ export default function WorkshopsContent({ workshops }: { workshops: any[] }) {
               Upcoming Workshops
             </h2>
             {workshops.length === 0 ? (
-              <p className="text-center text-black/70">No workshops scheduled yet.</p>
+              <p className="text-center text-black/70">New dates coming soon!</p>
             ) : (
               <div className="grid grid-cols-1 md:grid-cols-3 gap-10 text-left">
                 {workshops.map((w) => (
