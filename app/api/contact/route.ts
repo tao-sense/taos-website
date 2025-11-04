@@ -8,19 +8,14 @@ export async function POST(req: Request) {
   try {
     const { name, email, phone, message } = await req.json();
 
-    // Validate required fields
     if (!name || !email || !message) {
-      return NextResponse.json(
-        { error: "Missing required fields" },
-        { status: 400 }
-      );
+      return NextResponse.json({ error: "Missing required fields" }, { status: 400 });
     }
 
-    // 1️⃣ Send admin notification (to you)
+    // 1️⃣ Send notification to admin (use Resend sandbox sender)
     await resend.emails.send({
-      from: "TAOS Notifications <no-reply@taosense.uk>", // ✅ safer "from" address
-      to: process.env.EMAIL_TO!, // Zoho inbox (touch@taosense.uk)
-      replyTo: email, // ✅ reply directly to the client
+      from: "TAOS Website <onboarding@resend.dev>",
+      to: process.env.EMAIL_TO!,
       subject: `New Contact Form Message from ${name}`,
       text: `
 You’ve received a new message from the TAOS contact form:
@@ -33,15 +28,14 @@ Message:
 ${message}
 
 ---
-This message was sent from https://theartofsensuality.com
-      `.trim(),
+This message was sent from theartofsensuality.com
+      `,
     });
 
-    // 2️⃣ Send styled auto-reply to the client
+    // 2️⃣ Send branded auto-reply to the client
     await resend.emails.send({
-      from: "The Art of Sensuality <no-reply@taosense.uk>", // ✅ still from verified domain
+      from: "The Art of Sensuality <touch@taosense.uk>",
       to: email,
-      replyTo: "touch@taosense.uk", // ✅ client replies go to you
       subject: "Thank you for reaching out to The Art of Sensuality",
       react: ClientContactReply({ name }),
     });
@@ -49,9 +43,6 @@ This message was sent from https://theartofsensuality.com
     return NextResponse.json({ success: true });
   } catch (err) {
     console.error("Contact form error:", err);
-    return NextResponse.json(
-      { error: "Failed to send message" },
-      { status: 500 }
-    );
+    return NextResponse.json({ error: "Failed to send message" }, { status: 500 });
   }
 }
