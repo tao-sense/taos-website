@@ -111,6 +111,13 @@ export default function WorkshopsContent({ workshops }: { workshops: any[] }) {
                 <li><strong>Format:</strong> Group sessions for singles and couples</li>
                 <li><strong>Balance:</strong> Equal ratio of men and women for energetic balance</li>
                 <li><strong>Focus:</strong> Consent, communication, and embodied presence</li>
+                <li><strong>Duration:</strong> 4 days (approx. 34 hours total, with breaks)</li>
+                <li><strong>Structure:</strong> Guided demonstrations, partnered practice, and group integration</li>
+                <li><strong>Location:</strong> Private, peaceful venue with changing areas and refreshments</li>
+                <li><strong>Requirements:</strong> No previous experience required — openness and respect are essential</li>
+                <li><strong>Language:</strong> Sessions conducted in English</li>
+                <li><strong>Instructor:</strong> Wesley Tan — osteopath, bodyworker, and Tantra educator</li>
+                <ul className="space-y-2 text-black/80"></ul>
               </ul>
             </div>
             <div className="relative h-80 rounded-2xl overflow-hidden shadow-lg">
