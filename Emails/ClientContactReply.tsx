@@ -14,17 +14,37 @@ export default function ClientContactReply({ name }: { name: string }) {
         margin: "0 auto",
       }}
     >
-      <div style={{ textAlign: "center", marginBottom: "24px" }}>
-        <img
-          src="https://theartofsensuality.com/images/taos-logo.png"
-          alt="TAOS Logo"
-          width="160"
-          style={{ marginBottom: "12px" }}
-        />
-        <h1 style={{ color: "#C9A46C", fontWeight: "700", fontSize: "22px" }}>
-          The Art of Sensuality
-        </h1>
-      </div>
+     <div
+  style={{
+    textAlign: "center",
+    marginBottom: "24px",
+  }}
+>
+  <img
+    src="https://theartofsensuality.com/images/taos-logo.png"
+    alt="TAOS Logo"
+    width="160"
+    height="auto"
+    style={{
+      display: "block",
+      margin: "0 auto 12px auto",
+      border: "0",
+      outline: "none",
+      textDecoration: "none",
+    }}
+  />
+  <h1
+    style={{
+      color: "#C9A46C",
+      fontWeight: "700",
+      fontSize: "22px",
+      margin: "0",
+      fontFamily: "Arial, Helvetica, sans-serif",
+    }}
+  >
+    The Art of Sensuality
+  </h1>
+</div>
 
       <p style={{ fontSize: "16px", lineHeight: "1.6" }}>
         Dear {name},
