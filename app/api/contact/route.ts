@@ -16,10 +16,11 @@ export async function POST(req: Request) {
       );
     }
 
-    // 1️⃣ Send notification to you (admin)
+    // 1️⃣ Send admin notification (to you)
     await resend.emails.send({
-      from: "The Art of Sensuality <touch@taosense.uk>",
-      to: process.env.EMAIL_TO!, // your Zoho inbox
+      from: "TAOS Notifications <no-reply@taosense.uk>", // ✅ safer "from" address
+      to: process.env.EMAIL_TO!, // Zoho inbox (touch@taosense.uk)
+      replyTo: email, // ✅ reply directly to the client
       subject: `New Contact Form Message from ${name}`,
       text: `
 You’ve received a new message from the TAOS contact form:
@@ -32,14 +33,15 @@ Message:
 ${message}
 
 ---
-This message was sent from taosense.uk
-      `,
+This message was sent from https://theartofsensuality.com
+      `.trim(),
     });
 
     // 2️⃣ Send styled auto-reply to the client
     await resend.emails.send({
-      from: "The Art of Sensuality <touch@taosense.uk>",
+      from: "The Art of Sensuality <no-reply@taosense.uk>", // ✅ still from verified domain
       to: email,
+      replyTo: "touch@taosense.uk", // ✅ client replies go to you
       subject: "Thank you for reaching out to The Art of Sensuality",
       react: ClientContactReply({ name }),
     });
