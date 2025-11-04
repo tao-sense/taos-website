@@ -8,7 +8,6 @@ export async function POST(req: Request) {
   try {
     const { name, email, phone, message } = await req.json();
 
-    // 🧩 Diagnostic logging
     console.log("🧩 EMAIL_TO value detected as:", process.env.EMAIL_TO);
 
     if (!name || !email || !message) {
@@ -19,7 +18,6 @@ export async function POST(req: Request) {
       );
     }
 
-    // ⚠️ Prevent silent failure if EMAIL_TO is missing
     if (!process.env.EMAIL_TO) {
       console.error("🚨 EMAIL_TO environment variable not found!");
       return NextResponse.json(
@@ -28,11 +26,11 @@ export async function POST(req: Request) {
       );
     }
 
-    console.log("📬 Sending admin email to:", process.env.EMAIL_TO);
+    console.log("📬 Attempting admin email via Resend API...");
 
-    // 1️⃣ Send notification to admin (using your verified sender)
-    await resend.emails.send({
-      from: "touch@taosense.uk", // verified domain sender
+    // 1️⃣ Send admin notification and capture response
+    const adminRes = await resend.emails.send({
+      from: "TAOS Website <touch@taosense.uk>",
       to: process.env.EMAIL_TO!,
       subject: `New Contact Form Message from ${name}`,
       text: `
@@ -50,17 +48,18 @@ This message was sent from theartofsensuality.com
       `,
     });
 
-    console.log("✅ Admin email sent (Resend request complete)");
+    // 🧠 Log the full response for debugging
+    console.log("📨 Admin email API response:", JSON.stringify(adminRes, null, 2));
 
-    // 2️⃣ Auto-reply to client
-    await resend.emails.send({
+    // 2️⃣ Send client auto-reply and capture response
+    const clientRes = await resend.emails.send({
       from: "The Art of Sensuality <touch@taosense.uk>",
       to: email,
       subject: "Thank you for reaching out to The Art of Sensuality",
       react: ClientContactReply({ name }),
     });
 
-    console.log("✅ Client auto-reply sent");
+    console.log("📨 Client auto-reply API response:", JSON.stringify(clientRes, null, 2));
 
     return NextResponse.json({ success: true });
   } catch (err) {
