@@ -5,7 +5,7 @@ import Providers from '@/components/Providers';
 import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: 'TAOS | The Art of Sensuality',
+  title: 'The Art of Sensuality | TAOS',
   description:
     'Experience the Art of Sensuality through Tantra Massage, Workshops, and Intimacy Coaching with TAOS.',
   keywords: [
@@ -16,15 +16,16 @@ export const metadata: Metadata = {
     'TAOS',
     'The Art of Sensuality',
   ],
+
   openGraph: {
-    title: 'TAOS | The Art of Sensuality',
+    title: 'The Art of Sensuality | TAOS',
     description:
       'Experience the Art of Sensuality through Tantra Massage, Workshops, and Intimacy Coaching with TAOS.',
-    url: 'https://taosense.uk', // you can leave this as-is until the site goes live
-    siteName: 'TAOS',
+    url: 'https://theartofsensuality.com',
+    siteName: 'The Art of Sensuality',
     images: [
       {
-        url: '/images/og-banner.jpeg',
+        url: 'https://theartofsensuality.com/images/og-banner.jpeg',
         width: 1200,
         height: 630,
         alt: 'The Art of Sensuality — Tantra Massage, Workshops, Intimacy Coaching',
@@ -33,13 +34,19 @@ export const metadata: Metadata = {
     locale: 'en_GB',
     type: 'website',
   },
+
   twitter: {
     card: 'summary_large_image',
-    title: 'TAOS | The Art of Sensuality',
+    title: 'The Art of Sensuality | TAOS',
     description:
       'Experience the Art of Sensuality through Tantra Massage, Workshops, and Intimacy Coaching.',
-    images: ['/images/og-banner.png'],
+    images: ['https://theartofsensuality.com/images/og-banner.jpeg'],
   },
+
+  alternates: {
+    canonical: 'https://theartofsensuality.com',
+  },
+
   icons: {
     icon: [
       '/favicon.ico',
@@ -49,6 +56,7 @@ export const metadata: Metadata = {
     apple: '/apple-touch-icon.png',
     shortcut: '/favicon.ico',
   },
+
   manifest: '/site.webmanifest',
 };
 
