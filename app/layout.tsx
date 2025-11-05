@@ -24,7 +24,7 @@ export const metadata: Metadata = {
     siteName: 'TAOS',
     images: [
       {
-        url: '/images/og-banner.png',
+        url: '/images/og-banner.jpeg',
         width: 1200,
         height: 630,
         alt: 'The Art of Sensuality — Tantra Massage, Workshops, Intimacy Coaching',
