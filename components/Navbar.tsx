@@ -3,7 +3,7 @@
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { useSession, signOut } from 'next-auth/react';
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef, useEffect } from 'react'; // ✅ added useEffect
 import { flags } from '@/lib/flags';
 
 // --- Utility components ---
@@ -29,8 +29,15 @@ const NavLink = ({
   children: React.ReactNode;
   isTopLevel?: boolean;
 }) => {
-  const pathname = usePathname();
-  const active = pathname === href;
+
+
+const pathname = usePathname();
+const [active, setActive] = useState(false);
+
+// Ensure this only runs client-side after hydration
+useEffect(() => {
+  setActive(pathname === href);
+}, [pathname, href]);
 
   return (
     <Link

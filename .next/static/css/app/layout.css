@@ -848,6 +848,9 @@ video {
 .animate-bounce {
   animation: bounce 1s infinite;
 }
+.scroll-mt-20 {
+  scroll-margin-top: 5rem;
+}
 .list-inside {
   list-style-position: inside;
 }
@@ -1309,6 +1312,9 @@ video {
 .font-bold {
   font-weight: 700;
 }
+.font-light {
+  font-weight: 300;
+}
 .font-medium {
   font-weight: 500;
 }
@@ -1324,8 +1330,14 @@ video {
 .italic {
   font-style: italic;
 }
+.leading-none {
+  line-height: 1;
+}
 .leading-relaxed {
   line-height: 1.625;
+}
+.leading-tight {
+  line-height: 1.25;
 }
 .tracking-wide {
   letter-spacing: 0.025em;
