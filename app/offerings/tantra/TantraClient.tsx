@@ -1,14 +1,14 @@
 "use client";
 
-import Image from 'next/image';
-import Link from 'next/link';
-import ScrollFade from '@/components/ScrollFade';
+import Image from "next/image";
+import Link from "next/link";
+import ScrollFade from "@/components/ScrollFade";
 
 export default function TantraPage() {
   return (
-    <main className="bg-black text-white">
+    <main className="bg-black text-white relative">
       {/* Hero */}
-      <section className="relative h-[90vh] flex items-center justify-center text-center">
+      <section className="relative h-[90vh] flex flex-col items-center justify-center text-center">
         <Image
           src="/images/tantrabed.png"
           alt="Classic Tantra Massage in Stroud – The Art of Sensuality (TAOS)"
@@ -24,11 +24,21 @@ export default function TantraPage() {
           </ScrollFade>
 
           <ScrollFade delay={0.1}>
-            <p className="text-lg text-white/80">
-              A sacred journey of ritual, ceremony, and touch — honouring the spirit of life
-              within you. Experience professional Tantra Massage in Stroud, Gloucestershire
-              with The Art of Sensuality (TAOS).
+            <p className="text-lg text-white/80 mb-8">
+              A sacred journey of ritual, ceremony, and touch — honouring the
+              spirit of life within you. Experience professional Tantra Massage
+              in Stroud, Gloucestershire with The Art of Sensuality (TAOS).
             </p>
+          </ScrollFade>
+
+          {/* Hero CTA */}
+          <ScrollFade delay={0.2}>
+            <Link
+              href="/contact"
+              className="inline-block px-8 py-3 rounded-xl bg-gold text-black font-semibold hover:opacity-90 transition"
+            >
+              Book Your Tantra Massage →
+            </Link>
           </ScrollFade>
         </div>
 
@@ -64,17 +74,19 @@ export default function TantraPage() {
           <div className="max-w-4xl mx-auto grid md:grid-cols-2 gap-10 items-center">
             <div className="space-y-6">
               <p className="text-lg">
-                This bodywork blends intuitive touch, breathwork, and energetic awareness to
-                gently dissolve tension and shame — making space for pleasure, clarity, and
-                deep emotional release. Held in a safe, honouring container, the experience
-                invites a deeper homecoming to your body, your boundaries, and your authentic
+                This bodywork blends intuitive touch, breathwork, and energetic
+                awareness to gently dissolve tension and shame — making space
+                for pleasure, clarity, and deep emotional release. Held in a
+                safe, honouring container, the experience invites a deeper
+                homecoming to your body, your boundaries, and your authentic
                 desire.
               </p>
               <p className="text-lg">
-                Each 2-hour session begins with simple ritual and ceremony before flowing
-                into deliciously slow and sensual massage of the whole body. Every gesture is
-                offered with devotion, honouring the wholeness of who you are. Sessions are
-                available in Stroud, Gloucestershire, and tailored to your needs.
+                Each 2-hour session begins with simple ritual and ceremony
+                before flowing into deliciously slow and sensual massage of the
+                whole body. Every gesture is offered with devotion, honouring
+                the wholeness of who you are. Sessions are available in Stroud,
+                Gloucestershire, and tailored to your needs.
               </p>
             </div>
             <div className="relative h-80 rounded-2xl overflow-hidden shadow-lg">
@@ -105,27 +117,38 @@ export default function TantraPage() {
 
           <div className="max-w-4xl mx-auto grid md:grid-cols-2 gap-10 items-start">
             <div>
-              <h2 className="text-2xl font-semibold text-gold mb-6">Session Details</h2>
+              <h2 className="text-2xl font-semibold text-gold mb-6">
+                Session Details
+              </h2>
               <ul className="list-disc pl-6 space-y-2 text-black/80">
-                <li><strong>Duration:</strong> 2 hours</li>
-                <li><strong>Format:</strong> Private 1-to-1 session</li>
                 <li>
-                  <strong>Setting:</strong> The massage takes place on a soft floor bed
-                  rather than a table. This accentuates comfort and letting go, and keeps
-                  giver and receiver on the same level — a core principle of Tantra Massage.
+                  <strong>Duration:</strong> 2 hours
                 </li>
                 <li>
-                  <strong>Flow:</strong> Sessions begin with a greeting ritual and a touch of
-                  ceremony, moving into slow, full-body massage supported by intuitive touch,
-                  breathwork, and energetic awareness.
+                  <strong>Format:</strong> Private 1-to-1 session
                 </li>
                 <li>
-                  <strong>Equality:</strong> At every stage both giver and receiver remain in
-                  equal states of covering or undress — always guided by consent and comfort.
+                  <strong>Setting:</strong> The massage takes place on a soft
+                  floor bed rather than a table. This accentuates comfort and
+                  letting go, and keeps giver and receiver on the same level — a
+                  core principle of Tantra Massage.
                 </li>
                 <li>
-                  <strong>Atmosphere:</strong> A safe, confidential, and non-judgmental
-                  space; the natural wood of our log cabin combined with soothing music, woodburner warmth and soft lighting.
+                  <strong>Flow:</strong> Sessions begin with a greeting ritual
+                  and a touch of ceremony, moving into slow, full-body massage
+                  supported by intuitive touch, breathwork, and energetic
+                  awareness.
+                </li>
+                <li>
+                  <strong>Equality:</strong> At every stage both giver and
+                  receiver remain in equal states of covering or undress — always
+                  guided by consent and comfort.
+                </li>
+                <li>
+                  <strong>Atmosphere:</strong> A safe, confidential, and
+                  non-judgmental space; the natural wood of our log cabin
+                  combined with soothing music, woodburner warmth and soft
+                  lighting.
                 </li>
               </ul>
             </div>
@@ -140,6 +163,19 @@ export default function TantraPage() {
           </div>
         </section>
       </ScrollFade>
+
+      {/* Mid-Page CTA */}
+      <section className="bg-black text-center py-16">
+        <p className="text-white/80 text-lg mb-6">
+          Every journey begins with a single step — or in this case, a touch.
+        </p>
+        <Link
+          href="/contact"
+          className="inline-block px-8 py-3 rounded-xl bg-gold text-black font-semibold hover:opacity-90 transition"
+        >
+          Reserve Your Session →
+        </Link>
+      </section>
 
       {/* Who I Work With */}
       <ScrollFade delay={0.2}>
@@ -159,27 +195,35 @@ export default function TantraPage() {
             <h2 className="text-2xl font-semibold text-gold">Who I Work With</h2>
 
             <p>
-              I currently offer 1-to-1 <strong>Tantra Massage sessions in Stroud</strong> for women only. 
-              This boundary allows me to hold a space that remains aligned with the nature of my work and my
-              personal experience in this field. I also offer a service for couples (where at least
-              one partner is a woman); more details about this offering can be found in the{' '}
-              <Link href="/offerings/coaching" className="text-gold font-semibold hover:underline">
+              I currently offer 1-to-1{" "}
+              <strong>Tantra Massage sessions in Stroud</strong> for women only.
+              This boundary allows me to hold a space that remains aligned with
+              the nature of my work and my personal experience in this field. I
+              also offer a service for couples (where at least one partner is a
+              woman); more details about this offering can be found in the{" "}
+              <Link
+                href="/offerings/coaching"
+                className="text-gold font-semibold hover:underline"
+              >
                 Intimacy Coaching
-              </Link>{' '}
+              </Link>{" "}
               section.
             </p>
 
             <p>
-              The session includes a <strong className="text-gold font-semibold">yoni massage</strong> — the
-              Sanskrit term for the vulva — as an integral part of the full-body experience.
-              In Tantra Massage, no part of the body is excluded or treated with shame; every area
-              is honoured with presence, respect, and care.
+              The session includes a{" "}
+              <strong className="text-gold font-semibold">yoni massage</strong>{" "}
+              — the Sanskrit term for the vulva — as an integral part of the
+              full-body experience. In Tantra Massage, no part of the body is
+              excluded or treated with shame; every area is honoured with
+              presence, respect, and care.
             </p>
 
             <p>
-              You always have complete sovereignty over your body. Any boundaries or limits you
-              wish to set can be discussed and agreed upon before the session begins, and you are
-              free to express, pause, or stop at any point. Your comfort, consent, and inner safety
+              You always have complete sovereignty over your body. Any
+              boundaries or limits you wish to set can be discussed and agreed
+              upon before the session begins, and you are free to express, pause,
+              or stop at any point. Your comfort, consent, and inner safety
               remain at the heart of the practice.
             </p>
           </div>
@@ -202,9 +246,11 @@ export default function TantraPage() {
 
           <div className="max-w-3xl mx-auto space-y-6">
             <p className="text-white/80 text-lg">
-              Many of us carry conditioning, shame, trauma, or a sense of disconnection from
-              our bodies. <strong>Tantra Massage</strong> is an opportunity to soften those layers 
-              and return to the simple beauty of being touched — with presence, honour, and care.
+              Many of us carry conditioning, shame, trauma, or a sense of
+              disconnection from our bodies.{" "}
+              <strong>Tantra Massage</strong> is an opportunity to soften those
+              layers and return to the simple beauty of being touched — with
+              presence, honour, and care.
             </p>
           </div>
         </section>
@@ -230,41 +276,51 @@ export default function TantraPage() {
             </h2>
             <div className="space-y-6 text-black/80">
               <div>
-                <h3 className="font-semibold text-black mb-2">Will I be naked during the massage?</h3>
+                <h3 className="font-semibold text-black mb-2">
+                  Will I be naked during the massage?
+                </h3>
                 <p>
-                  The session begins with both of us covered in a lunghi (sarong). As the
-                  massage progresses, clothing may be removed — always at your pace, and
-                  always with equal states of dress. You will never be pushed beyond what
-                  feels right for you.
+                  The session begins with both of us covered in a lunghi
+                  (sarong). As the massage progresses, clothing may be removed —
+                  always at your pace, and always with equal states of dress. You
+                  will never be pushed beyond what feels right for you.
                 </p>
               </div>
 
               <div>
-                <h3 className="font-semibold text-black mb-2">Is orgasm the goal of Tantra Massage?</h3>
+                <h3 className="font-semibold text-black mb-2">
+                  Is orgasm the goal of Tantra Massage?
+                </h3>
                 <p>
-                  No. The focus is on presence, connection, and awakening the body’s natural
-                  flow of energy. Orgasms may happen, but they are not expected or required.
-                  What matters is how you feel in your body — relaxed, alive, and more
-                  connected to yourself.
+                  No. The focus is on presence, connection, and awakening the
+                  body’s natural flow of energy. Orgasms may happen, but they are
+                  not expected or required. What matters is how you feel in your
+                  body — relaxed, alive, and more connected to yourself.
                 </p>
               </div>
 
               <div>
-                <h3 className="font-semibold text-black mb-2">What if I feel uncomfortable at any point?</h3>
+                <h3 className="font-semibold text-black mb-2">
+                  What if I feel uncomfortable at any point?
+                </h3>
                 <p>
-                  You are always in charge of the session. You can pause, adjust, or stop at
-                  any time. Consent and clear communication are the foundation of Tantra
-                  Massage, so your boundaries are fully respected.
+                  You are always in charge of the session. You can pause, adjust,
+                  or stop at any time. Consent and clear communication are the
+                  foundation of Tantra Massage, so your boundaries are fully
+                  respected.
                 </p>
               </div>
 
               <div>
-                <h3 className="font-semibold text-black mb-2">Can Tantra Massage help if I’ve experienced trauma?</h3>
+                <h3 className="font-semibold text-black mb-2">
+                  Can Tantra Massage help if I’ve experienced trauma?
+                </h3>
                 <p>
-                  Tantra Massage can be a gentle support for reconnecting with your body and
-                  rebuilding trust in intimacy. While it is not a substitute for therapy,
-                  many people find it helps them soften protective tension and rediscover
-                  the pleasure of being touched in a safe, honouring way.
+                  Tantra Massage can be a gentle support for reconnecting with
+                  your body and rebuilding trust in intimacy. While it is not a
+                  substitute for therapy, many people find it helps them soften
+                  protective tension and rediscover the pleasure of being touched
+                  in a safe, honouring way.
                 </p>
               </div>
             </div>
@@ -301,13 +357,15 @@ export default function TantraPage() {
             </h2>
 
             <p className="text-lg text-black/80">
-              A Tantra Massage session is a sacred meeting — a journey into trust,
-              embodiment, and presence. Sessions take place in a private, peaceful
-              space in <strong>Stroud, Gloucestershire</strong>, with The Art of Sensuality (TAOS).
+              A Tantra Massage session is a sacred meeting — a journey into
+              trust, embodiment, and presence. Sessions take place in a private,
+              peaceful space in <strong>Stroud, Gloucestershire</strong>, with
+              The Art of Sensuality (TAOS).
             </p>
 
             <div className="text-3xl font-semibold text-black mt-6">
-              £180 <span className="text-lg font-normal text-black/70">· 2 hours</span>
+              £180{" "}
+              <span className="text-lg font-normal text-black/70">· 2 hours</span>
             </div>
 
             <p className="text-md text-neutral-600 italic">
@@ -315,19 +373,30 @@ export default function TantraPage() {
             </p>
           </div>
 
-          <div className="bg-white py-12 px-6 text-center">
+          {/* Final CTA with increased margin */}
+          <div className="bg-gradient-to-b from-gold/10 to-white py-16 px-6 text-center mt-20 rounded-xl shadow-md">
             <h2 className="text-2xl md:text-3xl font-semibold text-black mb-6">
               Ready to experience Tantra Massage in Stroud?
             </h2>
             <Link
               href="/contact"
-              className="inline-block px-6 py-3 rounded-xl bg-gold text-black font-semibold hover:opacity-90"
+              className="inline-block px-8 py-3 rounded-xl bg-gold text-black font-semibold hover:opacity-90 transition"
             >
               Book Your Session →
             </Link>
           </div>
         </section>
       </ScrollFade>
+
+      {/* Floating Mobile CTA */}
+      <div className="fixed bottom-4 right-4 z-50 md:hidden">
+        <Link
+          href="/contact"
+          className="bg-gold text-black font-semibold px-5 py-3 rounded-full shadow-lg hover:opacity-90 transition"
+        >
+          Book Now
+        </Link>
+      </div>
     </main>
   );
 }
