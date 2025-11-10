@@ -42,12 +42,10 @@ const NavLink = ({
     <Link
       href={href}
       onClick={onClick}
-      // stronger shadow for better contrast on bright backgrounds
       style={{
-        textShadow:
-          active
-            ? '0 0 12px rgba(255, 215, 0, 0.75), 0 0 18px rgba(255, 215, 0, 0.45)'
-            : '0 0 8px rgba(0,0,0,0.9), 0 0 16px rgba(0,0,0,0.9)',
+        textShadow: active
+          ? '0 0 12px rgba(255, 215, 0, 0.75), 0 0 18px rgba(255, 215, 0, 0.45)'
+          : '0 0 8px rgba(0,0,0,0.9), 0 0 16px rgba(0,0,0,0.9)',
       }}
       className={`relative block px-3 py-2 rounded-2xl transition ${
         active ? 'text-gold' : 'text-white hover:text-gold'
@@ -110,7 +108,7 @@ function DropdownItem({ item }: { item: any }) {
       </NavLink>
 
       <div
-        className={`absolute left-0 mt-1 w-56 bg-black/95 border border-white/10 rounded-lg shadow-lg transform transition-all duration-200 ease-out ${
+        className={`absolute left-0 mt-1 w-56 bg-black border border-white/10 rounded-lg shadow-lg transform transition-all duration-200 ease-out ${
           open
             ? 'opacity-100 translate-y-0 pointer-events-auto'
             : 'opacity-0 -translate-y-2 pointer-events-none'
@@ -132,25 +130,6 @@ export default function Navbar() {
   const isAdmin = (session?.user as any)?.role === 'ADMIN';
   const [mobileOpen, setMobileOpen] = useState(false);
   const [openDropdown, setOpenDropdown] = useState<string | null>(null);
-
-  // Prevent background clipping (both html & body)
-  useEffect(() => {
-    const html = document.documentElement;
-    const body = document.body;
-
-    if (mobileOpen) {
-      html.style.overflow = 'visible';
-      body.style.overflow = 'visible';
-    } else {
-      html.style.overflow = 'auto';
-      body.style.overflow = 'auto';
-    }
-
-    return () => {
-      html.style.overflow = 'auto';
-      body.style.overflow = 'auto';
-    };
-  }, [mobileOpen]);
 
   const toggleDropdown = (section: string) =>
     setOpenDropdown(openDropdown === section ? null : section);
@@ -247,30 +226,20 @@ export default function Navbar() {
         </div>
       </div>
 
-      {/* --- Mobile Menu (full overlay) --- */}
+      {/* --- Mobile Menu (pushes page content down, solid bg) --- */}
       {mobileOpen && (
-        <div
-          className="taos-overlay bg-black backdrop-blur-lg md:hidden 
-                     flex flex-col px-8 py-10 space-y-4 overflow-y-auto animate-fadeSlideDown border-t border-white/10 relative"
-        >
-          {/* Subtle darkening layer for depth */}
-          <div className="absolute inset-0 bg-black/20 pointer-events-none" />
-
-          <button
-            onClick={() => setMobileOpen(false)}
-            className="self-end mb-6 text-3xl text-gold hover:opacity-80 relative z-[2]"
-          >
-            &times;
-          </button>
-
-          <nav className="flex flex-col space-y-4 relative z-[2]">
+        <div className="md:hidden flex flex-col px-8 py-10 space-y-4 bg-black border-t border-white/10 animate-fadeSlideDown">
+          <nav className="flex flex-col space-y-4">
             {navItems.map((item) =>
               item.children ? (
                 <div key={item.title}>
                   <div className="flex justify-between items-center">
                     <NavLink
                       href={item.href}
-                      onClick={() => setMobileOpen(false)}
+                      onClick={() => {
+                        setMobileOpen(false);
+                        setOpenDropdown(null);
+                      }}
                     >
                       {item.title}
                     </NavLink>
@@ -282,29 +251,31 @@ export default function Navbar() {
                     </button>
                   </div>
 
-                  <div
-                    className={`ml-4 overflow-hidden transition-all duration-300 ease-out ${
-                      openDropdown === item.title
-                        ? 'max-h-96 opacity-100'
-                        : 'max-h-0 opacity-0'
-                    }`}
-                  >
-                    {item.children.map((child) => (
-                      <NavLink
-                        key={child.title}
-                        href={child.href}
-                        onClick={() => setMobileOpen(false)}
-                      >
-                        {child.title}
-                      </NavLink>
-                    ))}
-                  </div>
+                  {openDropdown === item.title && (
+                    <div className="ml-4 flex flex-col space-y-2 mt-2">
+                      {item.children.map((child) => (
+                        <NavLink
+                          key={child.title}
+                          href={child.href}
+                          onClick={() => {
+                            setMobileOpen(false);
+                            setOpenDropdown(null);
+                          }}
+                        >
+                          {child.title}
+                        </NavLink>
+                      ))}
+                    </div>
+                  )}
                 </div>
               ) : (
                 <NavLink
                   key={item.title}
                   href={item.href}
-                  onClick={() => setMobileOpen(false)}
+                  onClick={() => {
+                    setMobileOpen(false);
+                    setOpenDropdown(null);
+                  }}
                 >
                   {item.title}
                 </NavLink>
@@ -313,7 +284,7 @@ export default function Navbar() {
           </nav>
 
           {/* Auth Buttons (mobile) */}
-          <div className="pt-8 border-t border-white/10 mt-6 flex flex-col gap-2 relative z-[2]">
+          <div className="pt-8 border-t border-white/10 mt-6 flex flex-col gap-2">
             {!session ? (
               flags.subscriptions && (
                 <>

@@ -3,4 +3,4 @@ node_modules
 .next/
 node_modules/
 # Next.js build output
-.next/
+.next/.next/
