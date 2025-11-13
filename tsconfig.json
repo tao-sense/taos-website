@@ -8,11 +8,11 @@
     "jsx": "preserve",
 
     /* ===== TypeScript behavior ===== */
-    "allowJs": true,              // allow .js files (like your route.js)
-    "checkJs": false,             // skip type-checking JavaScript
-    "skipLibCheck": true,         // skip library .d.ts checks for speed
-    "strict": true,               // keep strict mode for TypeScript files
-    "noEmit": true,               // don't output JS during build
+    "allowJs": true,
+    "checkJs": false,
+    "skipLibCheck": true,
+    "strict": true,
+    "noEmit": true,
     "esModuleInterop": true,
     "resolveJsonModule": true,
     "isolatedModules": true,
@@ -24,7 +24,10 @@
       "@/*": ["./*"]
     },
 
-    /* ===== Next.js plugin ===== */
+    /* ===== Tell TS where to find custom type declarations (IMPORTANT) ===== */
+    "typeRoots": ["./types", "./node_modules/@types"],
+
+    /* ===== Next.js compiler plugin ===== */
     "plugins": [
       { "name": "next" }
     ]
@@ -36,11 +39,10 @@
     "**/*.ts",
     "**/*.tsx",
     "**/*.js",
-    ".next/types/**/*.ts"
+    ".next/types/**/*.ts",
+    "types/**/*.d.ts"   // <- ensures next-auth types are included
   ],
 
   /* ===== Exclusions ===== */
-  "exclude": [
-    "node_modules"
-  ]
+  "exclude": ["node_modules"]
 }
