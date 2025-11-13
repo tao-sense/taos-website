@@ -31,7 +31,7 @@ export async function GET() {
     result.status = "error";
   }
 
-  // 3️⃣ RESEND — LEGACY FREE-TIER CHECK
+  // 3️⃣ RESEND CHECK — Legacy API
   try {
     const res = await fetch("https://api.resend.com/emails", {
       method: "POST",
@@ -43,12 +43,13 @@ export async function GET() {
         from: "healthcheck@taosense.uk",
         to: ["invalid@resend.dev"],
         subject: "Health Check",
-        html: "<p>test</p>",
+        html: "<p>health</p>",
       }),
     });
 
-    // Legacy API returns 422 when key is valid
-    if (res.status === 422) {
+    // 200 OK = working
+    // 422 invalid recipient = working
+    if (res.status === 200 || res.status === 422) {
       result.email = "connected";
     } else {
       const text = await res.text();
