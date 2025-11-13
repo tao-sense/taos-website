@@ -23,8 +23,8 @@ export async function GET() {
   // 2️⃣ STRIPE CHECK
   try {
     const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!, {
-  apiVersion: "2023-10-16",
-}); // lightweight call
+      apiVersion: "2023-10-16",
+    });
     result.stripe = "connected";
   } catch (error: any) {
     result.stripe = "error: " + error.message;
@@ -32,6 +32,8 @@ export async function GET() {
   }
 
   // 3️⃣ RESEND EMAIL API CHECK
+  console.log("LIVE RESEND KEY:", process.env.RESEND_API_KEY);
+
   try {
     const res = await fetch("https://api.resend.com/v1/emails", {
       method: "GET",
