@@ -19,7 +19,7 @@ export async function POST(req: Request) {
 
     // Optionally send a welcome email
     // await resend.emails.send({
-    //   from: "TAOS <no-reply@taos.com>",
+    //   from: "TAOS <no-reply@taosense.uk>",
     //   to: email,
     //   subject: "Welcome to TAOS",
     //   text: "Thank you for subscribing to our updates.",
