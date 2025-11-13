@@ -31,18 +31,25 @@ export async function GET() {
     result.status = "error";
   }
 
-  // 3️⃣ RESEND EMAIL API CHECK — VALID ENDPOINT (/v1/api-keys)
-  console.log("LIVE RESEND KEY:", process.env.RESEND_API_KEY);
-
+  // 3️⃣ RESEND EMAIL API CHECK — Free-tier friendly "fake email" POST test
   try {
-    const res = await fetch("https://api.resend.com/v1/api-keys", {
-      method: "GET",
+    const res = await fetch("https://api.resend.com/v1/emails", {
+      method: "POST",
       headers: {
         Authorization: `Bearer ${process.env.RESEND_API_KEY}`,
+        "Content-Type": "application/json",
       },
+      body: JSON.stringify({
+        from: "healthcheck@taosense.uk",
+        to: ["invalid@resend.test"], // Resend rejects but key must be valid
+        subject: "Health Check",
+        html: "<p>test</p>",
+      }),
     });
 
-    if (res.ok) {
+    // A valid key returns 400 ("invalid recipient")
+    // An invalid key returns 401/403
+    if (res.status === 400) {
       result.email = "connected";
     } else {
       const text = await res.text();
