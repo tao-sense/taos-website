@@ -31,9 +31,9 @@ export async function GET() {
     result.status = "error";
   }
 
-  // 3️⃣ RESEND EMAIL API CHECK — Free-tier friendly "fake email" POST test
+  // 3️⃣ RESEND — LEGACY FREE-TIER CHECK
   try {
-    const res = await fetch("https://api.resend.com/v1/emails", {
+    const res = await fetch("https://api.resend.com/emails", {
       method: "POST",
       headers: {
         Authorization: `Bearer ${process.env.RESEND_API_KEY}`,
@@ -41,15 +41,14 @@ export async function GET() {
       },
       body: JSON.stringify({
         from: "healthcheck@taosense.uk",
-        to: ["invalid@resend.test"], // Resend rejects but key must be valid
+        to: ["invalid@resend.dev"],
         subject: "Health Check",
         html: "<p>test</p>",
       }),
     });
 
-    // A valid key returns 400 ("invalid recipient")
-    // An invalid key returns 401/403
-    if (res.status === 400) {
+    // Legacy API returns 422 when key is valid
+    if (res.status === 422) {
       result.email = "connected";
     } else {
       const text = await res.text();
