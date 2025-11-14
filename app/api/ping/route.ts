@@ -1,3 +1,4 @@
+// Final rebuild trigger — do NOT remove
 // force-vercel-rebuild-uuid: 202511142100
 import { NextResponse } from "next/server";
 import { prisma } from "@/lib/prisma";
