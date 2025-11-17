@@ -1,64 +1,75 @@
 import { NextResponse } from "next/server";
-import { prisma } from "@/lib/prisma";
 import Stripe from "stripe";
+import { prisma } from "@/lib/prisma";
 
 export async function GET() {
   const result: any = {
     timestamp: new Date().toISOString(),
     database: null,
+    latency: null,
     stripe: null,
     email: null,
+    lastCronRun: null,
     status: "ok",
   };
 
-  // 1️⃣ DATABASE CHECK — Prisma → Supabase
+  // 🟢 DATABASE STATUS + LATENCY
   try {
-    await prisma.$queryRaw`SELECT 1;`;
+    const start = Date.now();
+    await prisma.$queryRaw`SELECT 1`;
+    result.latency = Date.now() - start;
     result.database = "connected";
-  } catch (error: any) {
-    result.database = "error: " + error.message;
+  } catch (err: any) {
+    result.database = "error: " + err.message;
     result.status = "error";
   }
 
-  // 2️⃣ STRIPE CHECK
+  // 🟢 STRIPE STATUS
   try {
-    const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!, {
+    new Stripe(process.env.STRIPE_SECRET_KEY!, {
       apiVersion: "2023-10-16",
     });
     result.stripe = "connected";
-  } catch (error: any) {
-    result.stripe = "error: " + error.message;
+  } catch (err: any) {
+    result.stripe = "error: " + err.message;
     result.status = "error";
   }
 
-  // 3️⃣ RESEND CHECK — Legacy API
+  // 🟢 RESEND STATUS — checking domains list works on free tier
   try {
-    const res = await fetch("https://api.resend.com/emails", {
-      method: "POST",
-      headers: {
-        Authorization: `Bearer ${process.env.RESEND_API_KEY}`,
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        from: "healthcheck@taosense.uk",
-        to: ["invalid@resend.dev"],
-        subject: "Health Check",
-        html: "<p>health</p>",
-      }),
+    const res = await fetch("https://api.resend.com/v1/domains", {
+      method: "GET",
+      headers: { Authorization: `Bearer ${process.env.RESEND_API_KEY}` },
     });
 
-    // 200 OK = working
-    // 422 invalid recipient = working
-    if (res.status === 200 || res.status === 422) {
+    if (res.ok) {
       result.email = "connected";
     } else {
       const text = await res.text();
-      result.email = `error: ${res.status} ${res.statusText} - ${text}`;
+      result.email = `error: ${text}`;
       result.status = "error";
     }
-  } catch (error: any) {
-    result.email = "error: " + error.message;
+  } catch (err: any) {
+    result.email = "error: " + err.message;
     result.status = "error";
+  }
+
+  // 🟢 LAST KEEP-ALIVE PING FROM KV
+  try {
+    const resp = await fetch(`${process.env.KV_REST_API_URL}/get/taos:lastPing`, {
+      headers: { Authorization: `Bearer ${process.env.KV_REST_API_TOKEN}` },
+    });
+
+    if (resp.ok) {
+      const json = await resp.json();
+      const value = json.result ? JSON.parse(json.result) : null;
+      result.lastCronRun = value?.timestamp ?? null;
+      if (value?.latency) result.cronLatency = value.latency;
+    } else {
+      result.lastCronRun = "error";
+    }
+  } catch (err) {
+    result.lastCronRun = "error";
   }
 
   return NextResponse.json(result);
