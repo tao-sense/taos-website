@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
-import { prisma } from "@/lib/prisma";
 import Stripe from "stripe";
+import { prisma } from "@/lib/prisma";
 
 export async function GET() {
   const result: any = {
@@ -11,51 +11,43 @@ export async function GET() {
     status: "ok",
   };
 
-  // 1️⃣ DATABASE CHECK — Prisma → Supabase
+  // 🟢 DATABASE CHECK
   try {
-    await prisma.$queryRaw`SELECT 1;`;
+    await prisma.$queryRaw`SELECT 1`;
     result.database = "connected";
-  } catch (error: any) {
-    result.database = "error: " + error.message;
+  } catch (err: any) {
+    result.database = "error: " + err.message;
     result.status = "error";
   }
 
-  // 2️⃣ STRIPE CHECK
+  // 🟢 STRIPE CHECK
   try {
-    const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!, {
+    new Stripe(process.env.STRIPE_SECRET_KEY!, {
       apiVersion: "2023-10-16",
     });
     result.stripe = "connected";
-  } catch (error: any) {
-    result.stripe = "error: " + error.message;
+  } catch (err: any) {
+    result.stripe = "error: " + err.message;
     result.status = "error";
   }
 
-  // 3️⃣ RESEND EMAIL API CHECK (the version that WORKED)
+  // 🟢 RESEND CHECK — THIS IS THE WORKING ONE
   try {
-    const res = await fetch("https://api.resend.com/v1/emails", {
-      method: "POST",
+    const res = await fetch("https://api.resend.com/v1/domains", {
+      method: "GET",
       headers: {
         Authorization: `Bearer ${process.env.RESEND_API_KEY}`,
-        "Content-Type": "application/json",
       },
-      body: JSON.stringify({
-        from: process.env.EMAIL_FROM,
-        to: process.env.EMAIL_TO,
-        subject: "Health check",
-        html: "<p>Health check</p>",
-      }),
     });
 
     if (res.ok) {
       result.email = "connected";
     } else {
-      const text = await res.text();
-      result.email = `error: ${res.status} ${res.statusText} - ${text}`;
+      result.email = `error: ${res.status} ${res.statusText}`;
       result.status = "error";
     }
-  } catch (error: any) {
-    result.email = "error: " + error.message;
+  } catch (err: any) {
+    result.email = "error: " + err.message;
     result.status = "error";
   }
 
