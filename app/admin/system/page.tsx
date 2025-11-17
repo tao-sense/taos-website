@@ -23,7 +23,7 @@ export default function AdminSystemPage() {
     }
   }, [status, session, router]);
 
-  // While session is loading or redirecting, show a simple message
+  // While session loads
   if (status === "loading") {
     return (
       <main className="bg-black min-h-screen text-white p-10">
@@ -35,7 +35,7 @@ export default function AdminSystemPage() {
     );
   }
 
-  // If not authenticated or not admin, we don't render the dashboard
+  // If not admin or not logged in
   if (
     status === "unauthenticated" ||
     (status === "authenticated" && session?.user?.role !== "ADMIN")
@@ -43,7 +43,7 @@ export default function AdminSystemPage() {
     return null;
   }
 
-  // Only fetch health data when we KNOW the user is an authenticated ADMIN
+  // Only fetch health data when authenticated
   const shouldFetch =
     status === "authenticated" && session?.user?.role === "ADMIN";
 
@@ -84,13 +84,18 @@ export default function AdminSystemPage() {
             <p>Status: {data.stripe}</p>
           </div>
 
-          {/* Resend */}
+          {/* Resend (SAFE STRINGIFIED VERSION) */}
           <div className="p-6 bg-white/5 rounded-xl border border-white/10">
             <h2 className="text-2xl text-gold mb-2">Email (Resend)</h2>
-            <p>Status: {data.email}</p>
+            <p>
+              Status:{" "}
+              {typeof data.email === "string"
+                ? data.email
+                : JSON.stringify(data.email)}
+            </p>
           </div>
 
-          {/* Cron / KV if present */}
+          {/* Cron / KV */}
           <div className="p-6 bg-white/5 rounded-xl border border-white/10">
             <h2 className="text-2xl text-gold mb-2">Supabase Keep-Alive</h2>
             <p>Last Cron Run:</p>
@@ -104,7 +109,7 @@ export default function AdminSystemPage() {
         </div>
       )}
 
-      {/* Raw JSON debug at the bottom if you ever need it */}
+      {/* Raw JSON at bottom */}
       {data && (
         <section className="mt-10">
           <h2 className="text-xl mb-2 text-white/70">Raw health payload</h2>
