@@ -31,25 +31,27 @@ export async function GET() {
     result.status = "error";
   }
 
-  // 🟢 RESEND CHECK — THIS IS THE WORKING ONE
-  try {
-    const res = await fetch("https://api.resend.com/v1/domains", {
-      method: "GET",
-      headers: {
-        Authorization: `Bearer ${process.env.RESEND_API_KEY}`,
-      },
-    });
+// 🟢 RESEND STATUS — updated working endpoint (GET)
+try {
+  const res = await fetch("https://api.resend.com/domains", {
+    method: "GET",
+    headers: {
+      Authorization: `Bearer ${process.env.RESEND_API_KEY}`,
+      Accept: "application/json",
+    },
+  });
 
-    if (res.ok) {
-      result.email = "connected";
-    } else {
-      result.email = `error: ${res.status} ${res.statusText}`;
-      result.status = "error";
-    }
-  } catch (err: any) {
-    result.email = "error: " + err.message;
+  if (res.ok) {
+    result.email = "connected";
+  } else {
+    const text = await res.text();
+    result.email = `error: ${res.status} ${res.statusText} - ${text}`;
     result.status = "error";
   }
+} catch (err: any) {
+  result.email = "error: " + err.message;
+  result.status = "error";
+}
 
   return NextResponse.json(result);
 }
