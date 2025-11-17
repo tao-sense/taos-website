@@ -11,19 +11,21 @@ export default function AdminSystemPage() {
   const { data: session, status } = useSession();
   const router = useRouter();
 
-  // Redirect logic – done safely inside useEffect
+  // ⛔ Prevent dashboard rendering until session is READY
+  const isAdmin =
+    status === "authenticated" && session?.user?.role === "ADMIN";
+
+  // Redirect unauthorized *before* render
   useEffect(() => {
     if (status === "unauthenticated") {
       router.replace("/signin");
-    } else if (
-      status === "authenticated" &&
-      session?.user?.role !== "ADMIN"
-    ) {
+    }
+    if (status === "authenticated" && !isAdmin) {
       router.replace("/signin");
     }
-  }, [status, session, router]);
+  }, [status, isAdmin, router]);
 
-  // While session loads
+  // 🟡 Still loading session → show nothing dangerous
   if (status === "loading") {
     return (
       <main className="bg-black min-h-screen text-white p-10">
@@ -35,23 +37,15 @@ export default function AdminSystemPage() {
     );
   }
 
-  // If not admin or not logged in
-  if (
-    status === "unauthenticated" ||
-    (status === "authenticated" && session?.user?.role !== "ADMIN")
-  ) {
+  // 🛑 If not admin or not authenticated → render NOTHING
+  if (!isAdmin) {
     return null;
   }
 
-  // Only fetch health data when authenticated
-  const shouldFetch =
-    status === "authenticated" && session?.user?.role === "ADMIN";
-
-  const { data, error, isLoading } = useSWR(
-    shouldFetch ? "/api/health" : null,
-    fetcher,
-    { refreshInterval: 5000 }
-  );
+  // Only fetch after admin verified
+  const { data, error, isLoading } = useSWR("/api/health", fetcher, {
+    refreshInterval: 5000,
+  });
 
   return (
     <main className="bg-black min-h-screen text-white p-10">
@@ -73,9 +67,7 @@ export default function AdminSystemPage() {
           <div className="p-6 bg-white/5 rounded-xl border border-white/10">
             <h2 className="text-2xl text-gold mb-2">Database (Supabase)</h2>
             <p>Status: {data.database}</p>
-            {data.latency !== null && (
-              <p>Latency: {data.latency} ms</p>
-            )}
+            {data.latency !== null && <p>Latency: {data.latency} ms</p>}
           </div>
 
           {/* Stripe */}
@@ -84,7 +76,7 @@ export default function AdminSystemPage() {
             <p>Status: {data.stripe}</p>
           </div>
 
-          {/* Resend (SAFE STRINGIFIED VERSION) */}
+          {/* Resend */}
           <div className="p-6 bg-white/5 rounded-xl border border-white/10">
             <h2 className="text-2xl text-gold mb-2">Email (Resend)</h2>
             <p>
@@ -95,7 +87,7 @@ export default function AdminSystemPage() {
             </p>
           </div>
 
-          {/* Cron / KV */}
+          {/* Cron */}
           <div className="p-6 bg-white/5 rounded-xl border border-white/10">
             <h2 className="text-2xl text-gold mb-2">Supabase Keep-Alive</h2>
             <p>Last Cron Run:</p>
@@ -107,16 +99,6 @@ export default function AdminSystemPage() {
             )}
           </div>
         </div>
-      )}
-
-      {/* Raw JSON at bottom */}
-      {data && (
-        <section className="mt-10">
-          <h2 className="text-xl mb-2 text-white/70">Raw health payload</h2>
-          <pre className="text-xs bg-white/5 p-4 rounded-lg overflow-x-auto">
-            {JSON.stringify(data, null, 2)}
-          </pre>
-        </section>
       )}
     </main>
   );
