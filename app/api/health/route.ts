@@ -10,6 +10,7 @@ export async function GET() {
     stripe: null,
     email: null,
     lastCronRun: null,
+    cronLatency: null,
     status: "ok",
   };
 
@@ -35,18 +36,27 @@ export async function GET() {
     result.status = "error";
   }
 
-  // 🟢 RESEND STATUS — checking domains list works on free tier
+  // 🟢 RESEND STATUS — Free-tier compatible POST method
   try {
-    const res = await fetch("https://api.resend.com/v1/domains", {
-      method: "GET",
-      headers: { Authorization: `Bearer ${process.env.RESEND_API_KEY}` },
+    const res = await fetch("https://api.resend.com/v1/emails", {
+      method: "POST",
+      headers: {
+        Authorization: `Bearer ${process.env.RESEND_API_KEY}`,
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        from: process.env.EMAIL_FROM,
+        to: process.env.EMAIL_TO,
+        subject: "Health check",
+        html: "<p>Health check</p>",
+      }),
     });
 
     if (res.ok) {
       result.email = "connected";
     } else {
       const text = await res.text();
-      result.email = `error: ${text}`;
+      result.email = `error: ${res.status} ${res.statusText} - ${text}`;
       result.status = "error";
     }
   } catch (err: any) {
@@ -54,17 +64,28 @@ export async function GET() {
     result.status = "error";
   }
 
-  // 🟢 LAST KEEP-ALIVE PING FROM KV
+  // 🟢 LAST KEEP-ALIVE PING FROM UPSTASH KV
   try {
     const resp = await fetch(`${process.env.KV_REST_API_URL}/get/taos:lastPing`, {
-      headers: { Authorization: `Bearer ${process.env.KV_REST_API_TOKEN}` },
+      headers: {
+        Authorization: `Bearer ${process.env.KV_REST_API_TOKEN}`,
+      },
     });
 
     if (resp.ok) {
       const json = await resp.json();
-      const value = json.result ? JSON.parse(json.result) : null;
+
+      let value = null;
+      if (json.result) {
+        try {
+          value = JSON.parse(json.result);
+        } catch (e) {
+          value = null;
+        }
+      }
+
       result.lastCronRun = value?.timestamp ?? null;
-      if (value?.latency) result.cronLatency = value.latency;
+      result.cronLatency = value?.latency ?? null;
     } else {
       result.lastCronRun = "error";
     }
