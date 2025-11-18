@@ -75,12 +75,13 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className="min-h-screen flex flex-col">
-        <Providers>
-          <Navbar />
-          <main className="flex-1">{children}</main>
-          <Footer />
-        </Providers>
-      </body>
+  <Providers>
+    {/* <Navbar /> */}
+    <main className="flex-1">{children}</main>
+    {/* <Footer /> */}
+  </Providers>
+</body>
     </html>
   );
 }
+
