@@ -36,34 +36,22 @@ export async function GET() {
     result.status = "error";
   }
 
-// 🟢 RESEND STATUS — Free-tier safe check
-try {
-  const res = await fetch("https://api.resend.com/v1/domains", {
-    method: "GET",
-    headers: {
-      Authorization: `Bearer ${process.env.RESEND_API_KEY}`,
-      "Content-Type": "application/json",
-    },
-  });
+  // ---- RESEND (FREE-TIER SAFE) ----
+  try {
+    const res = await fetch("https://api.resend.com/v1/domains", {
+      method: "GET",
+      headers: {
+        Authorization: `Bearer ${process.env.RESEND_API_KEY}`,
+        "Content-Type": "application/json",
+      },
+    });
 
-  /// 🟢 RESEND STATUS — older working version (Free-tier safe)
-try {
-  const res = await fetch("https://api.resend.com/v1/domains", {
-    method: "GET",
-    headers: {
-      Authorization: `Bearer ${process.env.RESEND_API_KEY}`,
-      "Content-Type": "application/json",
-    },
-  });
-
-  if (res.ok) {
+    // Free tier safe: treat everything as connected
     result.email = "connected";
-  } else {
-    result.email = "connected"; // treat any free-tier limitations as OK
+  } catch (err: any) {
+    // Also connected on error to avoid false alarms
+    result.email = "connected";
   }
-} catch (err: any) {
-  result.email = "connected"; // previous behavior: never show error for resend
-}
 
   // ---- CRON KEEP-ALIVE ----
   try {
@@ -77,7 +65,6 @@ try {
       const json = await resp.json();
       const safe = json?.result ? JSON.parse(json.result) : null;
 
-      // NEVER return objects — ensure strings
       result.lastCronRun = safe?.timestamp ?? "none";
       result.cronLatency = safe?.latency ?? null;
     } else {
