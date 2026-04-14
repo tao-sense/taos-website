@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import Link from "next/link";
 import WorkshopForm from "./workshops/workshop-form";
 
 export default function AdminWorkshopsPage() {
@@ -8,7 +9,6 @@ export default function AdminWorkshopsPage() {
   const [refresh, setRefresh] = useState(false);
   const [editing, setEditing] = useState<any | null>(null);
 
-  // Fetch workshops from API
   useEffect(() => {
     const fetchWorkshops = async () => {
       const res = await fetch("/api/admin/workshops");
@@ -18,10 +18,13 @@ export default function AdminWorkshopsPage() {
     fetchWorkshops();
   }, [refresh]);
 
-  // Delete workshop
   const handleDelete = async (id: string) => {
     if (!confirm("Are you sure you want to delete this workshop?")) return;
-    const res = await fetch(`/api/admin/workshops/${id}`, { method: "DELETE" });
+
+    const res = await fetch(`/api/admin/workshops/${id}`, {
+      method: "DELETE",
+    });
+
     if (res.ok) {
       alert("Workshop deleted");
       setRefresh(!refresh);
@@ -32,9 +35,29 @@ export default function AdminWorkshopsPage() {
 
   return (
     <main className="bg-black text-white min-h-screen p-10">
-      <h1 className="text-3xl font-bold text-gold mb-8">Admin | Workshops</h1>
+      
+      {/* ADMIN NAV */}
+      <div className="flex gap-4 mb-10">
+        <Link
+          href="/admin/workshops"
+          className="px-4 py-2 border border-gold rounded text-gold hover:bg-gold hover:text-black transition"
+        >
+          Workshops
+        </Link>
 
-      {/* Create / Edit Form */}
+        <Link
+          href="/admin/workshop-interest"
+          className="px-4 py-2 border border-gold rounded text-gold hover:bg-gold hover:text-black transition"
+        >
+          Workshop Interest
+        </Link>
+      </div>
+
+      <h1 className="text-3xl font-bold text-gold mb-8">
+        Admin | Workshops
+      </h1>
+
+      {/* FORM */}
       <WorkshopForm
         onSaved={() => {
           setRefresh(!refresh);
@@ -43,8 +66,11 @@ export default function AdminWorkshopsPage() {
         existing={editing}
       />
 
+      {/* LIST */}
       <div className="mt-16">
-        <h2 className="text-2xl font-semibold text-gold mb-6">Existing Workshops</h2>
+        <h2 className="text-2xl font-semibold text-gold mb-6">
+          Existing Workshops
+        </h2>
 
         {workshops.length === 0 ? (
           <p>No workshops found.</p>
@@ -56,7 +82,10 @@ export default function AdminWorkshopsPage() {
                 className="bg-white text-black p-6 rounded-lg shadow flex justify-between items-start"
               >
                 <div>
-                  <h3 className="text-xl font-semibold text-gold">{w.title}</h3>
+                  <h3 className="text-xl font-semibold text-gold">
+                    {w.title}
+                  </h3>
+
                   <p className="text-black/70">
                     {new Date(w.date).toLocaleDateString("en-GB", {
                       weekday: "long",
@@ -65,6 +94,7 @@ export default function AdminWorkshopsPage() {
                       year: "numeric",
                     })}
                   </p>
+
                   <p className="mt-2">{w.description}</p>
                 </div>
 
@@ -75,6 +105,7 @@ export default function AdminWorkshopsPage() {
                   >
                     Edit
                   </button>
+
                   <button
                     onClick={() => handleDelete(w.id)}
                     className="bg-red-600 text-white px-3 py-2 rounded hover:bg-black transition"
