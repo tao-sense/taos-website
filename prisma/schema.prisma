@@ -91,3 +91,49 @@ model Workshop {
   createdById String?
   createdBy   User?    @relation("CreatedBy", fields: [createdById], references: [id])
 }
+
+model Contact {
+  id         String    @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  name       String
+  email      String
+  phone      String?
+  message    String
+  created_at DateTime? @default(now()) @db.Timestamptz(6)
+
+  @@map("contacts")
+}
+
+model Subscriber {
+  id         String    @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  email      String    @unique
+  created_at DateTime? @default(now()) @db.Timestamptz(6)
+
+  @@map("subscribers")
+}
+
+model WorkshopEnquiry {
+  id                String    @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  workshop_id       String?
+  name              String
+  street            String?
+  city              String?
+  postcode          String?
+  email             String
+  phone             String?
+  age_height_weight String?
+  about             String?
+  created_at        DateTime? @default(now()) @db.Timestamptz(6)
+
+  @@map("workshop_enquiries")
+}
+
+model WorkshopInterest {
+  id         String    @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  firstName  String?
+  email      String    @unique
+  source     String?
+  created_at DateTime? @default(now()) @db.Timestamptz(6)
+  updated_at DateTime? @updatedAt @db.Timestamptz(6)
+
+  @@map("workshop_interest")
+}
