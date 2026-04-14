@@ -5,6 +5,8 @@ import Providers from "@/components/Providers";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://theartofsensuality.com"),
+
   title: {
     default: "The Art of Sensuality | TAOS - Tantra Massage & Workshops ",
     template: "%s | The Art of Sensuality (TAOS)",
@@ -31,7 +33,7 @@ export const metadata: Metadata = {
     siteName: "The Art of Sensuality",
     images: [
       {
-        url: '/images/og-banner.jpg',
+        url: "/images/og-banner.jpg",
         width: 1200,
         height: 630,
         alt: "The Art of Sensuality — Tantra Massage, Workshops, and Intimacy Coaching in Stroud, UK",
@@ -46,7 +48,7 @@ export const metadata: Metadata = {
     title: "The Art of Sensuality | TAOS",
     description:
       "Tantra Massage, Intimacy Coaching, and Workshops by The Art of Sensuality (TAOS).",
-    images: ["https://theartofsensuality.com/images/og-banner.jpg"],
+    images: ["/images/og-banner.jpg"],
   },
 
   alternates: {
@@ -84,4 +86,3 @@ export default function RootLayout({
     </html>
   );
 }
-
