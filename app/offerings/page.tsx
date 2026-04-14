@@ -27,7 +27,7 @@ export const metadata: Metadata = {
     siteName: "The Art of Sensuality",
     images: [
       {
-        url: "https://theartofsensuality.com/images/og-offerings.jpg",
+        url: "https://theartofsensuality.com/images/og-banner.jpg",
         width: 1200,
         height: 630,
         alt: "TAOS Tantra Massage Workshops and Offerings in Stroud, Gloucestershire, UK",
