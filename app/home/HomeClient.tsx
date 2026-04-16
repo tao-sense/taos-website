@@ -368,6 +368,18 @@ t"
       />
     </div>
 
+    {/* ✅ NEW HEADER ADDED (this was missing) */}
+    <div className="text-center mb-12">
+      <h2 className="text-3xl md:text-4xl font-semibold text-gold">
+        Our Offerings
+      </h2>
+      <p className="mt-4 text-black/70 max-w-2xl mx-auto text-lg leading-relaxed">
+        Explore the different ways you can begin your journey with TAOS — from
+        hands-on workshops to deeply personal one-to-one experiences.
+      </p>
+    </div>
+
+    {/* Existing testimonial (unchanged) */}
     <div className="max-w-3xl mx-auto mb-16 text-center">
       <blockquote className="italic text-black/80 border-l-4 border-gold pl-4 md:pl-0 md:border-0">
         “For many years I carried a deep trauma response around intimacy.
@@ -378,7 +390,7 @@ t"
     </div>
   </ScrollFade>
 
-  {/* ✅ Explicit stagger container */}
+  {/* Cards (unchanged) */}
   <ScrollFade type="stagger" staggerChildren={0.3} distance={40}>
     <motion.div
       className="container mx-auto grid md:grid-cols-3 gap-8"
