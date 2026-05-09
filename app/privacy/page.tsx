@@ -103,11 +103,32 @@ export default function PrivacyPage() {
           </ul>
 
           <h2 className="text-2xl font-semibold text-gold mt-10">
-            8. Cookies and Analytics
+            8. Cookies and Tracking Technologies
           </h2>
           <p>
-            TAOS may use minimal cookies for site functionality and anonymous
-            usage analytics. You can manage cookies via your browser settings.
+            TAOS uses only <strong>strictly necessary cookies</strong> — small
+            text files placed on your device that are essential for the website
+            to function correctly. These cookies manage your login session and
+            protect form submissions from security threats. They are not used
+            for advertising or behavioural tracking.
+          </p>
+          <p>
+            We do not currently use analytics, advertising, or third-party
+            tracking cookies. If this changes in the future, we will update this
+            policy, update our{" "}
+            <a href="/cookie-policy" className="text-gold underline">
+              Cookie Policy
+            </a>
+            , and seek your consent before setting any non-essential cookies.
+          </p>
+          <p>
+            You can manage or delete cookies at any time through your browser
+            settings, though disabling essential cookies may affect how the site
+            works. For full details, see our{" "}
+            <a href="/cookie-policy" className="text-gold underline">
+              Cookie Policy
+            </a>
+            .
           </p>
 
           <h2 className="text-2xl font-semibold text-gold mt-10">

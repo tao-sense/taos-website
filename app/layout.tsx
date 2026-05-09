@@ -2,6 +2,7 @@ import "./globals.css";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import Providers from "@/components/Providers";
+import CookieNotice from "@/components/CookieNotice";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
@@ -81,6 +82,7 @@ export default function RootLayout({
           <Navbar />
           <main className="flex-1">{children}</main>
           <Footer />
+          <CookieNotice />
         </Providers>
       </body>
     </html>
