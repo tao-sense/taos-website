@@ -74,6 +74,13 @@ export default function PrivacyPage() {
             <li>Stripe – for secure payment processing.</li>
             <li>Zoho Mail – for email communication.</li>
             <li>Resend – for automated transactional emails.</li>
+            <li>
+              Google Analytics (Google LLC) – anonymous usage analytics, page
+              views, and traffic sources. Data is processed in the US under
+              Google&rsquo;s Data Processing Terms. Analytics cookies are only
+              set with your consent and can be withdrawn at any time via our
+              cookie preferences.
+            </li>
           </ul>
           <p>
             Access is restricted and data is encrypted where applicable. We do
@@ -106,25 +113,30 @@ export default function PrivacyPage() {
             8. Cookies and Tracking Technologies
           </h2>
           <p>
-            TAOS uses only <strong>strictly necessary cookies</strong> — small
-            text files placed on your device that are essential for the website
-            to function correctly. These cookies manage your login session and
-            protect form submissions from security threats. They are not used
-            for advertising or behavioural tracking.
+            We use cookies and similar technologies in the following categories:
           </p>
+          <ul className="list-disc ml-6 space-y-2">
+            <li>
+              <strong>Strictly Necessary</strong> – Session management,
+              authentication, and CSRF protection (via NextAuth). These are
+              essential for the site to function and are always active.
+            </li>
+            <li>
+              <strong>Analytics</strong> – Google Analytics 4
+              (ID: G-R2TKMNE59V, Google LLC) tracks page views and traffic
+              sources to help us improve the site. These cookies are only set
+              after you give explicit consent.
+            </li>
+            <li>
+              <strong>Marketing</strong> – Meta Pixel and similar advertising
+              technologies. Not currently active; consent will be sought before
+              these are enabled.
+            </li>
+          </ul>
           <p>
-            We do not currently use analytics, advertising, or third-party
-            tracking cookies. If this changes in the future, we will update this
-            policy, update our{" "}
-            <a href="/cookie-policy" className="text-gold underline">
-              Cookie Policy
-            </a>
-            , and seek your consent before setting any non-essential cookies.
-          </p>
-          <p>
-            You can manage or delete cookies at any time through your browser
-            settings, though disabling essential cookies may affect how the site
-            works. For full details, see our{" "}
+            You can review and withdraw your consent at any time using the
+            cookie preferences panel (available in the site footer). For full
+            details of every cookie we set, see our{" "}
             <a href="/cookie-policy" className="text-gold underline">
               Cookie Policy
             </a>
