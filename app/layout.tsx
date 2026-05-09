@@ -2,7 +2,10 @@ import "./globals.css";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import Providers from "@/components/Providers";
-import CookieNotice from "@/components/CookieNotice";
+import { CookieConsentProvider } from "@/context/CookieConsent";
+import GoogleAnalytics from "@/components/GoogleAnalytics";
+import CookieBanner from "@/components/CookieBanner";
+import { Analytics } from "@vercel/analytics/next";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
@@ -78,12 +81,16 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className="min-h-screen flex flex-col">
-        <Providers>
-          <Navbar />
-          <main className="flex-1">{children}</main>
-          <Footer />
-          <CookieNotice />
-        </Providers>
+        <CookieConsentProvider>
+          <Providers>
+            <GoogleAnalytics />
+            <Navbar />
+            <main className="flex-1">{children}</main>
+            <Footer />
+            <CookieBanner />
+            <Analytics />
+          </Providers>
+        </CookieConsentProvider>
       </body>
     </html>
   );
