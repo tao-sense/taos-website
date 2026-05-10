@@ -4,6 +4,7 @@ import Footer from "@/components/Footer";
 import Providers from "@/components/Providers";
 import { CookieConsentProvider } from "@/context/CookieConsent";
 import GoogleAnalytics from "@/components/GoogleAnalytics";
+import MetaPixel from "@/components/MetaPixel";
 import CookieBanner from "@/components/CookieBanner";
 import { Analytics } from "@vercel/analytics/next";
 import type { Metadata } from "next";
@@ -88,6 +89,7 @@ export default function RootLayout({
         <CookieConsentProvider>
           <Providers>
             <GoogleAnalytics />
+            <MetaPixel />
             <Navbar />
             <main className="flex-1">{children}</main>
             <Footer />
