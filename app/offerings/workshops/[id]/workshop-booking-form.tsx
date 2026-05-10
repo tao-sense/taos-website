@@ -1,5 +1,6 @@
 "use client";
 
+import { trackWorkshopEnquiry } from "@/lib/fpixel";
 import { useState } from "react";
 
 export default function WorkshopBookingForm({ workshopId }: { workshopId: string }) {
@@ -32,14 +33,16 @@ export default function WorkshopBookingForm({ workshopId }: { workshopId: string
       body: JSON.stringify({ ...form, workshopId }),
     });
     setLoading(false);
-    if (res.ok) setSubmitted(true);
-    else alert("Error submitting form");
+    if (res.ok) {
+      trackWorkshopEnquiry(workshopId);
+      setSubmitted(true);
+    } else alert("Error submitting form");
   };
 
   if (submitted)
     return (
       <p className="text-center text-lg text-gold">
-        Thank you for your enquiry — we’ll be in touch soon.
+        Thank you for your enquiry — we'll be in touch soon.
       </p>
     );
 

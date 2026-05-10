@@ -1,5 +1,6 @@
 "use client";
 
+import { trackContact } from "@/lib/fpixel";
 import { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
@@ -13,9 +14,7 @@ export default function ContactClient() {
     phone: "",
     message: "",
   });
-  const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">(
-    "idle"
-  );
+  const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
 
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
@@ -29,6 +28,7 @@ export default function ContactClient() {
       });
 
       if (res.ok) {
+        trackContact();
         setStatus("success");
         setFormData({ name: "", email: "", phone: "", message: "" });
       } else {
@@ -52,25 +52,20 @@ export default function ContactClient() {
           priority
         />
 
-        {/* Hero Text */}
-        {/* Hero Text */}
-<div className="relative z-10 max-w-2xl px-6 text-center">
-  <h1 className="text-4xl md:text-6xl font-bold text-gold mb-4">
-    Get in Touch
-  </h1>
-  <p
-   className="block mt-3 text-white/85 text-base md:text-lg font-light">
-      Contact The Art of Sensuality (TAOS)
-      &nbsp;to book a session, enquire about workshops, or ask any question.
-  </p>
-</div>
+        <div className="relative z-10 max-w-2xl px-6 text-center">
+          <h1 className="text-4xl md:text-6xl font-bold text-gold mb-4">
+            Get in Touch
+          </h1>
+          <p className="block mt-3 text-white/85 text-base md:text-lg font-light">
+            Contact The Art of Sensuality (TAOS)
+            &nbsp;to book a session, enquire about workshops, or ask any question.
+          </p>
+        </div>
 
-        {/* Scroll Chevron */}
         <div className="absolute bottom-6 z-10 animate-bounce">
           <ChevronDown className="text-gold w-8 h-8 opacity-80" />
         </div>
 
-        {/* Overlay */}
         <div className="absolute inset-0 bg-black/30"></div>
       </section>
 
@@ -91,11 +86,10 @@ export default function ContactClient() {
       <ScrollFade>
         <section className="bg-white text-black py-20 px-6 flex justify-center">
           <div className="w-full max-w-xl space-y-10">
-            {/* Intro */}
             <div className="text-center space-y-4">
               <p className="text-lg text-neutral-700">
-                If you’d like to book a session, ask a question, or simply reach
-                out, please fill out the form below. I’ll reply as soon as I can.
+                If you'd like to book a session, ask a question, or simply reach
+                out, please fill out the form below. I'll reply as soon as I can.
               </p>
               <p className="mt-6 text-neutral-700">Or contact directly:</p>
               <p>
@@ -116,7 +110,6 @@ export default function ContactClient() {
               </p>
             </div>
 
-            {/* Form */}
             <form
               onSubmit={handleSubmit}
               className="bg-neutral-50 border border-neutral-200 rounded-xl p-8 space-y-6 shadow-lg"
@@ -129,9 +122,7 @@ export default function ContactClient() {
                   type="text"
                   id="name"
                   value={formData.name}
-                  onChange={(e) =>
-                    setFormData({ ...formData, name: e.target.value })
-                  }
+                  onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                   required
                   className="w-full border border-gold/60 rounded-md px-4 py-2 focus:outline-none focus:ring-2 focus:ring-gold"
                 />
@@ -145,9 +136,7 @@ export default function ContactClient() {
                   type="email"
                   id="email"
                   value={formData.email}
-                  onChange={(e) =>
-                    setFormData({ ...formData, email: e.target.value })
-                  }
+                  onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                   required
                   className="w-full border border-gold/60 rounded-md px-4 py-2 focus:outline-none focus:ring-2 focus:ring-gold"
                 />
@@ -161,9 +150,7 @@ export default function ContactClient() {
                   type="tel"
                   id="phone"
                   value={formData.phone}
-                  onChange={(e) =>
-                    setFormData({ ...formData, phone: e.target.value })
-                  }
+                  onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
                   className="w-full border border-gold/60 rounded-md px-4 py-2 focus:outline-none focus:ring-2 focus:ring-gold"
                 />
               </div>
@@ -176,9 +163,7 @@ export default function ContactClient() {
                   id="message"
                   rows={4}
                   value={formData.message}
-                  onChange={(e) =>
-                    setFormData({ ...formData, message: e.target.value })
-                  }
+                  onChange={(e) => setFormData({ ...formData, message: e.target.value })}
                   required
                   className="w-full border border-gold/60 rounded-md px-4 py-2 focus:outline-none focus:ring-2 focus:ring-gold"
                 ></textarea>

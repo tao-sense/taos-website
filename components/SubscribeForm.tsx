@@ -1,5 +1,6 @@
 "use client";
 
+import { trackSubscribe } from "@/lib/fpixel";
 import { useState } from "react";
 
 export default function SubscribeForm() {
@@ -18,6 +19,7 @@ export default function SubscribeForm() {
       });
 
       if (res.ok) {
+        trackSubscribe();
         setStatus("success");
         setEmail("");
       } else {
