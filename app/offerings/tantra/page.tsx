@@ -2,8 +2,7 @@ import type { Metadata } from "next";
 import TantraClient from "./TantraClient";
 
 export const metadata: Metadata = {
-  title:
-    "Tantra Massage in Stroud | Sensual Massage | Tantra Massage UK",
+  title: "Tantra Massage in Stroud | Sensual Massage | Tantra Massage UK",
   description:
     "Experience professional Tantra Massage in Stroud with The Art of Sensuality (TAOS). A deeply nourishing full-body journey that reconnects you with sensuality, presence, and self-awareness. Private sessions for singles and couples.",
   keywords: [
@@ -19,8 +18,7 @@ export const metadata: Metadata = {
     "The Art of Sensuality",
   ],
   openGraph: {
-    title:
-      "Classic Tantra Massage | The Art of Sensuality (TAOS) – Stroud & UK",
+    title: "Classic Tantra Massage | The Art of Sensuality (TAOS) – Stroud & UK",
     description:
       "Experience Tantra Massage in Stroud with TAOS. A professional, safe, and heart-centred space for connection, sensuality, and healing through conscious touch.",
     url: "https://theartofsensuality.com/offerings/tantra",
@@ -41,6 +39,44 @@ export const metadata: Metadata = {
   },
 };
 
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "Service",
+  "@id": "https://theartofsensuality.com/offerings/tantra#service",
+  name: "Tantra Massage",
+  alternateName: "Classic Tantra Massage",
+  description:
+    "A sacred, full-body Tantra Massage session blending intuitive touch, breathwork, and energetic awareness. Held in a safe, honouring container in Stroud, Gloucestershire.",
+  url: "https://theartofsensuality.com/offerings/tantra",
+  provider: {
+    "@type": "LocalBusiness",
+    "@id": "https://theartofsensuality.com/#business",
+  },
+  areaServed: [
+    { "@type": "City", name: "Stroud" },
+    { "@type": "AdministrativeArea", name: "Gloucestershire" },
+    { "@type": "Country", name: "United Kingdom" },
+  ],
+  offers: {
+    "@type": "Offer",
+    price: "180",
+    priceCurrency: "GBP",
+    description: "2-hour private Tantra Massage session",
+  },
+  audience: {
+    "@type": "Audience",
+    audienceType: "Women, Couples",
+  },
+};
+
 export default function TantraPage() {
-  return <TantraClient />;
+  return (
+    <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
+      <TantraClient />
+    </>
+  );
 }
