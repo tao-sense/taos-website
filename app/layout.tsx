@@ -11,7 +11,6 @@ import type { Metadata } from "next";
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://theartofsensuality.com"),
-
   title: {
     default: "The Art of Sensuality | TAOS - Tantra Massage & Workshops ",
     template: "%s | The Art of Sensuality (TAOS)",
@@ -29,7 +28,6 @@ export const metadata: Metadata = {
     "Tantra Massage UK",
     "Tantric Workshops",
   ],
-
   openGraph: {
     title: "The Art of Sensuality | TAOS",
     description:
@@ -47,7 +45,6 @@ export const metadata: Metadata = {
     locale: "en_GB",
     type: "website",
   },
-
   twitter: {
     card: "summary_large_image",
     title: "The Art of Sensuality | TAOS",
@@ -55,11 +52,9 @@ export const metadata: Metadata = {
       "Tantra Massage, Intimacy Coaching, and Workshops by The Art of Sensuality (TAOS).",
     images: ["/images/og-banner.jpg"],
   },
-
   alternates: {
     canonical: "https://theartofsensuality.com",
   },
-
   icons: {
     icon: [
       { url: "/favicon.ico" },
@@ -70,12 +65,74 @@ export const metadata: Metadata = {
     shortcut: "/favicon.ico",
     apple: "/apple-touch-icon.png",
   },
-
   manifest: "/site.webmanifest",
-
   verification: {
     google: "UXAMeJx0DLyBIRkR",
   },
+};
+
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "LocalBusiness",
+  "@id": "https://theartofsensuality.com/#business",
+  name: "The Art of Sensuality (TAOS)",
+  description:
+    "Professional Tantra Massage, Intimacy Coaching, and Workshops in Stroud, Gloucestershire, UK.",
+  url: "https://theartofsensuality.com",
+  telephone: "+447792510682",
+  email: "touch@taosense.uk",
+  image: "https://theartofsensuality.com/images/og-banner.jpg",
+  priceRange: "££",
+  currenciesAccepted: "GBP",
+  paymentAccepted: "Cash, Bank Transfer",
+  areaServed: [
+    { "@type": "City", name: "Stroud" },
+    { "@type": "AdministrativeArea", name: "Gloucestershire" },
+    { "@type": "Country", name: "United Kingdom" },
+  ],
+  address: {
+    "@type": "PostalAddress",
+    addressLocality: "Stroud",
+    addressRegion: "Gloucestershire",
+    addressCountry: "GB",
+  },
+  founder: {
+    "@type": "Person",
+    name: "Wesley Tan",
+  },
+  hasOfferCatalog: {
+    "@type": "OfferCatalog",
+    name: "Services",
+    itemListElement: [
+      {
+        "@type": "Offer",
+        itemOffered: {
+          "@type": "Service",
+          name: "Tantra Massage",
+          url: "https://theartofsensuality.com/offerings/tantra",
+        },
+      },
+      {
+        "@type": "Offer",
+        itemOffered: {
+          "@type": "Service",
+          name: "Intimacy Coaching",
+          url: "https://theartofsensuality.com/offerings/coaching",
+        },
+      },
+      {
+        "@type": "Offer",
+        itemOffered: {
+          "@type": "Service",
+          name: "Tantra Massage Workshops",
+          url: "https://theartofsensuality.com/offerings/workshops",
+        },
+      },
+    ],
+  },
+  sameAs: [
+    "https://www.instagram.com/tao_sense",
+  ],
 };
 
 export default function RootLayout({
@@ -86,6 +143,10 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className="min-h-screen flex flex-col">
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        />
         <CookieConsentProvider>
           <Providers>
             <GoogleAnalytics />
