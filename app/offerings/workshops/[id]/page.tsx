@@ -1,5 +1,5 @@
-// @ts-nocheck
 import { PrismaClient } from "@prisma/client";
+import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import WorkshopBookingForm from "./workshop-booking-form";
@@ -7,7 +7,47 @@ import { notFound } from "next/navigation";
 
 const prisma = new PrismaClient();
 
-// ✅ Updated for Next.js 15.5: params is now a Promise
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ id: string }>;
+}): Promise<Metadata> {
+  const { id } = await params;
+  const workshop = await prisma.workshop.findUnique({ where: { id } });
+
+  if (!workshop) return {};
+
+  const title = `${workshop.title} | Tantra Massage Workshop`;
+  const description = workshop.description
+    ? workshop.description.slice(0, 155)
+    : `Join ${workshop.title} — a Tantra Massage Workshop by The Art of Sensuality (TAOS).`;
+  const url = `https://theartofsensuality.com/offerings/workshops/${id}`;
+
+  return {
+    title,
+    description,
+    openGraph: {
+      title,
+      description,
+      url,
+      siteName: "The Art of Sensuality",
+      images: [
+        {
+          url: "https://theartofsensuality.com/images/og-banner.jpg",
+          width: 1200,
+          height: 630,
+          alt: title,
+        },
+      ],
+      locale: "en_GB",
+      type: "website",
+    },
+    alternates: {
+      canonical: url,
+    },
+  };
+}
+
 export default async function WorkshopPage({
   params,
 }: {
@@ -21,9 +61,53 @@ export default async function WorkshopPage({
 
   if (!workshop) return notFound();
 
-  // ✅ your return must stay *inside* the function
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@type": "Event",
+    "@id": `https://theartofsensuality.com/offerings/workshops/${id}#event`,
+    name: workshop.title,
+    description: workshop.description ?? undefined,
+    startDate: workshop.date.toISOString(),
+    url: `https://theartofsensuality.com/offerings/workshops/${id}`,
+    location: workshop.location
+      ? {
+          "@type": "Place",
+          name: workshop.location,
+          address: {
+            "@type": "PostalAddress",
+            addressCountry: "GB",
+          },
+        }
+      : {
+          "@type": "Place",
+          name: "United Kingdom",
+          address: {
+            "@type": "PostalAddress",
+            addressCountry: "GB",
+          },
+        },
+    organizer: {
+      "@type": "LocalBusiness",
+      "@id": "https://theartofsensuality.com/#business",
+    },
+    offers: workshop.priceCents
+      ? {
+          "@type": "Offer",
+          price: (workshop.priceCents / 100).toFixed(2),
+          priceCurrency: "GBP",
+          url: `https://theartofsensuality.com/offerings/workshops/${id}`,
+          availability: "https://schema.org/InStock",
+        }
+      : undefined,
+  };
+
   return (
     <main className="bg-black text-white">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
+
       {/* Hero Section */}
       <section className="relative h-[60vh] w-full flex items-center justify-center text-center overflow-hidden">
         <Image
@@ -92,7 +176,7 @@ export default async function WorkshopPage({
             Register Your Interest
           </h2>
           <p className="text-center text-white/80 mb-10">
-            Please complete the form below to register your interest. We’ll get in
+            Please complete the form below to register your interest. We'll get in
             touch to confirm availability and suitability before final booking.
           </p>
 
