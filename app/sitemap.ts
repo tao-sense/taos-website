@@ -14,6 +14,8 @@ const publicRoutes: {
   { path: "/offerings/tantra",     priority: 0.85, changeFrequency: "monthly" },
   { path: "/offerings/coaching",   priority: 0.85, changeFrequency: "monthly" },
   { path: "/offerings/workshops",  priority: 0.85, changeFrequency: "weekly"  },
+  { path: "/blog",                 priority: 0.8,  changeFrequency: "weekly"  },
+  { path: "/blog/who-are-you-in-intimacy-and-how-to-find-out", priority: 0.75, changeFrequency: "monthly" },
   { path: "/client-stories",       priority: 0.7,  changeFrequency: "monthly" },
   { path: "/faq",                  priority: 0.7,  changeFrequency: "monthly" },
   { path: "/contact",              priority: 0.8,  changeFrequency: "monthly" },
