@@ -80,8 +80,8 @@ export default function Home() {
 
             <ScrollFade delay={0.2}>
               <div className="mt-8">
-                
-                  <a href="#offerings"
+                <a
+                  href="#offerings"
                   className="px-5 py-3 rounded-2xl bg-gold text-black hover:opacity-90"
                 >
                   Explore Offerings
@@ -444,6 +444,35 @@ export default function Home() {
           </motion.div>
         </ScrollFade>
       </section>
+
+      {/* FROM THE JOURNAL */}
+      <ScrollFade>
+        <section className="bg-white text-black px-6 py-20">
+          <div className="flex justify-center mb-10">
+            <Image
+              src="/images/swirl-divider.png"
+              alt="Decorative gold swirl"
+              width={200}
+              height={60}
+              className="h-12 md:h-16 w-auto"
+            />
+          </div>
+          <div className="max-w-2xl mx-auto text-center">
+            <h2 className="font-playfair text-3xl md:text-4xl font-semibold text-gold mb-6">
+              From the Journal
+            </h2>
+            <p className="text-black/70 text-lg leading-relaxed mb-4">
+              Who are you in intimacy? Why so few people know — and how to find out.
+            </p>
+            <Link
+              href="/blog/who-are-you-in-intimacy-and-how-to-find-out"
+              className="inline-block mt-4 px-8 py-3 border border-gold/60 text-gold text-sm uppercase tracking-widest hover:bg-gold hover:text-black transition duration-300"
+            >
+              Read the Article
+            </Link>
+          </div>
+        </section>
+      </ScrollFade>
 
       {/* STAY CONNECTED */}
       <ScrollFade>
