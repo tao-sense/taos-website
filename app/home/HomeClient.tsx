@@ -5,7 +5,6 @@ import Link from "next/link";
 import ScrollFade from "@/components/ScrollFade";
 import { motion } from "framer-motion";
 
-// ✅ PAGE-SPECIFIC METADATA
 export const metadata = {
   title:
     "Tantra Massage, Workshops & Intimacy Coaching | The Art of Sensuality (TAOS)",
@@ -69,10 +68,10 @@ export default function Home() {
                   priority
                   className="shrink-0 w-20 h-20 md:w-28 md:h-28"
                 />
-                <h1 className="text-4xl md:text-6xl font-bold">
+                <h1 className="font-playfair text-4xl md:text-6xl font-semibold">
                   The <span className="text-gold">Art of Sensuality</span>
                   <br className="hidden md:block" />
-                  <span className="text-white/90 text-2xl md:text-3xl block mt-6 font-normal">
+                  <span className="font-inter text-white/90 text-2xl md:text-3xl block mt-6 font-normal">
                     Tantra Massage, Workshops & Intimacy Coaching
                   </span>
                 </h1>
@@ -81,8 +80,8 @@ export default function Home() {
 
             <ScrollFade delay={0.2}>
               <div className="mt-8">
-                <a
-                  href="#offerings"
+                
+                  <a href="#offerings"
                   className="px-5 py-3 rounded-2xl bg-gold text-black hover:opacity-90"
                 >
                   Explore Offerings
@@ -91,7 +90,6 @@ export default function Home() {
             </ScrollFade>
           </div>
 
-          {/* Scroll Chevron */}
           <div className="absolute bottom-6 left-1/2 transform -translate-x-1/2">
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -121,7 +119,7 @@ export default function Home() {
           </div>
 
           <div className="flex justify-center mb-10">
-            <div className="text-base md:text-lg leading-relaxed text-black/90 text-centre mb-10 mt-2 max-w-2xl ">
+            <div className="text-base md:text-lg leading-relaxed text-black/90 text-centre mb-10 mt-2 max-w-2xl">
               <p>
                 Step into a safe, professional space to rediscover presence,
                 intimacy, and your deeper self.
@@ -131,7 +129,7 @@ export default function Home() {
 
           <div className="container mx-auto grid md:grid-cols-2 gap-10 items-center">
             <div>
-              <h2 className="text-3xl md:text-4xl font-semibold text-gold mb-6 text-left">
+              <h2 className="font-playfair text-3xl md:text-4xl font-semibold text-gold mb-6 text-left">
                 About TAOS
               </h2>
               <div className="space-y-6 text-base md:text-lg leading-relaxed text-left">
@@ -148,8 +146,8 @@ export default function Home() {
                 </p>
               </div>
               <blockquote className="mt-8 italic text-black/70 border-l-4 border-gold pl-4">
-                “I was nervous at first, but Wesley made me feel completely safe.
-                His calming presence gave me peace I hadn’t felt in years.”
+                "I was nervous at first, but Wesley made me feel completely safe.
+                His calming presence gave me peace I hadn't felt in years."
               </blockquote>
             </div>
             <div className="relative w-full h-64 md:h-80 rounded-xl overflow-hidden">
@@ -170,8 +168,7 @@ export default function Home() {
           <div className="relative w-full h-64 sm:h-80 md:h-[600px]">
             <Image
               src="/images/modern-disconnect.png"
-              alt="Modern disconnect – representing isolation and loss of connection in contemporary life
-t"
+              alt="Modern disconnect – representing isolation and loss of connection in contemporary life"
               fill
               className="object-cover object-center"
               priority
@@ -180,12 +177,12 @@ t"
 
           <div className="hidden md:flex absolute inset-0 bg-black/30 items-center">
             <div className="container mx-auto px-6 py-20 max-w-3xl text-left">
-              <h2 className="text-3xl md:text-4xl font-semibold text-gold mb-6">
+              <h2 className="font-playfair text-3xl md:text-4xl font-semibold text-gold mb-6">
                 The Modern Disconnect
               </h2>
               <div className="space-y-6 text-white/90 text-base md:text-lg leading-relaxed">
                 <p>
-                  In today’s modern world, life often moves faster than we can
+                  In today's modern world, life often moves faster than we can
                   follow. Technology makes many tasks easier, yet it quietly
                   erodes the very fabric of human connection. While we are
                   globally connected, many of us feel more isolated than ever.
@@ -210,12 +207,12 @@ t"
           </div>
 
           <div className="block md:hidden bg-black px-6 py-12">
-            <h2 className="text-2xl font-semibold text-gold mb-4">
+            <h2 className="font-playfair text-2xl font-semibold text-gold mb-4">
               The Modern Disconnect
             </h2>
             <div className="space-y-4 text-white/90 text-base leading-relaxed">
               <p>
-                In today’s modern world, life often moves faster than we can
+                In today's modern world, life often moves faster than we can
                 follow. Technology makes many tasks easier, yet it quietly erodes
                 the very fabric of human connection. While we are globally
                 connected, many of us feel more isolated than ever.
@@ -255,7 +252,7 @@ t"
 
           <div className="container mx-auto grid md:grid-cols-2 gap-10 items-center">
             <div>
-              <h2 className="text-3xl md:text-4xl font-semibold text-gold mb-6 text-left">
+              <h2 className="font-playfair text-3xl md:text-4xl font-semibold text-gold mb-6 text-left">
                 Our Purpose
               </h2>
               <div className="space-y-6 text-base md:text-lg leading-relaxed text-left">
@@ -272,16 +269,15 @@ t"
                 </p>
               </div>
               <blockquote className="mt-8 italic text-black/70 border-l-4 border-gold pl-4">
-                “My tantric massage with Wesley was transformative — I felt
+                "My tantric massage with Wesley was transformative — I felt
                 exceptionally safe, deeply cared for, and for the first time in a
-                long while, free.”
+                long while, free."
               </blockquote>
             </div>
             <div className="relative w-full h-64 md:h-80 rounded-xl overflow-hidden">
               <Image
                 src="/images/purpose.png"
-                alt="Our Purpose – Tantra Massage and Intimacy Coaching with The Art of Sensuality
-"
+                alt="Our Purpose – Tantra Massage and Intimacy Coaching with The Art of Sensuality"
                 fill
                 className="object-cover"
               />
@@ -312,11 +308,11 @@ t"
               />
             </div>
 
-            <h2 className="text-3xl md:text-4xl font-semibold text-gold mb-6">
+            <h2 className="font-playfair text-3xl md:text-4xl font-semibold text-gold mb-6">
               The TAOS Path
             </h2>
             <p className="text-white/85 text-lg mb-8">
-              TAOS is more than an offering — it’s a journey:
+              TAOS is more than an offering — it's a journey:
             </p>
             <ol className="space-y-6 text-base md:text-lg leading-relaxed">
               <li>
@@ -335,7 +331,7 @@ t"
                 <span className="text-gold font-semibold">
                   From distraction → to presence:
                 </span>{" "}
-                Return to what’s true, simple, and alive now.
+                Return to what's true, simple, and alive now.
               </li>
             </ol>
             <p className="mt-10 text-white/90 text-lg">
@@ -344,114 +340,110 @@ t"
               path back to love, trust, and authentic living.
             </p>
             <blockquote className="mt-10 italic text-white/70 border-l-4 border-gold pl-4">
-              “After my massage I discovered a quiet strength and peace that
-              continues to ripple through my life.”
+              "After my massage I discovered a quiet strength and peace that
+              continues to ripple through my life."
             </blockquote>
           </div>
         </section>
       </ScrollFade>
 
- {/* OFFERINGS */}
-<section
-  id="offerings"
-  className="bg-white text-black px-6 py-20 scroll-mt-20"
->
-  {/* Divider + quote fade in */}
-  <ScrollFade>
-    <div className="flex justify-center mb-10">
-      <Image
-        src="/images/swirl-divider.png"
-        alt="Decorative gold swirl"
-        width={200}
-        height={60}
-        className="h-12 md:h-16 w-auto"
-      />
-    </div>
+      {/* OFFERINGS */}
+      <section
+        id="offerings"
+        className="bg-white text-black px-6 py-20 scroll-mt-20"
+      >
+        <ScrollFade>
+          <div className="flex justify-center mb-10">
+            <Image
+              src="/images/swirl-divider.png"
+              alt="Decorative gold swirl"
+              width={200}
+              height={60}
+              className="h-12 md:h-16 w-auto"
+            />
+          </div>
 
-    {/* ✅ NEW HEADER ADDED (this was missing) */}
-    <div className="text-center mb-12">
-      <h2 className="text-3xl md:text-4xl font-semibold text-gold">
-        Our Offerings
-      </h2>
-      <p className="mt-4 text-black/70 max-w-2xl mx-auto text-lg leading-relaxed">
-        Explore the different ways you can begin your journey with TAOS — from
-        hands-on workshops to deeply personal one-to-one experiences.
-      </p>
-    </div>
+          <div className="text-center mb-12">
+            <h2 className="font-playfair text-3xl md:text-4xl font-semibold text-gold">
+              Our Offerings
+            </h2>
+            <p className="mt-4 text-black/70 max-w-2xl mx-auto text-lg leading-relaxed">
+              Explore the different ways you can begin your journey with TAOS — from
+              hands-on workshops to deeply personal one-to-one experiences.
+            </p>
+          </div>
 
-    {/* Existing testimonial (unchanged) */}
-    <div className="max-w-3xl mx-auto mb-16 text-center">
-      <blockquote className="italic text-black/80 border-l-4 border-gold pl-4 md:pl-0 md:border-0">
-        “For many years I carried a deep trauma response around intimacy.
-        My tantric massage with Wesley was a turning point — I felt safe,
-        cared for, and free. It opened me to intimacy again, and I’ve since
-        stepped into a new relationship with confidence and joy.”
-      </blockquote>
-    </div>
-  </ScrollFade>
+          <div className="max-w-3xl mx-auto mb-16 text-center">
+            <blockquote className="italic text-black/80 border-l-4 border-gold pl-4 md:pl-0 md:border-0">
+              "For many years I carried a deep trauma response around intimacy.
+              My tantric massage with Wesley was a turning point — I felt safe,
+              cared for, and free. It opened me to intimacy again, and I've since
+              stepped into a new relationship with confidence and joy."
+            </blockquote>
+          </div>
+        </ScrollFade>
 
-  {/* Cards (unchanged) */}
-  <ScrollFade type="stagger" staggerChildren={0.3} distance={40}>
-    <motion.div
-      className="container mx-auto grid md:grid-cols-3 gap-8"
-      variants={{
-        hidden: {},
-        visible: {
-          transition: { staggerChildren: 0.3, delayChildren: 0.2 },
-        },
-      }}
-      initial="hidden"
-      whileInView="visible"
-      viewport={{ once: true, amount: 0.15 }}
-    >
-      {[
-        {
-          title: "Tantra Massage Seminars",
-          text: "Learn the art of Tantra Massage. Transformational workshop experiences that invite you to feel more alive, nourish connection, trust and pleasure.",
-          href: "/offerings/workshops",
-          link: "Learn More",
-        },
-        {
-          title: "Intimacy Coaching",
-          text: "A guided journey into deeper connection, sensual awareness, and embodied presence — rooted in the art and principles of Tantra massage.",
-          href: "/offerings/coaching",
-          link: "Begin the Journey",
-        },
-        {
-          title: "Classic Tantra Massage",
-          text: "Experience the transformative power of Tantra Massage. Reconnect with your sensual self, free from learned conditions. Awaken the senses & open your heart.",
-          href: "/offerings/tantra",
-          link: "Book a Session",
-        },
-      ].map((card, i) => (
-        <motion.div
-          key={i}
-          variants={{
-            hidden: { opacity: 0, y: 40 },
-            visible: {
-              opacity: 1,
-              y: 0,
-              transition: {
-                duration: 0.7,
-                ease: [0.25, 0.1, 0.25, 1] as [number, number, number, number],
+        <ScrollFade type="stagger" staggerChildren={0.3} distance={40}>
+          <motion.div
+            className="container mx-auto grid md:grid-cols-3 gap-8"
+            variants={{
+              hidden: {},
+              visible: {
+                transition: { staggerChildren: 0.3, delayChildren: 0.2 },
               },
-            },
-          }}
-          className="rounded-2xl border border-black/10 bg-black/5 p-6 hover:shadow-lg transition text-left"
-        >
-          <h3 className="text-xl font-semibold text-gold">{card.title}</h3>
-          <p className="mt-3 text-black/80 leading-relaxed">{card.text}</p>
-          <Link
-            href={card.href}
-            className="mt-5 inline-block px-4 py-2 rounded-xl bg-gold text-black hover:opacity-90"
+            }}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, amount: 0.15 }}
           >
-            {card.link}
-          </Link>
-        </motion.div>
-      ))}
-    </motion.div>
-  </ScrollFade>
-</section>
+            {[
+              {
+                title: "Tantra Massage Seminars",
+                text: "Learn the art of Tantra Massage. Transformational workshop experiences that invite you to feel more alive, nourish connection, trust and pleasure.",
+                href: "/offerings/workshops",
+                link: "Learn More",
+              },
+              {
+                title: "Intimacy Coaching",
+                text: "A guided journey into deeper connection, sensual awareness, and embodied presence — rooted in the art and principles of Tantra massage.",
+                href: "/offerings/coaching",
+                link: "Begin the Journey",
+              },
+              {
+                title: "Classic Tantra Massage",
+                text: "Experience the transformative power of Tantra Massage. Reconnect with your sensual self, free from learned conditions. Awaken the senses & open your heart.",
+                href: "/offerings/tantra",
+                link: "Book a Session",
+              },
+            ].map((card, i) => (
+              <motion.div
+                key={i}
+                variants={{
+                  hidden: { opacity: 0, y: 40 },
+                  visible: {
+                    opacity: 1,
+                    y: 0,
+                    transition: {
+                      duration: 0.7,
+                      ease: [0.25, 0.1, 0.25, 1] as [number, number, number, number],
+                    },
+                  },
+                }}
+                className="rounded-2xl border border-black/10 bg-black/5 p-6 hover:shadow-lg transition text-left"
+              >
+                <h3 className="font-playfair text-xl font-semibold text-gold">{card.title}</h3>
+                <p className="mt-3 text-black/80 leading-relaxed">{card.text}</p>
+                <Link
+                  href={card.href}
+                  className="mt-5 inline-block px-4 py-2 rounded-xl bg-gold text-black hover:opacity-90"
+                >
+                  {card.link}
+                </Link>
+              </motion.div>
+            ))}
+          </motion.div>
+        </ScrollFade>
+      </section>
 
       {/* STAY CONNECTED */}
       <ScrollFade>
@@ -466,7 +458,7 @@ t"
             />
           </div>
 
-          <h2 className="text-3xl md:text-4xl font-semibold text-gold mb-4">
+          <h2 className="font-playfair text-3xl md:text-4xl font-semibold text-gold mb-4">
             Stay Connected
           </h2>
           <p className="text-white/85 max-w-2xl mx-auto leading-relaxed text-lg">

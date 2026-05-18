@@ -53,7 +53,7 @@ export default function ContactClient() {
         />
 
         <div className="relative z-10 max-w-2xl px-6 text-center">
-          <h1 className="text-4xl md:text-6xl font-bold text-gold mb-4">
+          <h1 className="font-playfair text-4xl md:text-6xl font-semibold text-gold mb-4">
             Get in Touch
           </h1>
           <p className="block mt-3 text-white/85 text-base md:text-lg font-light">

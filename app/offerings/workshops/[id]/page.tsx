@@ -117,7 +117,7 @@ export default async function WorkshopPage({
           className="object-cover opacity-60"
         />
         <div className="relative z-10 px-6">
-          <h1 className="text-4xl md:text-6xl font-bold text-gold mb-3">
+          <h1 className="font-playfair text-4xl md:text-6xl font-semibold text-gold mb-3">
             {workshop.title}
           </h1>
           <p className="text-lg md:text-2xl text-white/90">
@@ -139,7 +139,7 @@ export default async function WorkshopPage({
         </div>
 
         <div className="max-w-3xl mx-auto text-lg leading-relaxed space-y-8">
-          <h2 className="text-3xl font-semibold text-gold mb-4">
+          <h2 className="font-playfair text-3xl font-semibold text-gold mb-4">
             About This Workshop
           </h2>
 
@@ -172,7 +172,7 @@ export default async function WorkshopPage({
       {/* Booking / Enquiry Form */}
       <section className="bg-black text-white px-6 py-16 border-t border-white/10">
         <div className="max-w-3xl mx-auto">
-          <h2 className="text-3xl font-semibold text-gold mb-6 text-center">
+          <h2 className="font-playfair text-3xl font-semibold text-gold mb-6 text-center">
             Register Your Interest
           </h2>
           <p className="text-center text-white/80 mb-10">

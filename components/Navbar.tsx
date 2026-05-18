@@ -69,6 +69,7 @@ const NavLink = ({
 const navItems = [
   { title: 'Home', href: '/' },
   { title: 'About', href: '/about' },
+  { title: 'Articles', href: '/blog' },
   {
     title: 'Offerings',
     href: '/offerings',

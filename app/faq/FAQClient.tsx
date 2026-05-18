@@ -38,7 +38,7 @@ export default function FAQClient() {
           priority
         />
         <div className="relative z-10 px-6">
-          <h1 className="text-4xl md:text-6xl font-bold text-gold mb-4 leading-none">
+          <h1 className="font-playfair text-4xl md:text-6xl font-semibold text-gold mb-4 leading-none">
             Tantra Massage FAQ
             <span className="block text-white/90 font-light text-2xl md:text-3xl mt-1 leading-tight">
               Answers from The Art of Sensuality (TAOS)
@@ -76,7 +76,7 @@ export default function FAQClient() {
           {/* Section Navigation */}
           <ScrollFade>
             <div className="text-center mb-16">
-              <h2 className="text-3xl font-semibold text-gold mb-6">
+              <h2 className="font-playfair text-3xl font-semibold text-gold mb-6">
                 Frequently Asked Questions
               </h2>
               <p className="text-black/70 mb-8">
@@ -101,7 +101,7 @@ export default function FAQClient() {
           {/* Private Sessions */}
           <ScrollFade>
             <div id="sessions" className="space-y-12 border-t border-black/10 pt-12">
-              <h2 className="text-3xl font-semibold text-gold mb-8 text-center">
+              <h2 className="font-playfair text-3xl font-semibold text-gold mb-8 text-center">
                 Private Tantra Massage Sessions
               </h2>
 
@@ -192,7 +192,7 @@ export default function FAQClient() {
               id="workshops"
               className="space-y-12 border-t border-black/10 pt-16 mt-16"
             >
-              <h2 className="text-3xl font-semibold text-gold mb-8 text-center">
+              <h2 className="font-playfair text-3xl font-semibold text-gold mb-8 text-center">
                 Tantra Massage Workshops
               </h2>
 
@@ -238,7 +238,7 @@ export default function FAQClient() {
       {/* CTA */}
       <ScrollFade delay={0.15}>
         <section className="bg-black py-16 text-center border-t border-white/10">
-          <h2 className="text-3xl font-semibold text-gold mb-4">
+          <h2 className="font-playfair text-3xl font-semibold text-gold mb-4">
             Still have a question?
           </h2>
           <p className="text-white/80 mb-8">
@@ -267,7 +267,7 @@ function Question({
 }) {
   return (
     <div>
-      <h3 className="text-2xl font-semibold text-gold mb-3">{title}</h3>
+      <h3 className="font-playfair text-2xl font-semibold text-gold mb-3">{title}</h3>
       <p className="text-black/80 leading-relaxed">{children}</p>
     </div>
   );

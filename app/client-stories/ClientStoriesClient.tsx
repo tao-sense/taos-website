@@ -24,7 +24,7 @@ export default function ClientStoriesClient() {
           priority
         />
         <div className="relative z-10 max-w-2xl px-6">
-          <h1 className="text-4xl md:text-6xl font-bold text-gold mb-4 leading-none">
+          <h1 className="font-playfair text-4xl md:text-6xl font-semibold text-gold mb-4 leading-none">
   Client Stories
   <span className="block text-white/90 font-light text-2xl md:text-3xl leading-tight mt-1">
     Tantra Massage Experiences with The Art of Sensuality (TAOS)
@@ -77,7 +77,7 @@ export default function ClientStoriesClient() {
           <div className="max-w-3xl mx-auto space-y-20">
             {/* Story 1 */}
             <article>
-              <h2 className="text-2xl font-semibold text-gold mb-4">
+              <h2 className="font-playfair text-2xl font-semibold text-gold mb-4">
                 Finding Safety and Peace
               </h2>
               <p className="text-lg leading-relaxed">
@@ -124,7 +124,7 @@ export default function ClientStoriesClient() {
 
             {/* Story 2 */}
             <article>
-              <h2 className="text-2xl font-semibold text-gold mb-4">
+              <h2 className="font-playfair text-2xl font-semibold text-gold mb-4">
                 From Trauma to Freedom
               </h2>
               <p className="text-lg leading-relaxed">
@@ -184,7 +184,7 @@ export default function ClientStoriesClient() {
 
             {/* Story 3 */}
             <article>
-              <h2 className="text-2xl font-semibold text-gold mb-4">
+              <h2 className="font-playfair text-2xl font-semibold text-gold mb-4">
                 A Quiet Strength Awakened
               </h2>
               <p className="text-lg leading-relaxed">
@@ -227,7 +227,7 @@ export default function ClientStoriesClient() {
       {/* CLOSING CTA */}
       <ScrollFade delay={0.2}>
         <section className="bg-black text-center py-20 px-6">
-          <h2 className="text-3xl md:text-4xl font-semibold text-gold mb-4">
+          <h2 className="font-playfair text-3xl md:text-4xl font-semibold text-gold mb-4">
             Begin Your Own Journey
           </h2>
           <p className="max-w-2xl mx-auto text-white/80 text-lg mb-8">

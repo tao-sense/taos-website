@@ -8,6 +8,10 @@ const config: Config = {
   ],
   theme: {
     extend: {
+      fontFamily: {
+        playfair: ["var(--font-playfair)", "Georgia", "serif"],
+        inter: ["var(--font-inter)", "system-ui", "sans-serif"],
+      },
       colors: {
         gold: "#d4af37",
       },
@@ -30,8 +34,6 @@ const config: Config = {
         fadeIn2: "fadeIn 2s ease-in-out 2.5s forwards",
         fadeIn3: "fadeIn 2s ease-in-out 4.0s forwards",
         fadeIn4: "fadeIn 2s ease-in-out 5.5s forwards",
-
-        // 👇 New smooth scroll section fade animation
         fadeUp: "fadeUp 1.2s ease-out forwards",
       },
     },

@@ -18,7 +18,7 @@ export default function WorkshopContent({ workshop }: { workshop: any }) {
         />
         <div className="relative z-10 px-6">
           <ScrollFade>
-            <h1 className="text-4xl md:text-6xl font-bold text-gold mb-3">
+            <h1 className="font-playfair text-4xl md:text-6xl font-semibold text-gold mb-3">
               {workshop.title}
             </h1>
           </ScrollFade>
@@ -44,7 +44,7 @@ export default function WorkshopContent({ workshop }: { workshop: any }) {
           </div>
 
           <div className="max-w-3xl mx-auto text-lg leading-relaxed space-y-8">
-            <h2 className="text-3xl font-semibold text-gold mb-4">
+            <h2 className="font-playfair text-3xl font-semibold text-gold mb-4">
               About This Workshop
             </h2>
 
@@ -79,7 +79,7 @@ export default function WorkshopContent({ workshop }: { workshop: any }) {
       <ScrollFade delay={0.1}>
         <section className="bg-black text-white px-6 py-16 border-t border-white/10">
           <div className="max-w-3xl mx-auto">
-            <h2 className="text-3xl font-semibold text-gold mb-6 text-center">
+            <h2 className="font-playfair text-3xl font-semibold text-gold mb-6 text-center">
               Register Your Interest
             </h2>
             <p className="text-center text-white/80 mb-10">

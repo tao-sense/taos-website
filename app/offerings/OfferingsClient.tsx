@@ -21,7 +21,7 @@ export default function OfferingsClient() {
 
         <div className="relative z-10 max-w-2xl px-6">
           <ScrollFade>
-            <h1 className="text-4xl md:text-6xl font-bold text-gold mb-4">
+            <h1 className="font-playfair text-4xl md:text-6xl font-semibold text-gold mb-4">
               Our Offerings
             </h1>
           </ScrollFade>
@@ -87,7 +87,7 @@ export default function OfferingsClient() {
                 className="w-full h-56 object-cover"
               />
               <div className="p-6">
-                <h2 className="text-2xl font-semibold text-gold mb-3">
+                <h2 className="font-playfair text-2xl font-semibold text-gold mb-3">
                   Tantra Massage Seminars
                 </h2>
                 <p className="mb-4">
@@ -125,7 +125,7 @@ export default function OfferingsClient() {
                 className="w-full h-56 object-cover"
               />
               <div className="p-6">
-                <h2 className="text-2xl font-semibold text-gold mb-3">
+                <h2 className="font-playfair text-2xl font-semibold text-gold mb-3">
                   Intimacy Coaching
                 </h2>
                 <p className="mb-4">
@@ -162,7 +162,7 @@ export default function OfferingsClient() {
                 className="w-full h-56 object-cover"
               />
               <div className="p-6">
-                <h2 className="text-2xl font-semibold text-gold mb-3">
+                <h2 className="font-playfair text-2xl font-semibold text-gold mb-3">
                   Classic Tantra Massage
                 </h2>
                 <p className="mb-4">
@@ -197,7 +197,7 @@ export default function OfferingsClient() {
           </div>
 
           <div className="max-w-4xl mx-auto">
-            <h2 className="text-3xl md:text-4xl font-semibold text-gold mb-10">
+            <h2 className="font-playfair text-3xl md:text-4xl font-semibold text-gold mb-10">
               What Clients Say
             </h2>
             <div className="space-y-12 text-left">
@@ -231,7 +231,7 @@ export default function OfferingsClient() {
       {/* PHILOSOPHY */}
       <ScrollFade delay={0.2}>
         <section className="bg-black py-20 px-6 text-center border-t border-white/10">
-          <h2 className="text-3xl font-semibold text-gold mb-4">
+          <h2 className="font-playfair text-3xl font-semibold text-gold mb-4">
             Why These Offerings?
           </h2>
           <p className="max-w-3xl mx-auto text-white/80 text-lg leading-relaxed">

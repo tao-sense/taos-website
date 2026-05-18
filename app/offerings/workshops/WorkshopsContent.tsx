@@ -63,7 +63,7 @@ export default function WorkshopsContent({ workshops }: { workshops: any[] }) {
 
         <div className="relative z-10 px-6">
           <ScrollFade>
-            <h1 className="text-4xl md:text-6xl font-bold text-gold mb-4">
+            <h1 className="font-playfair text-4xl md:text-6xl font-semibold text-gold mb-4">
               Tantra Massage Workshops - UK
             </h1>
           </ScrollFade>
@@ -87,7 +87,7 @@ export default function WorkshopsContent({ workshops }: { workshops: any[] }) {
       <ScrollFade>
         <section className="bg-white text-black py-20 px-6 border-t border-gray-200">
           <div className="max-w-3xl mx-auto text-center">
-            <h2 className="text-3xl md:text-4xl font-semibold text-gold mb-6">
+            <h2 className="font-playfair text-3xl md:text-4xl font-semibold text-gold mb-6">
               Register Your Interest for the Autumn 2026 UK Tantra Massage Workshop
             </h2>
 
@@ -161,7 +161,7 @@ export default function WorkshopsContent({ workshops }: { workshops: any[] }) {
           </div>
 
           <div className="max-w-3xl mx-auto space-y-8 text-lg leading-relaxed text-black/80">
-            <h2 className="text-3xl font-semibold text-gold text-center">
+            <h2 className="font-playfair text-3xl font-semibold text-gold text-center">
               About the Tantra Massage Workshops
             </h2>
             <p>
@@ -206,7 +206,7 @@ export default function WorkshopsContent({ workshops }: { workshops: any[] }) {
           </div>
 
           <div className="max-w-3xl mx-auto space-y-8 text-lg leading-relaxed text-black/80">
-            <h2 className="text-3xl font-semibold text-gold text-center">
+            <h2 className="font-playfair text-3xl font-semibold text-gold text-center">
               The Philosophy of Tantra Massage
             </h2>
             <p>
@@ -223,7 +223,7 @@ export default function WorkshopsContent({ workshops }: { workshops: any[] }) {
         <section className="bg-white py-20 px-6 text-black border-t border-gray-200">
           <div className="max-w-4xl mx-auto grid md:grid-cols-2 gap-10 items-start">
             <div>
-              <h2 className="text-2xl font-semibold text-gold mb-6">
+              <h2 className="font-playfair text-2xl font-semibold text-gold mb-6">
                 Workshop Details
               </h2>
               <ul className="list-disc pl-6 space-y-2 text-black/80">
@@ -272,7 +272,7 @@ export default function WorkshopsContent({ workshops }: { workshops: any[] }) {
       <ScrollFade>
         <section className="bg-gray-50 text-black px-6 py-20 border-t border-gray-200">
           <div className="max-w-6xl mx-auto">
-            <h2 className="text-3xl md:text-4xl font-semibold text-gold mb-12 text-center">
+            <h2 className="font-playfair text-3xl md:text-4xl font-semibold text-gold mb-12 text-center">
               Upcoming Workshops
             </h2>
 
@@ -293,7 +293,7 @@ export default function WorkshopsContent({ workshops }: { workshops: any[] }) {
                       href={`/offerings/workshops/${w.id}`}
                       className="border border-gold rounded-xl shadow-lg p-6 hover:shadow-2xl hover:scale-[1.02] transition duration-300 bg-white block"
                     >
-                      <h3 className="text-2xl font-semibold text-gold mb-3 hover:underline">
+                      <h3 className="font-playfair text-2xl font-semibold text-gold mb-3 hover:underline">
                         {w.title}
                       </h3>
                       <p className="text-black/80 mb-3">

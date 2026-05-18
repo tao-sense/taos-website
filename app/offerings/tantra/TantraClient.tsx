@@ -18,7 +18,7 @@ export default function TantraPage() {
 
         <div className="relative z-10 max-w-2xl px-6">
           <ScrollFade>
-            <h1 className="text-4xl md:text-6xl font-bold text-gold mb-4">
+            <h1 className="font-playfair text-4xl md:text-6xl font-semibold text-gold mb-4">
               Tantra Massage
             </h1>
           </ScrollFade>
@@ -117,7 +117,7 @@ export default function TantraPage() {
 
           <div className="max-w-4xl mx-auto grid md:grid-cols-2 gap-10 items-start">
             <div>
-              <h2 className="text-2xl font-semibold text-gold mb-6">
+              <h2 className="font-playfair text-2xl font-semibold text-gold mb-6">
                 Session Details
               </h2>
               <ul className="list-disc pl-6 space-y-2 text-black/80">
@@ -192,7 +192,7 @@ export default function TantraPage() {
           </div>
 
           <div className="max-w-3xl mx-auto text-lg space-y-4">
-            <h2 className="text-2xl font-semibold text-gold">Who I Work With</h2>
+            <h2 className="font-playfair text-2xl font-semibold text-gold">Who I Work With</h2>
 
             <p>
               I currently offer 1-to-1{" "}
@@ -271,7 +271,7 @@ export default function TantraPage() {
           </div>
 
           <div className="max-w-3xl mx-auto">
-            <h2 className="text-2xl font-semibold text-gold mb-8 text-center">
+            <h2 className="font-playfair text-2xl font-semibold text-gold mb-8 text-center">
               Tantra Massage FAQs
             </h2>
             <div className="space-y-6 text-black/80">
@@ -352,7 +352,7 @@ export default function TantraPage() {
           </div>
 
           <div className="max-w-2xl mx-auto space-y-6">
-            <h2 className="text-2xl md:text-3xl font-bold text-gold">
+            <h2 className="font-playfair text-2xl md:text-3xl font-bold text-gold">
               Session Investment
             </h2>
 

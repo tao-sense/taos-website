@@ -23,7 +23,7 @@ export default function AboutClient() {
           {/* Overlay Text */}
           <div className="absolute inset-0 flex flex-col items-center justify-center z-10 px-6 space-y-4">
             <ScrollFade>
-              <h1 className="text-4xl font-bold text-white/90 leading-tight">
+              <h1 className="font-playfair text-4xl font-semibold text-white/90 leading-tight">
                 My Journey
                 <br />
                 <span className="text-white/90 font-light text-2xl">
@@ -67,7 +67,7 @@ export default function AboutClient() {
           {/* Overlay Text */}
           <div className="absolute inset-0 flex flex-col items-center justify-center z-10 px-6 space-y-4">
             <ScrollFade>
-              <h1 className="text-5xl lg:text-6xl font-bold text-white/90 leading-tight">
+              <h1 className="font-playfair text-5xl lg:text-6xl font-semibold text-white/90 leading-tight">
                 My Journey
                 <br />
                 <span className="text-white/90 font-light text-3xl">
@@ -113,7 +113,7 @@ export default function AboutClient() {
           </div>
 
           <div className="max-w-3xl mx-auto space-y-10 text-lg leading-relaxed">
-            <h2 className="text-3xl font-bold text-gold text-center mb-8 tracking-wide">
+            <h2 className="font-playfair text-3xl font-semibold text-gold text-center mb-8 tracking-wide">
               My Journey
             </h2>
 
@@ -171,7 +171,7 @@ export default function AboutClient() {
             {/* Osteopathy & Bodywork */}
             <ScrollFade delay={0.1}>
               <div className="space-y-4">
-                <h3 className="text-2xl font-semibold text-gold">
+                <h3 className="font-playfair text-2xl font-semibold text-gold">
                   Osteopathy & Bodywork
                 </h3>
                 <p>
@@ -196,7 +196,7 @@ export default function AboutClient() {
             {/* Personal Life & Expansion */}
             <ScrollFade delay={0.2}>
               <div className="space-y-4">
-                <h3 className="text-2xl font-semibold text-gold">Meeting the Edges</h3>
+                <h3 className="font-playfair text-2xl font-semibold text-gold">Meeting the Edges</h3>
                 <p>
                   Alongside this professional path, my life with my wife Claire and our
                   two sons has been central. Together, we’ve built our private practice
@@ -248,7 +248,7 @@ export default function AboutClient() {
             {/* Today */}
             <ScrollFade delay={0.3}>
               <div className="space-y-4">
-                <h3 className="text-2xl font-semibold text-gold">Where I Am Now</h3>
+                <h3 className="font-playfair text-2xl font-semibold text-gold">Where I Am Now</h3>
                 <p>
                   Today, alongside my therapy practice, I offer the sensitivity and
                   depth of Tantra massage. My approach is{" "}
@@ -288,7 +288,7 @@ export default function AboutClient() {
           </div>
 
           <div className="max-w-3xl mx-auto space-y-8 text-lg leading-relaxed">
-            <h2 className="text-3xl font-bold text-gold text-center mb-8 tracking-wide">
+            <h2 className="font-playfair text-3xl font-semibold text-gold text-center mb-8 tracking-wide">
               A History of Modern Tantra
             </h2>
 
@@ -349,7 +349,7 @@ export default function AboutClient() {
       <ScrollFade>
         <section className="bg-white text-black px-6 py-16 text-center">
           <div className="max-w-2xl mx-auto space-y-6">
-            <h2 className="text-2xl md:text-3xl font-bold text-gold">
+            <h2 className="font-playfair text-2xl md:text-3xl font-bold text-gold">
               Ready to Experience This Work?
             </h2>
             <p className="text-lg text-black/80">

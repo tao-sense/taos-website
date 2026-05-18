@@ -8,6 +8,19 @@ import MetaPixel from "@/components/MetaPixel";
 import CookieBanner from "@/components/CookieBanner";
 import { Analytics } from "@vercel/analytics/next";
 import type { Metadata } from "next";
+import { Playfair_Display, Inter } from "next/font/google";
+
+const playfair = Playfair_Display({
+  subsets: ["latin"],
+  variable: "--font-playfair",
+  display: "swap",
+});
+
+const inter = Inter({
+  subsets: ["latin"],
+  variable: "--font-inter",
+  display: "swap",
+});
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://theartofsensuality.com"),
@@ -130,9 +143,7 @@ const jsonLd = {
       },
     ],
   },
-  sameAs: [
-    "https://www.instagram.com/tao_sense",
-  ],
+  sameAs: ["https://www.instagram.com/tao_sense"],
 };
 
 export default function RootLayout({
@@ -141,8 +152,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en">
-      <body className="min-h-screen flex flex-col">
+    <html lang="en" className={`${playfair.variable} ${inter.variable}`}>
+      <body className="min-h-screen flex flex-col font-inter">
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}

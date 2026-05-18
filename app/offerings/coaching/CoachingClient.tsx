@@ -19,7 +19,7 @@ export default function CoachingClient() {
         />
         <div className="relative z-10 px-6">
           
-  <h1 className="text-4xl md:text-6xl font-bold text-gold mb-4 leading-tight text-center">
+  <h1 className="font-playfair text-4xl md:text-6xl font-semibold text-gold mb-4 leading-tight text-center">
   Intimacy Coaching
   <br />
   <span className="text-white/90 font-light text-2xl md:text-3xl">
@@ -111,7 +111,7 @@ export default function CoachingClient() {
           </div>
 
           <div className="max-w-5xl mx-auto px-6 pb-20 space-y-10 text-center">
-            <h2 className="text-3xl md:text-4xl font-bold text-gold">
+            <h2 className="font-playfair text-3xl md:text-4xl font-semibold text-gold">
               Working with Couples
             </h2>
             <p className="text-white/80 leading-relaxed text-lg max-w-3xl mx-auto">
@@ -150,7 +150,7 @@ export default function CoachingClient() {
           </div>
 
           <div className="max-w-5xl mx-auto space-y-10 text-center">
-            <h2 className="text-3xl md:text-4xl font-bold text-gold">
+            <h2 className="font-playfair text-3xl md:text-4xl font-semibold text-gold">
               Intimacy Coaching for Couples
             </h2>
 
@@ -177,7 +177,7 @@ export default function CoachingClient() {
                 </ul>
 
                 <div className="bg-black/5 rounded-2xl p-6 mt-6 text-center border border-black/10">
-                  <h3 className="text-2xl font-semibold text-gold mb-3">
+                  <h3 className="font-playfair text-2xl font-semibold text-gold mb-3">
                     Investment
                   </h3>
                   <p className="text-lg text-black/80">
@@ -192,7 +192,7 @@ export default function CoachingClient() {
                 </div>
 
                 <div className="bg-black/5 rounded-2xl p-6 mt-6 text-center border border-black/10">
-                  <h3 className="text-2xl font-semibold text-gold mb-3">
+                  <h3 className="font-playfair text-2xl font-semibold text-gold mb-3">
                     Optional Consultation
                   </h3>
                   <p className="text-lg text-black/80">
@@ -251,7 +251,7 @@ export default function CoachingClient() {
           </div>
 
           <div className="max-w-6xl mx-auto space-y-12 text-center">
-            <h2 className="text-3xl md:text-4xl font-bold text-gold">
+            <h2 className="font-playfair text-3xl md:text-4xl font-semibold text-gold">
               Tantra Massage Training for Couples
             </h2>
 
@@ -275,7 +275,7 @@ export default function CoachingClient() {
                 </ul>
 
                 <div className="bg-white/10 rounded-2xl p-6 mt-6 text-center border border-white/20">
-                  <h3 className="text-2xl font-semibold text-gold mb-2">
+                  <h3 className="font-playfair text-2xl font-semibold text-gold mb-2">
                     Investment
                   </h3>
                   <p className="text-white/85 text-lg">
@@ -356,7 +356,7 @@ export default function CoachingClient() {
               with the wisdom of your body, not a form of clinical treatment.
             </p>
             <div className="bg-black/5 rounded-2xl p-8 mt-10 text-center border border-black/10">
-              <h3 className="text-2xl font-semibold text-gold mb-4">Investment</h3>
+              <h3 className="font-playfair text-2xl font-semibold text-gold mb-4">Investment</h3>
               <p className="text-black/80 text-lg">
                 <strong>£70</strong> – 60 minutes <br />
                 <strong>£100</strong> – 90 minutes <br />
