@@ -21,7 +21,7 @@ export const metadata: Metadata = {
     siteName: 'The Art of Sensuality',
     images: [
       {
-        url: 'https://theartofsensuality.com/images/og-banner.jpg',
+        url: 'https://theartofsensuality.com/images/og-blog.jpg',
         width: 1200,
         height: 630,
         alt: 'Articles — The Art of Sensuality (TAOS)',
