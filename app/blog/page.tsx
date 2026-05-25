@@ -58,7 +58,7 @@ export default async function BlogPage() {
           src="/images/articles-hero.jpg"
           alt="Woman reading — Articles by The Art of Sensuality (TAOS)"
           fill
-          className="object-cover object-[60%_44%] opacity-60"
+          className="object-cover object-[60%_44%] opacity-90"
           priority
         />
         <div className="absolute inset-0 bg-black/40" />
