@@ -96,7 +96,7 @@ export default function Footer() {
               <FaInstagram /> <span>Instagram</span>
             </Link>
             <Link
-              href="https://facebook.com"
+              href="https://facebook.com/profile.php?id=61589678035309"
               target="_blank"
               className="flex items-center space-x-2 hover:text-gold"
             >
