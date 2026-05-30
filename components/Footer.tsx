@@ -41,7 +41,7 @@ export default function Footer() {
               </Link>
             </li>
             <li>
-              <Link href="/stories" className="hover:text-gold">
+              <Link href="/client-stories" className="hover:text-gold">
                 Client Stories
               </Link>
             </li>
