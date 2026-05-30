@@ -2,7 +2,7 @@
 
 import { motion, useAnimation, Variants } from "framer-motion";
 import { useInView } from "react-intersection-observer";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 
 type ScrollFadeProps = {
   children: React.ReactNode;
@@ -33,7 +33,6 @@ export default function ScrollFade({
     triggerOnce: true,
   });
 
-  // Animation variants
   const variants: Record<string, Variants> = {
     "fade-up": {
       hidden: { opacity: 0, y: distance },
@@ -79,6 +78,12 @@ export default function ScrollFade({
     },
   };
 
+  const [isMounted, setIsMounted] = useState(false);
+
+  useEffect(() => {
+    setIsMounted(true);
+  }, []);
+
   useEffect(() => {
     if (inView) controls.start("visible");
   }, [controls, inView]);
@@ -87,7 +92,7 @@ export default function ScrollFade({
     <motion.div
       ref={ref}
       variants={variants[type]}
-      initial="hidden"
+      initial={isMounted ? "hidden" : "visible"}
       animate={controls}
       transition={{
         duration,
