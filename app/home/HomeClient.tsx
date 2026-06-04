@@ -4,6 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import ScrollFade from "@/components/ScrollFade";
 import { motion } from "framer-motion";
+import BlogCarousel from '@/components/BlogCarousel'
 
 export const metadata = {
   title:
@@ -446,8 +447,8 @@ export default function Home() {
       </section>
 
       {/* FROM THE JOURNAL */}
-      <ScrollFade>
-        <section className="bg-white text-black px-6 py-20">
+       <ScrollFade>
+        <section className="bg-[#F7F4EF] text-black px-6 py-20">
           <div className="flex justify-center mb-10">
             <Image
               src="/images/swirl-divider.png"
@@ -457,18 +458,21 @@ export default function Home() {
               className="h-12 md:h-16 w-auto"
             />
           </div>
-          <div className="max-w-2xl mx-auto text-center">
-            <h2 className="font-playfair text-3xl md:text-4xl font-semibold text-gold mb-6">
+          <div className="text-center mb-10">
+            <h2 className="font-playfair text-3xl md:text-4xl font-semibold text-gold mb-3">
               From the Journal
             </h2>
-            <p className="text-black/70 text-lg leading-relaxed mb-4">
-              Who are you in intimacy? Why so few people know — and how to find out.
+            <p className="text-black/60 text-base">
+              Perspectives on tantra, intimacy, and conscious living.
             </p>
+          </div>
+          <BlogCarousel />
+          <div className="text-center mt-10">
             <Link
-              href="/blog/who-are-you-in-intimacy-and-how-to-find-out"
-              className="inline-block mt-4 px-8 py-3 border border-gold/60 text-gold text-sm uppercase tracking-widest hover:bg-gold hover:text-black transition duration-300"
+              href="/blog"
+              className="inline-block px-8 py-3 border border-gold/60 text-gold text-sm uppercase tracking-widest hover:bg-gold hover:text-black transition duration-300"
             >
-              Read the Article
+              All Articles
             </Link>
           </div>
         </section>
