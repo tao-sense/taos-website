@@ -1,6 +1,7 @@
 "use client";
 
 import { trackSubscribe } from "@/lib/fpixel";
+import { event as gtagEvent } from "@/lib/gtag";
 import { useState } from "react";
 
 export default function SubscribeForm() {
@@ -20,6 +21,7 @@ export default function SubscribeForm() {
 
       if (res.ok) {
         trackSubscribe();
+        gtagEvent("sign_up", { event_category: "newsletter", event_label: "subscribe_form" });
         setStatus("success");
         setEmail("");
       } else {

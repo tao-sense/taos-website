@@ -1,6 +1,7 @@
 "use client";
 
 import { trackContact } from "@/lib/fpixel";
+import { event as gtagEvent } from "@/lib/gtag";
 import { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
@@ -29,6 +30,7 @@ export default function ContactClient() {
 
       if (res.ok) {
         trackContact();
+        gtagEvent("generate_lead", { event_category: "contact", event_label: "contact_form" });
         setStatus("success");
         setFormData({ name: "", email: "", phone: "", message: "" });
       } else {

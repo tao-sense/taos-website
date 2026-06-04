@@ -1,6 +1,7 @@
 "use client";
 
 import { trackWorkshopEnquiry } from "@/lib/fpixel";
+import { event as gtagEvent } from "@/lib/gtag";
 import { useState } from "react";
 
 export default function WorkshopBookingForm({ workshopId }: { workshopId: string }) {
@@ -35,6 +36,7 @@ export default function WorkshopBookingForm({ workshopId }: { workshopId: string
     setLoading(false);
     if (res.ok) {
       trackWorkshopEnquiry(workshopId);
+      gtagEvent("generate_lead", { event_category: "workshop", event_label: "workshop_enquiry_form", workshop_id: workshopId });
       setSubmitted(true);
     } else alert("Error submitting form");
   };
