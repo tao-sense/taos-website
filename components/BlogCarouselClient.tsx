@@ -64,7 +64,8 @@ export default function BlogCarouselClient({ posts }: { posts: Post[] }) {
           <div className="absolute bottom-0 left-0 right-0 p-6">
            {(post.categories?.length ?? 0) > 0 && (
               <p className="text-xs uppercase tracking-[0.16em] text-gold mb-2">
-                {post.categories[0]}
+                {post.categories?.[0]}
+
               </p>
             )}
             <h3 className="font-playfair text-xl md:text-2xl font-semibold text-white leading-snug mb-2 group-hover:text-gold transition duration-300">
