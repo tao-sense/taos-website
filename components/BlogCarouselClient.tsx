@@ -62,7 +62,7 @@ export default function BlogCarouselClient({ posts }: { posts: Post[] }) {
 
           {/* Text overlay */}
           <div className="absolute bottom-0 left-0 right-0 p-6">
-            {post.categories?.length > 0 && (
+           {(post.categories?.length ?? 0) > 0 && (
               <p className="text-xs uppercase tracking-[0.16em] text-gold mb-2">
                 {post.categories[0]}
               </p>
