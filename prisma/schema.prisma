@@ -125,6 +125,7 @@ model WorkshopEnquiry {
   about             String?
   created_at        DateTime? @default(now()) @db.Timestamptz(6)
   // New application fields
+  // @deprecated — removed from the application form; column kept so existing rows survive
   sex               String?
   age               Int?
   height_cm         Int?

@@ -52,7 +52,6 @@ export async function POST(req: Request) {
     email,
     phone,
     city,
-    sex,
     age,
     heightCm,
     weightKg,
@@ -95,12 +94,6 @@ export async function POST(req: Request) {
   if (!city || typeof city !== "string" || !city.trim()) {
     return NextResponse.json(
       { error: "Town / City is required." },
-      { status: 400 }
-    );
-  }
-  if (!["Female", "Male", "Other"].includes(sex)) {
-    return NextResponse.json(
-      { error: "Please select a valid sex option." },
       { status: 400 }
     );
   }
@@ -174,7 +167,6 @@ export async function POST(req: Request) {
         email: normalizedEmail,
         phone: phone.trim(),
         city: city.trim(),
-        sex,
         age: ageNum,
         height_cm: heightNum,
         weight_kg: weightNum,
@@ -212,7 +204,6 @@ export async function POST(req: Request) {
         <div style="font-family:Arial,sans-serif;line-height:1.6;color:#111;">
           <h2 style="color:#C9A46C;">New Workshop Application</h2>
           <p><strong>Name:</strong> ${name.trim()}</p>
-          <p><strong>Sex:</strong> ${sex}</p>
           <p><strong>Age:</strong> ${ageNum}</p>
           <p><strong>Town / City:</strong> ${city.trim()}</p>
           <p><strong>Email:</strong> ${normalizedEmail}</p>

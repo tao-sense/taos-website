@@ -4,15 +4,12 @@ import { trackWorkshopEnquiry } from "@/lib/fpixel";
 import { event as gtagEvent } from "@/lib/gtag";
 import { useState } from "react";
 
-const SEX_OPTIONS = ["Female", "Male", "Other"] as const;
-
 export default function WorkshopBookingForm({ workshopId }: { workshopId: string }) {
   const [form, setForm] = useState({
     name: "",
     email: "",
     phone: "",
     city: "",
-    sex: "",
     age: "",
     heightCm: "",
     weightKg: "",
@@ -48,7 +45,6 @@ export default function WorkshopBookingForm({ workshopId }: { workshopId: string
         email: form.email,
         phone: form.phone,
         city: form.city,
-        sex: form.sex,
         age: form.age,
         heightCm: form.heightCm,
         weightKg: form.weightKg,
@@ -138,30 +134,15 @@ export default function WorkshopBookingForm({ workshopId }: { workshopId: string
         />
       </div>
 
-      {/* Town/City + Sex */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-        <input
-          type="text"
-          placeholder="Town / City"
-          value={form.city}
-          onChange={(e) => setForm({ ...form, city: e.target.value })}
-          className="w-full border p-2 rounded"
-          required
-        />
-        <select
-          value={form.sex}
-          onChange={(e) => setForm({ ...form, sex: e.target.value })}
-          className="w-full border p-2 rounded text-black"
-          required
-        >
-          <option value="">Sex…</option>
-          {SEX_OPTIONS.map((s) => (
-            <option key={s} value={s}>
-              {s}
-            </option>
-          ))}
-        </select>
-      </div>
+      {/* Town/City */}
+      <input
+        type="text"
+        placeholder="Town / City"
+        value={form.city}
+        onChange={(e) => setForm({ ...form, city: e.target.value })}
+        className="w-full border p-2 rounded"
+        required
+      />
 
       {/* Age + Height + Weight */}
       <div className="grid grid-cols-3 gap-4">
