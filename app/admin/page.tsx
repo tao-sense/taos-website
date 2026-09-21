@@ -51,6 +51,13 @@ export default function AdminWorkshopsPage() {
         >
           Workshop Interest
         </Link>
+
+        <Link
+          href="/admin/workshop-enquiries"
+          className="px-4 py-2 border border-gold rounded text-gold hover:bg-gold hover:text-black transition"
+        >
+          Applications
+        </Link>
       </div>
 
       <h1 className="text-3xl font-bold text-gold mb-8">
