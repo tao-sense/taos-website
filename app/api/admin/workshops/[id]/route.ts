@@ -10,24 +10,19 @@ async function requireAdmin() {
   return { session };
 }
 
-export async function GET() {
+export async function PUT(
+  request: Request,
+  context: { params: Promise<{ id: string }> }
+) {
   const { error } = await requireAdmin();
   if (error) return error;
 
-  const workshops = await prisma.workshop.findMany({
-    orderBy: { date: "asc" },
-  });
-  return NextResponse.json(workshops);
-}
-
-export async function POST(req: Request) {
-  const { error } = await requireAdmin();
-  if (error) return error;
-
-  const data = await req.json();
+  const { id } = await context.params;
+  const data = await request.json();
 
   try {
-    const workshop = await prisma.workshop.create({
+    const updated = await prisma.workshop.update({
+      where: { id },
       data: {
         title: data.title,
         description: data.description,
@@ -39,9 +34,27 @@ export async function POST(req: Request) {
         capacity: data.capacity ? Number(data.capacity) : null,
       },
     });
-    return NextResponse.json(workshop, { status: 201 });
+    return NextResponse.json(updated);
   } catch (err) {
-    console.error(err);
-    return NextResponse.json({ error: "Failed to create workshop" }, { status: 500 });
+    console.error("Error updating workshop:", err);
+    return NextResponse.json({ error: "Failed to update workshop" }, { status: 500 });
+  }
+}
+
+export async function DELETE(
+  request: Request,
+  context: { params: Promise<{ id: string }> }
+) {
+  const { error } = await requireAdmin();
+  if (error) return error;
+
+  const { id } = await context.params;
+
+  try {
+    await prisma.workshop.delete({ where: { id } });
+    return NextResponse.json({ message: "Workshop deleted" });
+  } catch (err) {
+    console.error("Error deleting workshop:", err);
+    return NextResponse.json({ error: "Failed to delete workshop" }, { status: 500 });
   }
 }
