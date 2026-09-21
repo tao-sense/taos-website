@@ -115,14 +115,30 @@ model WorkshopEnquiry {
   id                String    @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
   workshop_id       String?
   name              String
-  street            String?
-  city              String?
-  postcode          String?
   email             String
   phone             String?
+  city              String?
+  // Legacy columns — kept so existing rows survive
+  street            String?
+  postcode          String?
   age_height_weight String?
   about             String?
   created_at        DateTime? @default(now()) @db.Timestamptz(6)
+  // New application fields
+  sex               String?
+  age               Int?
+  height_cm         Int?
+  weight_kg         Int?
+  health_notes      String?
+  motivation        String?
+  experience        String?
+  consent_health    Boolean   @default(false)
+  consent_privacy   Boolean   @default(false)
+  consent_terms     Boolean   @default(false)
+  consent_at        DateTime? @db.Timestamptz(6)
+  status            String    @default("pending")
+  admin_notes       String?
+  updated_at        DateTime? @db.Timestamptz(6)
 
   @@map("workshop_enquiries")
 }
