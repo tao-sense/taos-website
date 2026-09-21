@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { PrismaClient } from "@prisma/client";
+import { prisma } from "@/lib/prisma";
 import WorkshopsContent from "./WorkshopsContent";
 
 export const revalidate = 20;
@@ -66,8 +66,6 @@ const jsonLd = {
     audienceType: "Individuals, Couples",
   },
 };
-
-const prisma = new PrismaClient();
 
 export default async function WorkshopsPage() {
   const workshops = await prisma.workshop.findMany({

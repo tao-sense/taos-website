@@ -1,11 +1,9 @@
-import { PrismaClient } from "@prisma/client";
+import { prisma } from "@/lib/prisma";
 import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import WorkshopBookingForm from "./workshop-booking-form";
 import { notFound } from "next/navigation";
-
-const prisma = new PrismaClient();
 
 export async function generateMetadata({
   params,
