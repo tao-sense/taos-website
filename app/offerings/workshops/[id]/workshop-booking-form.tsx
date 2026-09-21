@@ -202,9 +202,9 @@ export default function WorkshopBookingForm({ workshopId }: { workshopId: string
         </p>
       </div>
 
-      {/* Why do you want to attend? */}
+      {/* About them / motivation */}
       <textarea
-        placeholder="Why do you want to attend this workshop?"
+        placeholder="Please tell us a little about yourself and why you'd like to attend."
         value={form.motivation}
         onChange={(e) => setForm({ ...form, motivation: e.target.value })}
         className="w-full border p-2 rounded min-h-[100px]"

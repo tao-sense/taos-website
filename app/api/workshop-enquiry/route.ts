@@ -130,7 +130,7 @@ export async function POST(req: Request) {
   }
   if (!motivation || typeof motivation !== "string" || !motivation.trim()) {
     return NextResponse.json(
-      { error: "Please tell us why you want to attend." },
+      { error: "Please tell us a little about yourself and why you'd like to attend." },
       { status: 400 }
     );
   }
@@ -208,7 +208,7 @@ export async function POST(req: Request) {
           <p><strong>Town / City:</strong> ${city.trim()}</p>
           <p><strong>Email:</strong> ${normalizedEmail}</p>
           <p><strong>Phone:</strong> ${phone.trim()}</p>
-          <p><strong>Why they want to attend:</strong><br/>${motivation.trim()}</p>
+          <p><strong>About them:</strong><br/>${motivation.trim()}</p>
           ${workshopId ? `<p><strong>Workshop ID:</strong> ${workshopId}</p>` : ""}
           <p style="margin-top:16px;">
             <a href="${appUrl}/admin/workshop-enquiries" style="color:#C9A46C;">
