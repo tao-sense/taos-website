@@ -7,7 +7,7 @@ export async function middleware(req: NextRequest) {
   const { pathname } = req.nextUrl;
 
   // Feature flag check (reads env at build/runtime)
-const subsOff = process.env.NEXT_PUBLIC_FEATURE_SUBSCRIPTIONS !== 'true';
+  const subsOff = process.env.NEXT_PUBLIC_FEATURE_SUBSCRIPTIONS !== 'true';
 
   // If subscriptions are disabled, block these routes entirely
   if (subsOff && (pathname.startsWith('/pricing') || pathname.startsWith('/dashboard') || pathname.startsWith('/account'))) {
@@ -27,7 +27,7 @@ const subsOff = process.env.NEXT_PUBLIC_FEATURE_SUBSCRIPTIONS !== 'true';
     return NextResponse.redirect(url);
   }
 
-  // Role check for /admin
+  // Role check for /admin UI routes
   if (pathname.startsWith('/admin')) {
     // @ts-ignore
     if (!token || token.role !== 'ADMIN') {
@@ -35,10 +35,29 @@ const subsOff = process.env.NEXT_PUBLIC_FEATURE_SUBSCRIPTIONS !== 'true';
     }
   }
 
+  // Role check for /api/admin/* — return 401/403 instead of redirecting
+  if (pathname.startsWith('/api/admin')) {
+    if (!token) {
+      return NextResponse.json({ error: 'Unauthorised' }, { status: 401 });
+    }
+    // @ts-ignore
+    if (token.role !== 'ADMIN') {
+      return NextResponse.json({ error: 'Forbidden' }, { status: 403 });
+    }
+  }
+
   return NextResponse.next();
 }
 
-// Make sure middleware runs on these routes
 export const config = {
-  matcher: ['/', '/pricing', '/account', '/dashboard/:path*', '/admin/:path*', '/signin', '/signup'],
+  matcher: [
+    '/',
+    '/pricing',
+    '/account',
+    '/dashboard/:path*',
+    '/admin/:path*',
+    '/api/admin/:path*',
+    '/signin',
+    '/signup',
+  ],
 };

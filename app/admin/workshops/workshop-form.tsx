@@ -2,13 +2,12 @@
 
 import { useState, useEffect } from "react";
 
-export default function WorkshopForm({
-  onSaved,
-  existing,
-}: {
+interface WorkshopFormProps {
   onSaved?: () => void;
   existing?: any;
-}) {
+}
+
+export default function WorkshopForm({ onSaved, existing }: WorkshopFormProps) {
   const [form, setForm] = useState({
     id: "",
     title: "",
@@ -16,6 +15,9 @@ export default function WorkshopForm({
     date: "",
     location: "",
     link: "",
+    published: false,
+    priceGbp: "",
+    capacity: "",
   });
 
   useEffect(() => {
@@ -29,6 +31,12 @@ export default function WorkshopForm({
           : "",
         location: existing.location || "",
         link: existing.link || "",
+        published: Boolean(existing.published),
+        priceGbp:
+          existing.priceCents > 0
+            ? (existing.priceCents / 100).toFixed(2)
+            : "",
+        capacity: existing.capacity != null ? String(existing.capacity) : "",
       });
     } else {
       setForm({
@@ -38,21 +46,38 @@ export default function WorkshopForm({
         date: "",
         location: "",
         link: "",
+        published: false,
+        priceGbp: "",
+        capacity: "",
       });
     }
   }, [existing]);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+
     const method = form.id ? "PUT" : "POST";
     const url = form.id
       ? `/api/admin/workshops/${form.id}`
       : "/api/admin/workshops";
 
+    const priceCents = form.priceGbp
+      ? Math.round(parseFloat(form.priceGbp) * 100)
+      : 0;
+
     const res = await fetch(url, {
       method,
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(form),
+      body: JSON.stringify({
+        title: form.title,
+        description: form.description,
+        date: form.date,
+        location: form.location,
+        link: form.link,
+        published: form.published,
+        priceCents,
+        capacity: form.capacity ? parseInt(form.capacity, 10) : null,
+      }),
     });
 
     if (res.ok) {
@@ -65,9 +90,13 @@ export default function WorkshopForm({
         date: "",
         location: "",
         link: "",
+        published: false,
+        priceGbp: "",
+        capacity: "",
       });
     } else {
-      alert("Error saving workshop");
+      const err = await res.json().catch(() => ({}));
+      alert(err.error || "Error saving workshop");
     }
   };
 
@@ -116,6 +145,43 @@ export default function WorkshopForm({
         onChange={(e) => setForm({ ...form, link: e.target.value })}
         className="w-full border p-2 rounded"
       />
+
+      <div className="flex gap-4">
+        <div className="flex-1">
+          <label className="block text-sm font-medium mb-1">Price (£)</label>
+          <input
+            type="number"
+            min="0"
+            step="0.01"
+            placeholder="0.00"
+            value={form.priceGbp}
+            onChange={(e) => setForm({ ...form, priceGbp: e.target.value })}
+            className="w-full border p-2 rounded"
+          />
+        </div>
+        <div className="flex-1">
+          <label className="block text-sm font-medium mb-1">Capacity</label>
+          <input
+            type="number"
+            min="1"
+            step="1"
+            placeholder="e.g. 12"
+            value={form.capacity}
+            onChange={(e) => setForm({ ...form, capacity: e.target.value })}
+            className="w-full border p-2 rounded"
+          />
+        </div>
+      </div>
+
+      <label className="flex items-center gap-2 cursor-pointer select-none">
+        <input
+          type="checkbox"
+          checked={form.published}
+          onChange={(e) => setForm({ ...form, published: e.target.checked })}
+          className="w-4 h-4"
+        />
+        <span className="text-sm font-medium">Published (visible to public)</span>
+      </label>
 
       <button
         type="submit"
