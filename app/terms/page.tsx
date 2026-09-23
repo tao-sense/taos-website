@@ -93,6 +93,13 @@ export default function TermsPage() {
             than 30 days&rsquo; notice, 90% of the total price.
           </p>
 
+          <p className="font-semibold mt-4">Early bird pricing</p>
+          <p>
+            Early bird pricing applies to registrations submitted by the stated
+            deadline, where the £200 deposit is paid within 7 days of
+            acceptance.
+          </p>
+
           <p className="font-semibold mt-4">Eligibility</p>
           <p>You must be 18 or over to attend any workshop or retreat.</p>
 

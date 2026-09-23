@@ -4,7 +4,13 @@ import { trackWorkshopEnquiry } from "@/lib/fpixel";
 import { event as gtagEvent } from "@/lib/gtag";
 import { useState } from "react";
 
-export default function WorkshopBookingForm({ workshopId }: { workshopId: string }) {
+export default function WorkshopBookingForm({
+  workshopId,
+  earlyBird = false,
+}: {
+  workshopId: string;
+  earlyBird?: boolean;
+}) {
   const [form, setForm] = useState({
     name: "",
     email: "",
@@ -286,6 +292,12 @@ export default function WorkshopBookingForm({ workshopId }: { workshopId: string
           </span>
         </label>
       </div>
+
+      {earlyBird && (
+        <p className="text-sm text-gold/80 pt-1 border-t border-black/10">
+          Early bird pricing applies to this registration — £50 off the retreat fee, subject to acceptance and deposit paid within 7 days.
+        </p>
+      )}
 
       {errorMsg && (
         <p className="text-red-600 text-sm" role="alert">

@@ -5,6 +5,14 @@ import WorkshopBookingForm from "@/app/offerings/workshops/[id]/workshop-booking
 
 const WORKSHOP_ID = "cmudsv18m0000id04441fotyp"; // Workshop record: "Tantra Massage Seminar - Garth Barns & Country House"
 
+// Oct 31 is post-BST (clocks go back Oct 25, 2026), so 23:59 UK time = 23:59 UTC
+const EARLY_BIRD_DEADLINE = new Date("2026-10-31T23:59:59Z"); // 23:59 UK time; Oct 31 is post-BST (GMT)
+const EARLY_BIRD_DISCOUNT = 50;
+const SINGLE_FULL = 920;
+const SHARED_FULL = 720;
+
+export const dynamic = "force-dynamic";
+
 export const metadata: Metadata = {
   title: "Tantra Massage Seminar — Garth Barns & Country House, Powys | TAOS",
   description:
@@ -32,6 +40,10 @@ export const metadata: Metadata = {
 };
 
 export default function Powys2027Page() {
+  const isEarlyBird = new Date() <= EARLY_BIRD_DEADLINE;
+  const singlePrice = isEarlyBird ? SINGLE_FULL - EARLY_BIRD_DISCOUNT : SINGLE_FULL;
+  const sharedPrice = isEarlyBird ? SHARED_FULL - EARLY_BIRD_DISCOUNT : SHARED_FULL;
+
   return (
     <main className="bg-black text-white">
 
@@ -60,6 +72,11 @@ export default function Powys2027Page() {
             <span className="mx-3 text-gold">·</span>
             4pm arrival to 4pm departure Sunday, three nights
           </p>
+          {isEarlyBird && (
+            <p className="text-gold/90 text-sm mt-3">
+              Early bird: £50 off when you register by 31 October.
+            </p>
+          )}
           <a
             href="#booking"
             className="mt-8 inline-block px-8 py-3 bg-gold text-black font-semibold rounded-full hover:bg-white transition"
@@ -411,22 +428,41 @@ export default function Powys2027Page() {
           <h2 className="font-playfair text-3xl md:text-4xl font-semibold text-gold mb-8">
             Seminar fees
           </h2>
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 mb-8">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 mb-4">
             <div className="border border-gold rounded-xl p-6">
-              <p className="text-gold font-playfair text-2xl font-semibold mb-1">£920</p>
+              {isEarlyBird ? (
+                <p className="font-playfair text-2xl font-semibold mb-1">
+                  <span className="line-through text-black/35 text-lg font-normal mr-2">£{SINGLE_FULL}</span>
+                  <span className="text-gold">£{singlePrice}</span>
+                </p>
+              ) : (
+                <p className="text-gold font-playfair text-2xl font-semibold mb-1">£{SINGLE_FULL}</p>
+              )}
               <p className="font-semibold text-black mb-2">Single occupancy</p>
               <p className="text-black/60 text-sm leading-relaxed">
                 Includes tuition, accommodation and meals for the full retreat.
               </p>
             </div>
             <div className="border border-gold rounded-xl p-6">
-              <p className="text-gold font-playfair text-2xl font-semibold mb-1">£720 per person</p>
+              {isEarlyBird ? (
+                <p className="font-playfair text-2xl font-semibold mb-1">
+                  <span className="line-through text-black/35 text-lg font-normal mr-2">£{SHARED_FULL}</span>
+                  <span className="text-gold">£{sharedPrice} per person</span>
+                </p>
+              ) : (
+                <p className="text-gold font-playfair text-2xl font-semibold mb-1">£{SHARED_FULL} per person</p>
+              )}
               <p className="font-semibold text-black mb-2">Shared double occupancy</p>
               <p className="text-black/60 text-sm leading-relaxed">
                 Includes tuition, accommodation and meals for the full retreat.
               </p>
             </div>
           </div>
+          {isEarlyBird && (
+            <p className="text-gold text-sm mb-6">
+              Early bird: register by 31 October to save £50. Deposit to be paid within 7 days of your place being confirmed.
+            </p>
+          )}
           <p className="text-black/70 leading-relaxed">
             Travel to and from the venue isn&rsquo;t included and is for you to arrange, though if
             you&rsquo;re travelling from a similar area to other participants, get in touch and we
@@ -501,7 +537,7 @@ export default function Powys2027Page() {
             Complete the form below to request a place. Your application is reviewed before your
             place is confirmed — we&rsquo;ll be in touch within 48 hours.
           </p>
-          <WorkshopBookingForm workshopId={WORKSHOP_ID} />
+          <WorkshopBookingForm workshopId={WORKSHOP_ID} earlyBird={isEarlyBird} />
         </div>
       </section>
 

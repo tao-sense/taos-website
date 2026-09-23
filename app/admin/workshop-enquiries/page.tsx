@@ -6,6 +6,8 @@ import Link from "next/link";
 
 export const dynamic = "force-dynamic";
 
+const EARLY_BIRD_DEADLINE = new Date("2026-10-31T23:59:59Z");
+
 const STATUS_BADGE: Record<string, string> = {
   pending:  "bg-yellow-100 text-yellow-800",
   accepted: "bg-green-100  text-green-800",
@@ -149,6 +151,7 @@ export default async function WorkshopEnquiriesPage({
                 <th className="py-3 pr-6">Workshop</th>
                 <th className="py-3 pr-6">Status</th>
                 <th className="py-3 pr-6">Applied</th>
+                <th className="py-3 pr-6">Early Bird</th>
                 <th className="py-3"></th>
               </tr>
             </thead>
@@ -176,6 +179,13 @@ export default async function WorkshopEnquiriesPage({
                     {e.created_at
                       ? new Date(e.created_at).toLocaleDateString("en-GB")
                       : "—"}
+                  </td>
+                  <td className="py-3 pr-6">
+                    {e.created_at && new Date(e.created_at) <= EARLY_BIRD_DEADLINE ? (
+                      <span className="px-2 py-0.5 rounded text-xs font-semibold bg-yellow-100 text-yellow-800">EB</span>
+                    ) : (
+                      <span className="text-white/20 text-xs">—</span>
+                    )}
                   </td>
                   <td className="py-3">
                     <Link

@@ -5,6 +5,9 @@ import { prisma } from "@/lib/prisma";
 
 const resend = new Resend(process.env.RESEND_API_KEY);
 
+const EARLY_BIRD_DEADLINE = new Date("2026-10-31T23:59:59Z"); // 23:59 UK time; Oct 31 is post-BST (GMT)
+const EARLY_BIRD_DISCOUNT = 50;
+
 // ---------------------------------------------------------------------------
 // In-memory rate limit (per serverless instance, not global across Vercel
 // instances — provides meaningful bot friction but is not a hard global cap;
@@ -157,6 +160,8 @@ export async function POST(req: Request) {
     }
   }
 
+  const isEarlyBird = new Date() <= EARLY_BIRD_DEADLINE;
+
   // DB write — 500 on failure is correct here
   let record: { id: string };
   try {
@@ -209,6 +214,7 @@ export async function POST(req: Request) {
           <p><strong>Email:</strong> ${normalizedEmail}</p>
           <p><strong>Phone:</strong> ${phone.trim()}</p>
           <p><strong>About them:</strong><br/>${motivation.trim()}</p>
+          <p><strong>Early bird:</strong> ${isEarlyBird ? `Yes ✓ (submitted before 31 Oct 2026 deadline; £${EARLY_BIRD_DISCOUNT} off applies if deposit paid within 7 days of acceptance)` : "No"}</p>
           ${workshopId ? `<p><strong>Workshop ID:</strong> ${workshopId}</p>` : ""}
           <p style="margin-top:16px;">
             <a href="${appUrl}/admin/workshop-enquiries" style="color:#C9A46C;">
@@ -253,7 +259,14 @@ export async function POST(req: Request) {
             are not offered on a first-come-first-served basis.
           </p>
 
-          <p>You will hear from us within a few days with our decision.</p>
+          <p>You will hear from us within 48 hours with our decision.</p>
+
+          ${isEarlyBird ? `
+          <p style="background:#fdf8ee;border-left:3px solid #C9A46C;padding:12px 16px;margin:20px 0;">
+            <strong style="color:#C9A46C;">Early bird pricing:</strong> Your registration has been submitted before the 31 October 2026 deadline.
+            If your place is confirmed, your seminar fee will be reduced by £${EARLY_BIRD_DISCOUNT} — provided your £200 deposit is paid within 7 days of acceptance.
+          </p>
+          ` : ""}
 
           <p>
             If you have any questions in the meantime, please reply to this email or
