@@ -275,8 +275,8 @@ export default function FAQClient() {
                 Submitting the registration form on the workshop or retreat page
                 is a binding request for a place, but it isn&rsquo;t confirmed
                 until we&rsquo;ve reviewed it. We aim to get back to you within
-                4 working days, excluding weekends. Once confirmed, we&rsquo;ll
-                ask for a deposit of 50% of the total cost by bank transfer.
+                48 hours. Once confirmed, we&rsquo;ll
+                ask for a deposit of £200 by bank transfer.
               </Question>
 
               <Question title="Is there a minimum age?">
@@ -285,18 +285,18 @@ export default function FAQClient() {
 
               <Question title="What happens after I submit my registration?">
                 We review every registration individually, partly to keep the
-                group balanced. Once confirmed, you&rsquo;ll be asked for a 50%
-                deposit by bank transfer. The remaining balance, along with a
-                packing list and directions to the venue, is sent by email three
-                weeks before the event, and the balance is due by bank transfer
-                at that point.
+                group balanced. Once confirmed, you&rsquo;ll be asked for a
+                £200 deposit by bank transfer. The remaining balance, along
+                with a packing list and directions to the venue, is sent by
+                email three weeks before the event, and the balance is due by
+                bank transfer at that point.
               </Question>
 
               <Question title="What’s your cancellation policy?">
-                If you cancel 70 or more days before the event starts,
-                you&rsquo;ll be charged a £100 deposit fee. Between 30 and 69
-                days before, 50% of your total cost. With less than 30
-                days&rsquo; notice, 90% of your total cost.
+                If you cancel 70 or more days before the event starts, a £100
+                administration fee will be deducted from the deposit amount.
+                Between 30 and 69 days before, 50% of your total cost. With
+                less than 30 days&rsquo; notice, 90% of your total cost.
               </Question>
 
               <Question title="Is my health information kept private?">

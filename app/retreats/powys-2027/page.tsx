@@ -447,10 +447,10 @@ export default function Powys2027Page() {
             Submitting the form below is a registration request for a place on the seminar.
             It&rsquo;s binding on your side, but your place isn&rsquo;t confirmed until
             we&rsquo;ve reviewed your registration and sent confirmation, which we aim to do
-            within 4 working days (excluding weekends). Once confirmed, we&rsquo;ll ask for a
-            deposit of 50% of your total cost by bank transfer. The remaining balance, along with
-            practical details like a packing list and directions to the venue, will be sent by
-            email three weeks before the seminar.
+            within 48 hours. Once confirmed, we&rsquo;ll ask for a
+            deposit of £200 by bank transfer. The remaining balance, along with practical details
+            like a packing list and directions to the venue, will be sent by email three weeks
+            before the seminar.
           </p>
         </div>
       </section>
@@ -462,7 +462,7 @@ export default function Powys2027Page() {
           <div className="space-y-3 text-black/80">
             <div className="flex gap-4 border-b border-black/10 pb-3">
               <span className="w-56 shrink-0 font-medium">70+ days before</span>
-              <span>£100 deposit fee charged</span>
+              <span>£100 administration fee deducted from the deposit</span>
             </div>
             <div className="flex gap-4 border-b border-black/10 pb-3">
               <span className="w-56 shrink-0 font-medium">30–69 days before</span>
@@ -499,7 +499,7 @@ export default function Powys2027Page() {
           </h2>
           <p className="text-center text-white/70 mb-10 max-w-xl mx-auto">
             Complete the form below to request a place. Your application is reviewed before your
-            place is confirmed — we&rsquo;ll be in touch within 4 working days.
+            place is confirmed — we&rsquo;ll be in touch within 48 hours.
           </p>
           <WorkshopBookingForm workshopId={WORKSHOP_ID} />
         </div>
