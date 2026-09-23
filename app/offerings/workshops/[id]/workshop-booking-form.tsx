@@ -187,10 +187,19 @@ export default function WorkshopBookingForm({ workshopId }: { workshopId: string
         </div>
       </div>
 
+      {/* About them / motivation */}
+      <textarea
+        placeholder="Please tell us a little about yourself and why you'd like to attend."
+        value={form.motivation}
+        onChange={(e) => setForm({ ...form, motivation: e.target.value })}
+        className="w-full border p-2 rounded min-h-[100px]"
+        required
+      />
+
       {/* Health information */}
       <div className="space-y-1">
         <textarea
-          placeholder="Health information — any conditions, injuries, medications or anything that could affect your participation. This helps us keep everyone safe."
+          placeholder="Please let us know if you have any concerns about your health in taking part in this seminar retreat"
           value={form.healthNotes}
           onChange={(e) => setForm({ ...form, healthNotes: e.target.value })}
           className="w-full border p-2 rounded min-h-[100px]"
@@ -201,15 +210,6 @@ export default function WorkshopBookingForm({ workshopId }: { workshopId: string
           deleted on request and within 90 days of the retreat.
         </p>
       </div>
-
-      {/* About them / motivation */}
-      <textarea
-        placeholder="Please tell us a little about yourself and why you'd like to attend."
-        value={form.motivation}
-        onChange={(e) => setForm({ ...form, motivation: e.target.value })}
-        className="w-full border p-2 rounded min-h-[100px]"
-        required
-      />
 
       {/* Experience (optional) */}
       <textarea

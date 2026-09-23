@@ -62,11 +62,57 @@ export default function TermsPage() {
               Cancellations within 48 hours of the appointment are charged in
               full.
             </li>
-            <li>
-              Workshop and Retreat deposits are non-refundable but may be
-              transferred to another event with at least 7 days’ notice.
-            </li>
           </ul>
+
+          <h2 className="text-2xl font-semibold text-gold mt-10">
+            Workshops &amp; Retreats
+          </h2>
+
+          <p className="font-semibold mt-2">Booking and confirmation</p>
+          <p>
+            Submitting a registration form for a workshop or retreat is a
+            binding request for a place, not a confirmed booking. We review
+            each registration individually — partly to manage group size and
+            balance — and aim to confirm or decline within 4 working days,
+            excluding weekends.
+          </p>
+
+          <p className="font-semibold mt-4">Payment</p>
+          <p>
+            Once your place is confirmed, a deposit of 50% of the total price
+            is payable by bank transfer. The remaining balance is due by bank
+            transfer no later than three weeks before the event begins, at
+            which point we&rsquo;ll also send a packing list and any final
+            practical details.
+          </p>
+
+          <p className="font-semibold mt-4">Cancellation</p>
+          <p>
+            If you cancel 70 or more days before the event starts, you&rsquo;ll
+            be charged a £100 deposit fee. Between 30 and 69 days before, 50%
+            of the total price. With less than 30 days&rsquo; notice, 90% of
+            the total price.
+          </p>
+
+          <p className="font-semibold mt-4">Eligibility</p>
+          <p>You must be 18 or over to attend any workshop or retreat.</p>
+
+          <p className="font-semibold mt-4">Shared accommodation</p>
+          <p>
+            Where shared occupancy pricing is offered, couples or partners
+            share together. A solo attendee who chooses shared pricing will be
+            paired with another solo attendee of the same sex, at our
+            discretion.
+          </p>
+
+          <p className="font-semibold mt-4">Health information</p>
+          <p>
+            Where a registration form asks for health information, this is
+            provided voluntarily to help us assess suitability and keep
+            participants safe, and is seen only by Wesley. If a registration is
+            declined, this data is deleted on request and, in any case, within
+            90 days.
+          </p>
 
           <h2 className="text-2xl font-semibold text-gold mt-10">
             5. Client Responsibilities

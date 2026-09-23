@@ -203,10 +203,33 @@ export default function FAQClient() {
                 to cultivate trust and sensitivity.
               </Question>
 
-              <Question title="Do I need to come with a partner?">
-                No, you’re welcome to attend solo. Participants are paired
-                mindfully, and boundaries are always respected. Couples may stay
-                together unless they choose otherwise.
+              <Question title="Can I participate in a seminar alone?">
+                Yes — you don&rsquo;t need a partner to attend. Many participants
+                come on their own, and it&rsquo;s easy to connect with others
+                once you&rsquo;re there.
+              </Question>
+
+              <Question title="Can singles and couples participate?">
+                Yes, both are equally welcome. If you&rsquo;re attending as a
+                couple, you can decide together how you&rsquo;d like to approach
+                the practice sessions — practising together, with other
+                participants, or focusing on your own experience within the
+                group.
+              </Question>
+
+              <Question title="Can I participate without a partner?">
+                Yes. Pairing for practice sessions happens organically among
+                participants rather than being assigned — it isn&rsquo;t
+                something Wesley gets involved in unless an issue comes up.
+                You&rsquo;re welcome to wait and see who approaches you, or to
+                take the initiative yourself; either is completely fine.
+              </Question>
+
+              <Question title="Can I choose the shared-occupancy rate even if I’m attending as a solo individual?">
+                Yes. If you&rsquo;d prefer the shared rate rather than paying for
+                a single room, we&rsquo;ll pair you with another solo attendee of
+                the same sex to share a room with. Just let us know when you
+                register.
               </Question>
 
               <Question title="What should I bring?">
@@ -216,19 +239,111 @@ export default function FAQClient() {
               </Question>
 
               <Question title="Is nudity part of the workshops?">
-                Some workshops include optional partial or full nudity, depending
-                on the theme. This is always explained in advance, guided with
-                sensitivity, and never required — consent is central to the
-                experience.
+                <p>
+                  When we learn and practise the Tantra Massage sequences,
+                  you&rsquo;ll be wearing loose fabric coverings like sarongs.
+                  For certain stages of the massage, both the giver and receiver
+                  may be fully nude — but you&rsquo;ll always have choice and
+                  sovereignty over your body.
+                </p>
+                <p>
+                  We don&rsquo;t treat nudity as something remarkable or
+                  performative. When it&rsquo;s part of a seminar, it&rsquo;s as
+                  ordinary as walking barefoot on grass or swimming in open water
+                  — unstaged, without expectation, and always held with real
+                  respect for each person&rsquo;s own boundaries.
+                </p>
+                <p>
+                  For many of us, it&rsquo;s unfamiliar to experience our own
+                  body without the judgments and expectations we usually carry. A
+                  mindfully held space can make room for more ease,
+                  self-acceptance, and freedom in how you relate to your body.
+                </p>
+                <p>
+                  Where an exercise involves nudity, whether to take part is
+                  always your choice. No one is asked or pressured to undress.
+                </p>
+                <p>
+                  Nudity isn&rsquo;t a goal here, and it isn&rsquo;t a
+                  requirement for anything — it&rsquo;s simply natural. What
+                  matters, always, is consent, mutual respect, and care for
+                  everyone&rsquo;s personal boundaries.
+                </p>
               </Question>
 
-              <Question title="How do I book?">
-                Workshop bookings are made through the{" "}
-                <Link href="/offerings/workshops" className="text-gold underline">
-                  Workshops
-                </Link>{" "}
-                page. Each listing includes dates, location, and booking details.
-                After registering, you’ll receive a welcome email to prepare.
+              <Question title="How do I book a place on a workshop or retreat?">
+                Submitting the registration form on the workshop or retreat page
+                is a binding request for a place, but it isn&rsquo;t confirmed
+                until we&rsquo;ve reviewed it. We aim to get back to you within
+                4 working days, excluding weekends. Once confirmed, we&rsquo;ll
+                ask for a deposit of 50% of the total cost by bank transfer.
+              </Question>
+
+              <Question title="Is there a minimum age?">
+                Yes, you must be 18 or over to attend.
+              </Question>
+
+              <Question title="What happens after I submit my registration?">
+                We review every registration individually, partly to keep the
+                group balanced. Once confirmed, you&rsquo;ll be asked for a 50%
+                deposit by bank transfer. The remaining balance, along with a
+                packing list and directions to the venue, is sent by email three
+                weeks before the event, and the balance is due by bank transfer
+                at that point.
+              </Question>
+
+              <Question title="What’s your cancellation policy?">
+                If you cancel 70 or more days before the event starts,
+                you&rsquo;ll be charged a £100 deposit fee. Between 30 and 69
+                days before, 50% of your total cost. With less than 30
+                days&rsquo; notice, 90% of your total cost.
+              </Question>
+
+              <Question title="Is my health information kept private?">
+                Yes. Any health information you share is seen only by Wesley,
+                used to help keep everyone safe during practice sessions. If
+                your registration isn&rsquo;t taken forward, that data is deleted
+                on request and, in any case, within 90 days.
+              </Question>
+
+              <Question title="Is travel to the venue included?">
+                No, travel is for you to arrange. If you&rsquo;re travelling from
+                a similar area to other participants, let us know and we may be
+                able to put you in touch with each other.
+              </Question>
+
+              <Question title="What’s the difference between a tantra seminar and a tantra massage seminar?">
+                Other tantra seminars, from other providers, may have different
+                focuses — depending on the event, that might be body awareness,
+                conscious touch, meditation, encounter, sensuality, an open
+                heart, healing from trauma, or personal development. Our Tantra
+                Massage Seminar places a special emphasis on learning and
+                practising Tantra massage specifically. You&rsquo;ll study touch,
+                presence, body awareness, and the full structure of a Tantra
+                massage in depth, including Lingam and Yoni massage as components
+                of the ritual.
+              </Question>
+
+              <Question title="Are your tantra seminars about sex?">
+                No. This isn&rsquo;t a course in sensual massage, and it
+                isn&rsquo;t a space for seeking sexual contact. Sensuality and
+                the body are part of what we work with, but the aim is presence,
+                not performance — touch as a way of accepting yourself and others
+                more fully, not an end in itself.
+              </Question>
+
+              <Question title="How are Lingam and Yoni massage integrated into the seminar?">
+                They&rsquo;re taught as part of the full Tantra massage ritual.
+                In our mixed four-day format, women learn to give the Lingam
+                massage and men learn to give the Yoni massage — this split lets
+                us teach both massage forms thoroughly within a balanced, mixed
+                group.
+              </Question>
+
+              <Question title="Will I receive a certificate for the massage training?">
+                Yes — you&rsquo;ll receive a certificate of completion after the
+                seminar, along with a written summary of what was covered, so you
+                can keep practising what you&rsquo;ve learned.
               </Question>
             </div>
           </ScrollFade>
@@ -268,7 +383,7 @@ function Question({
   return (
     <div>
       <h3 className="font-playfair text-2xl font-semibold text-gold mb-3">{title}</h3>
-      <p className="text-black/80 leading-relaxed">{children}</p>
+      <div className="text-black/80 leading-relaxed space-y-4">{children}</div>
     </div>
   );
 }

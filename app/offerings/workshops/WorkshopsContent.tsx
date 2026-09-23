@@ -290,7 +290,7 @@ export default function WorkshopsContent({ workshops }: { workshops: any[] }) {
                 {workshops.map((w) => (
                   <ScrollFade key={w.id} delay={0.1}>
                     <Link
-                      href={`/offerings/workshops/${w.id}`}
+                      href={w.link || `/offerings/workshops/${w.id}`}
                       className="border border-gold rounded-xl shadow-lg p-6 hover:shadow-2xl hover:scale-[1.02] transition duration-300 bg-white block"
                     >
                       <h3 className="font-playfair text-2xl font-semibold text-gold mb-3 hover:underline">
