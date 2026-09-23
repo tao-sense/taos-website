@@ -258,7 +258,7 @@ export default function Powys2027Page() {
           <div className="space-y-4">
             <h2 className="font-playfair text-3xl font-semibold text-gold">Facilitation</h2>
             <p className="text-lg leading-relaxed text-black/80">
-              I&rsquo;ll be facilitating the seminar throughout, and may be joined by models to
+              Wesley Tan will be facilitating the seminar throughout, and may be joined by models to
               support guided demonstrations (to be confirmed).
             </p>
           </div>
