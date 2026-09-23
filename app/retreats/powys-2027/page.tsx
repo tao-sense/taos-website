@@ -177,7 +177,7 @@ export default function Powys2027Page() {
               The Heart of the Seminar
             </h2>
             <p className="text-white/80 leading-relaxed">
-              This isn&rsquo;t a course in sensual massage. You&rsquo;ll learn the techniques, and
+              This isn&rsquo;t just a course in sensual massage. You&rsquo;ll learn the techniques, and
               you&rsquo;ll learn them properly, but the techniques aren&rsquo;t the point. What
               we&rsquo;re really practising is presence: being with another person, and with
               ourselves, without performance, without expectation, and without judgement.
