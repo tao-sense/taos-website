@@ -54,6 +54,7 @@ export default function Powys2027Page() {
     priceCurrency: "GBP",
     url: RETREAT_URL,
     availability: "https://schema.org/InStock",
+    validFrom: "2026-09-23T00:00:00+01:00",
     ...(isEarlyBird ? { priceValidUntil: "2026-10-31" } : {}),
   });
 
