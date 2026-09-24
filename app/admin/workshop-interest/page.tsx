@@ -1,13 +1,22 @@
 import { prisma } from "@/lib/prisma";
+import { getServerSession } from "next-auth/next";
+import { authOptions } from "@/lib/auth";
+import { redirect } from "next/navigation";
+import InterestActions from "./InterestActions";
 
 export const dynamic = "force-dynamic";
 
 export default async function WorkshopInterestAdminPage() {
+  const session = await getServerSession(authOptions);
+  if (!session || (session.user as any).role !== "ADMIN") redirect("/");
+
   const signups = await prisma.workshopInterest.findMany({
     orderBy: {
       created_at: "desc",
     },
   });
+
+  const emails = signups.map((s) => s.email).filter(Boolean);
 
   return (
     <main className="min-h-screen bg-white text-black px-6 py-16">
@@ -20,6 +29,9 @@ export default async function WorkshopInterestAdminPage() {
             People who have registered interest for upcoming TAOS workshops.
           </p>
         </div>
+
+        {/* No marketing-consent field on this model — all entries are included */}
+        <InterestActions emails={emails} />
 
         {signups.length === 0 ? (
           <div className="rounded-xl border border-black/10 bg-gray-50 p-8 text-center">
