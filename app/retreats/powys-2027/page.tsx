@@ -44,8 +44,68 @@ export default function Powys2027Page() {
   const singlePrice = isEarlyBird ? SINGLE_FULL - EARLY_BIRD_DISCOUNT : SINGLE_FULL;
   const sharedPrice = isEarlyBird ? SHARED_FULL - EARLY_BIRD_DISCOUNT : SHARED_FULL;
 
+  const BASE_URL = "https://theartofsensuality.com";
+  const RETREAT_URL = `${BASE_URL}/retreats/powys-2027`;
+
+  const buildOffer = (name: string, price: number) => ({
+    "@type": "Offer",
+    name,
+    price,
+    priceCurrency: "GBP",
+    url: RETREAT_URL,
+    availability: "https://schema.org/InStock",
+    ...(isEarlyBird ? { priceValidUntil: "2026-10-31" } : {}),
+  });
+
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@type": "Event",
+    name: "Tantra Massage Seminar — Garth Barns & Country House, Powys",
+    description:
+      "A four-day residential Tantra Massage Seminar in the Powys hills, Wales. Learn the full Tantra massage ritual — technique, presence, and awareness — guided by Wesley Tan.",
+    startDate: "2027-02-11T16:00:00+00:00",
+    endDate: "2027-02-14T16:00:00+00:00",
+    eventStatus: "https://schema.org/EventScheduled",
+    eventAttendanceMode: "https://schema.org/OfflineEventAttendanceMode",
+    location: {
+      "@type": "Place",
+      name: "Garth Barns & Country House",
+      address: {
+        "@type": "PostalAddress",
+        streetAddress: "Garth Farm",
+        addressLocality: "Llanidloes",
+        addressRegion: "Powys",
+        postalCode: "SY18 6NN",
+        addressCountry: "GB",
+      },
+    },
+    image: [
+      `${BASE_URL}/images/retreats/powys-2027/Hero.jpg`,
+      `${BASE_URL}/images/retreats/powys-2027/Venue-1.jpg`,
+      `${BASE_URL}/images/retreats/powys-2027/Venue-2.jpg`,
+    ],
+    offers: [
+      buildOffer("Single occupancy", singlePrice),
+      buildOffer("Shared double (per person)", sharedPrice),
+    ],
+    organizer: {
+      "@type": "Organization",
+      name: "The Art of Sensuality",
+      url: BASE_URL,
+    },
+    performer: {
+      "@type": "Person",
+      name: "Wesley Tan",
+    },
+    url: RETREAT_URL,
+  };
+
   return (
     <main className="bg-black text-white">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
 
       {/* ── HERO ── */}
       <section className="relative h-[90vh] w-full flex items-end justify-center overflow-hidden">
@@ -418,6 +478,32 @@ export default function Powys2027Page() {
                 </div>
               ))}
             </div>
+          </div>
+
+          {/* Getting there */}
+          <div className="mt-12 max-w-3xl">
+            <p className="text-gold uppercase tracking-widest text-xs mb-4">Getting there</p>
+            <address className="not-italic text-white/80 leading-relaxed mb-4">
+              Garth Barns &amp; Country House<br />
+              Garth Farm<br />
+              Llanidloes<br />
+              Powys<br />
+              SY18 6NN
+            </address>
+            <p className="text-white/70 text-sm leading-relaxed mb-2">
+              About 2 miles from Llanidloes, Mid Wales. Nearest train station: Caersws (about 8 miles).
+            </p>
+            <p className="text-white/70 text-sm leading-relaxed mb-4">
+              Full directions and arrival details are sent with your joining information three weeks before the retreat.
+            </p>
+            <a
+              href="https://www.google.com/maps/search/?api=1&query=Garth+Barns+Llanidloes+SY18+6NN"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-gold text-sm underline hover:text-white transition"
+            >
+              View on Google Maps →
+            </a>
           </div>
         </div>
       </section>
