@@ -13,29 +13,37 @@ const SHARED_FULL = 720;
 
 export const dynamic = "force-dynamic";
 
+const PAGE_TITLE = "Tantra Massage Seminar · 11–14 Feb 2027 · Powys, Wales";
+const PAGE_DESCRIPTION =
+  "A four-day residential retreat to learn the full Tantra massage ritual, with consent, presence and breath at its heart. Early bird offer for registrations by 31 October.";
+const PAGE_URL = "https://theartofsensuality.com/retreats/powys-2027";
+const OG_IMAGE = {
+  url: "/images/retreats/powys-2027/og.jpg",
+  width: 1200,
+  height: 630,
+  alt: "Garth Barns & Country House, Powys — TAOS Tantra Massage Seminar February 2027",
+};
+
 export const metadata: Metadata = {
-  title: "Tantra Massage Seminar — Garth Barns & Country House, Powys | TAOS",
-  description:
-    "Four-day residential Tantra Massage Seminar at Garth Barns & Country House, Powys, Wales. 11–14 February 2027. Learn the full Tantra massage ritual with Wesley Tan.",
+  title: PAGE_TITLE,
+  description: PAGE_DESCRIPTION,
   openGraph: {
-    title: "Tantra Massage Seminar — Garth Barns & Country House, Powys | TAOS",
-    description:
-      "Four-day residential Tantra Massage Seminar at Garth Barns & Country House, Powys. 11–14 February 2027. Guided by Wesley Tan.",
-    url: "https://theartofsensuality.com/retreats/powys-2027",
-    siteName: "The Art of Sensuality",
-    images: [
-      {
-        url: "https://theartofsensuality.com/images/retreats/powys-2027/Hero.jpg",
-        width: 1200,
-        height: 800,
-        alt: "Garth Barns & Country House, Powys — TAOS Tantra Massage Seminar 2027",
-      },
-    ],
-    locale: "en_GB",
     type: "website",
+    url: PAGE_URL,
+    siteName: "The Art of Sensuality",
+    locale: "en_GB",
+    title: PAGE_TITLE,
+    description: PAGE_DESCRIPTION,
+    images: [OG_IMAGE],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: PAGE_TITLE,
+    description: PAGE_DESCRIPTION,
+    images: [OG_IMAGE.url],
   },
   alternates: {
-    canonical: "https://theartofsensuality.com/retreats/powys-2027",
+    canonical: PAGE_URL,
   },
 };
 
