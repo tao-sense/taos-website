@@ -26,7 +26,7 @@ export default function WorkshopsContent({ workshops }: { workshops: any[] }) {
         body: JSON.stringify({
           firstName,
           email,
-          source: "autumn_2026_uk_tantra_workshop",
+          source: "uk_tantra_workshop_general",
         }),
       });
 
@@ -83,66 +83,53 @@ export default function WorkshopsContent({ workshops }: { workshops: any[] }) {
         <div className="absolute inset-0 bg-black/30"></div>
       </section>
 
-      {/* INTEREST FORM SECTION */}
+      {/* UPCOMING WORKSHOPS */}
       <ScrollFade>
-        <section className="bg-white text-black py-20 px-6 border-t border-gray-200">
-          <div className="max-w-3xl mx-auto text-center">
-            <h2 className="font-playfair text-3xl md:text-4xl font-semibold text-gold mb-6">
-              Register Your Interest for the Autumn 2026 UK Tantra Massage Workshop
+        <section className="bg-gray-50 text-black px-6 py-20 border-t border-gray-200">
+          <div className="max-w-6xl mx-auto">
+            <h2 className="font-playfair text-3xl md:text-4xl font-semibold text-gold mb-12 text-center">
+              Upcoming Workshops
             </h2>
 
-            <p className="text-lg leading-relaxed text-black/80 max-w-2xl mx-auto mb-10">
-              We are currently preparing our next UK Tantra Massage Workshop for the final
-              quarter of 2026. Join the interest list to be the first to hear when dates,
-              venue, pricing, and booking details are released.
-            </p>
-
-            <form
-              onSubmit={handleInterestSubmit}
-              className="max-w-2xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-4"
-            >
-              <input
-                type="text"
-                name="firstName"
-                placeholder="First name"
-                value={firstName}
-                onChange={(e) => setFirstName(e.target.value)}
-                required
-                className="w-full rounded-md border border-black/15 bg-white px-4 py-3 text-black placeholder:text-black/40 focus:outline-none focus:ring-2 focus:ring-gold"
-              />
-
-              <input
-                type="email"
-                name="email"
-                placeholder="Email address"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                required
-                className="w-full rounded-md border border-black/15 bg-white px-4 py-3 text-black placeholder:text-black/40 focus:outline-none focus:ring-2 focus:ring-gold"
-              />
-
-              <button
-                type="submit"
-                disabled={status === "loading"}
-                className="w-full rounded-md bg-gold px-6 py-3 font-semibold text-black transition hover:bg-black hover:text-gold border border-gold disabled:opacity-70"
-              >
-                {status === "loading" ? "Submitting..." : "Join the Interest List"}
-              </button>
-            </form>
-
-            {message && (
-              <p
-                className={`mt-5 text-sm ${
-                  status === "success" ? "text-green-700" : "text-red-600"
-                }`}
-              >
-                {message}
-              </p>
+            {workshops.length === 0 ? (
+              <div className="max-w-2xl mx-auto text-center space-y-4">
+                <p className="text-black/70">
+                  New Tantra Massage Workshop dates coming soon.
+                </p>
+                <p className="text-black/60">
+                  Join the interest list below to receive priority notice when details are released.
+                </p>
+              </div>
+            ) : (
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-10 text-left">
+                {workshops.map((w) => (
+                  <ScrollFade key={w.id} delay={0.1}>
+                    <Link
+                      href={w.link || `/offerings/workshops/${w.id}`}
+                      className="border border-gold rounded-xl shadow-lg p-6 hover:shadow-2xl hover:scale-[1.02] transition duration-300 bg-white block"
+                    >
+                      <h3 className="font-playfair text-2xl font-semibold text-gold mb-3 hover:underline">
+                        {w.title}
+                      </h3>
+                      <p className="text-black/80 mb-3">
+                        {new Date(w.date)
+                          .toLocaleDateString("en-GB", {
+                            weekday: "long",
+                            day: "2-digit",
+                            month: "long",
+                            year: "numeric",
+                          })
+                          .replace(",", "")}
+                      </p>
+                      <p className="text-black/80 mb-6">{w.description}</p>
+                      <span className="inline-block bg-gold text-black px-5 py-2 rounded-full font-medium hover:bg-black hover:text-gold transition">
+                        Details / Booking
+                      </span>
+                    </Link>
+                  </ScrollFade>
+                ))}
+              </div>
             )}
-
-            <p className="mt-6 text-sm text-black/60">
-              Limited spaces. Early registrants will receive priority notice before public release.
-            </p>
           </div>
         </section>
       </ScrollFade>
@@ -268,53 +255,65 @@ export default function WorkshopsContent({ workshops }: { workshops: any[] }) {
         </section>
       </ScrollFade>
 
-      {/* UPCOMING WORKSHOPS */}
+      {/* INTEREST FORM SECTION */}
       <ScrollFade>
-        <section className="bg-gray-50 text-black px-6 py-20 border-t border-gray-200">
-          <div className="max-w-6xl mx-auto">
-            <h2 className="font-playfair text-3xl md:text-4xl font-semibold text-gold mb-12 text-center">
-              Upcoming Workshops
+        <section className="bg-white text-black py-20 px-6 border-t border-gray-200">
+          <div className="max-w-3xl mx-auto text-center">
+            <h2 className="font-playfair text-3xl md:text-4xl font-semibold text-gold mb-6">
+              Don’t See a Date That Works for You?
             </h2>
 
-            {workshops.length === 0 ? (
-              <div className="max-w-2xl mx-auto text-center space-y-4">
-                <p className="text-black/70">
-                  New Tantra Massage Workshop dates coming soon.
-                </p>
-                <p className="text-black/60">
-                  Join the interest list above to receive priority notice when details are released.
-                </p>
-              </div>
-            ) : (
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-10 text-left">
-                {workshops.map((w) => (
-                  <ScrollFade key={w.id} delay={0.1}>
-                    <Link
-                      href={w.link || `/offerings/workshops/${w.id}`}
-                      className="border border-gold rounded-xl shadow-lg p-6 hover:shadow-2xl hover:scale-[1.02] transition duration-300 bg-white block"
-                    >
-                      <h3 className="font-playfair text-2xl font-semibold text-gold mb-3 hover:underline">
-                        {w.title}
-                      </h3>
-                      <p className="text-black/80 mb-3">
-                        {new Date(w.date)
-                          .toLocaleDateString("en-GB", {
-                            weekday: "long",
-                            day: "2-digit",
-                            month: "long",
-                            year: "numeric",
-                          })
-                          .replace(",", "")}
-                      </p>
-                      <p className="text-black/80 mb-6">{w.description}</p>
-                      <span className="inline-block bg-gold text-black px-5 py-2 rounded-full font-medium hover:bg-black hover:text-gold transition">
-                        Details / Booking
-                      </span>
-                    </Link>
-                  </ScrollFade>
-                ))}
-              </div>
+            <p className="text-lg leading-relaxed text-black/80 max-w-2xl mx-auto mb-10">
+              Join our interest list to hear about future Tantra Massage Workshops and retreats
+              as soon as they’re announced — often before they’re made public.
+            </p>
+
+            <form
+              onSubmit={handleInterestSubmit}
+              className="max-w-2xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-4"
+            >
+              <input
+                type="text"
+                name="firstName"
+                placeholder="First name"
+                value={firstName}
+                onChange={(e) => setFirstName(e.target.value)}
+                required
+                className="w-full rounded-md border border-black/15 bg-white px-4 py-3 text-black placeholder:text-black/40 focus:outline-none focus:ring-2 focus:ring-gold"
+              />
+
+              <input
+                type="email"
+                name="email"
+                placeholder="Email address"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                required
+                className="w-full rounded-md border border-black/15 bg-white px-4 py-3 text-black placeholder:text-black/40 focus:outline-none focus:ring-2 focus:ring-gold"
+              />
+
+              <button
+                type="submit"
+                disabled={status === "loading"}
+                className="w-full rounded-md bg-gold px-6 py-3 font-semibold text-black transition hover:bg-black hover:text-gold border border-gold disabled:opacity-70"
+              >
+                {status === "loading" ? "Submitting..." : "Join the Interest List"}
+              </button>
+            </form>
+
+            {message && (
+              <p
+                className={`mt-5 text-sm ${
+                  status === "success" ? "text-green-700" : "text-red-600"
+                }`}
+              >
+                {message}
+              </p>
             )}
+
+            <p className="mt-6 text-sm text-black/60">
+              Limited spaces. Early registrants will receive priority notice before public release.
+            </p>
           </div>
         </section>
       </ScrollFade>

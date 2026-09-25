@@ -14,7 +14,7 @@ export async function POST(req: Request) {
   const trimmedFirstName =
     typeof firstName === "string" ? firstName.trim() : null;
   const trimmedEmail = String(email).trim().toLowerCase();
-  const finalSource = source || "autumn_2026_uk_tantra_workshop";
+  const finalSource = source || "uk_tantra_workshop_general";
 
   // DB write — 500 on failure is correct here
   let isNew: boolean;
@@ -66,7 +66,7 @@ export async function POST(req: Request) {
       await resend.emails.send({
         from: "The Art of Sensuality <touch@taosense.uk>",
         to: trimmedEmail,
-        subject: "You're on the list — TAOS Workshop 2026",
+        subject: "You're on the list — TAOS Workshops",
         html: `
           <div style="font-family: Arial, sans-serif; line-height: 1.6; color: #111; max-width: 640px; margin: 0 auto; padding: 24px;">
             <div style="text-align: center; margin-bottom: 24px;">
@@ -80,12 +80,12 @@ export async function POST(req: Request) {
             <p>Hi ${trimmedFirstName || "there"},</p>
 
             <p>
-              Thank you for registering your interest in the upcoming TAOS Tantra Massage Workshop.
+              Thank you for registering your interest in TAOS Tantra Massage Workshops and retreats.
             </p>
 
             <p>
-              We are currently preparing something very special for Autumn 2026, and you will be among
-              the first to hear when dates, venue, and booking details are released.
+              You will be among the first to hear when new dates, venues, and booking details are
+              released — often before they're made public.
             </p>
 
             <p>
