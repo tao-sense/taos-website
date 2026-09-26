@@ -14,4 +14,4 @@ Disallow: /account/
 Disallow: /api/
 
 # 🗺️ Sitemap location
-Sitemap: https://taosense.uk/sitemap.xml
+Sitemap: https://theartofsensuality.com/sitemap.xml
