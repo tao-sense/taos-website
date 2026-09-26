@@ -69,6 +69,7 @@ const jsonLd = {
 
 export default async function WorkshopsPage() {
   const workshops = await prisma.workshop.findMany({
+    where: { published: true },
     orderBy: { date: "asc" },
   });
 

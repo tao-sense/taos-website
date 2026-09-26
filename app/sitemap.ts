@@ -1,8 +1,13 @@
 import { MetadataRoute } from "next";
+import { prisma } from "@/lib/prisma";
 
 const BASE_URL = "https://theartofsensuality.com";
 
-// Public marketing routes only — auth, admin, api, and dynamic routes excluded.
+// Re-generate hourly so newly published workshops appear without a redeploy.
+export const revalidate = 3600;
+
+// Public marketing routes only — auth, admin, and api excluded.
+// Workshop pages are added dynamically in sitemap() below.
 const publicRoutes: {
   path: string;
   priority: number;
@@ -25,13 +30,32 @@ const publicRoutes: {
   { path: "/cookie-policy",        priority: 0.3,  changeFrequency: "yearly"  },
 ];
 
-export default function sitemap(): MetadataRoute.Sitemap {
+export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const now = new Date();
 
-  return publicRoutes.map(({ path, priority, changeFrequency }) => ({
-    url: `${BASE_URL}${path}`,
-    lastModified: now,
-    changeFrequency,
-    priority,
+  const staticEntries: MetadataRoute.Sitemap = publicRoutes.map(
+    ({ path, priority, changeFrequency }) => ({
+      url: `${BASE_URL}${path}`,
+      lastModified: now,
+      changeFrequency,
+      priority,
+    })
+  );
+
+  // Published workshops that use their own /offerings/workshops/[id] page.
+  // Workshops with a `link` send visitors elsewhere (e.g. /retreats/...), so
+  // their internal page isn't linked from the site and is left out.
+  const workshops = await prisma.workshop.findMany({
+    where: { published: true, OR: [{ link: null }, { link: "" }] },
+    select: { id: true, updatedAt: true },
+  });
+
+  const workshopEntries: MetadataRoute.Sitemap = workshops.map((w) => ({
+    url: `${BASE_URL}/offerings/workshops/${w.id}`,
+    lastModified: w.updatedAt,
+    changeFrequency: "weekly",
+    priority: 0.7,
   }));
+
+  return [...staticEntries, ...workshopEntries];
 }

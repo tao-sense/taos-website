@@ -13,7 +13,7 @@ export async function generateMetadata({
   const { id } = await params;
   const workshop = await prisma.workshop.findUnique({ where: { id } });
 
-  if (!workshop) return {};
+  if (!workshop || !workshop.published) return {};
 
   const title = `${workshop.title} | Tantra Massage Workshop`;
   const description = workshop.description
@@ -57,7 +57,7 @@ export default async function WorkshopPage({
     where: { id },
   });
 
-  if (!workshop) return notFound();
+  if (!workshop || !workshop.published) return notFound();
 
   const jsonLd = {
     "@context": "https://schema.org",
