@@ -629,7 +629,7 @@ export default function Powys2027Page() {
             Register
           </h2>
           <p className="text-center text-white/70 mb-10 max-w-xl mx-auto">
-            Complete the form below to request a place. Your application is reviewed before your
+            Complete the form below to request a place. Your booking request is reviewed before your
             place is confirmed — we&rsquo;ll be in touch within 48 hours.
           </p>
           <WorkshopBookingForm workshopId={WORKSHOP_ID} earlyBird={isEarlyBird} />

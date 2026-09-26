@@ -171,10 +171,10 @@ export default async function WorkshopPage({
       <section className="bg-black text-white px-6 py-16 border-t border-white/10">
         <div className="max-w-3xl mx-auto">
           <h2 className="font-playfair text-3xl font-semibold text-gold mb-6 text-center">
-            Apply for This Workshop
+            Request a Place
           </h2>
           <p className="text-center text-white/80 mb-10">
-            Please complete the application below. Places are offered by invitation
+            Please complete the booking request below. Places are offered by invitation
             after review — not on a first-come-first-served basis. We&rsquo;ll be in
             touch within a few days.
           </p>

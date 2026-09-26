@@ -84,9 +84,9 @@ export default function WorkshopBookingForm({
   if (submitted) {
     return (
       <div className="text-center space-y-3 py-8">
-        <p className="text-xl text-gold font-medium">Application received.</p>
+        <p className="text-xl text-gold font-medium">Booking request received.</p>
         <p className="text-white/80">
-          Thank you, {form.name.split(" ")[0]}. We&rsquo;ll review your application
+          Thank you, {form.name.split(" ")[0]}. We&rsquo;ll review your booking request
           and be in touch within a few days.
         </p>
       </div>
@@ -212,7 +212,7 @@ export default function WorkshopBookingForm({
           required
         />
         <p className="text-xs text-black/50">
-          This information is seen only by Wesley. Declined applicants&rsquo; data is
+          This information is seen only by Wesley. Data for declined booking requests is
           deleted on request and within 90 days of the retreat.
         </p>
       </div>
@@ -287,7 +287,7 @@ export default function WorkshopBookingForm({
           />
           <span>
             I consent to you storing the health information I provide, for the
-            purpose of assessing my application. I understand I can ask for it
+            purpose of assessing my booking request. I understand I can ask for it
             to be deleted at any time.
           </span>
         </label>
@@ -310,7 +310,7 @@ export default function WorkshopBookingForm({
         disabled={loading}
         className="bg-gold text-black font-semibold px-6 py-3 rounded hover:bg-black hover:text-gold transition w-full sm:w-auto"
       >
-        {loading ? "Submitting…" : "Submit Application"}
+        {loading ? "Submitting…" : "Submit Booking Request"}
       </button>
     </form>
   );

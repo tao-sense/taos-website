@@ -191,7 +191,7 @@ export async function POST(req: Request) {
   } catch (err) {
     console.error("Workshop enquiry DB error:", err);
     return NextResponse.json(
-      { error: "Failed to save your application. Please try again." },
+      { error: "Failed to save your booking request. Please try again." },
       { status: 500 }
     );
   }
@@ -204,10 +204,10 @@ export async function POST(req: Request) {
     await resend.emails.send({
       from: "The Art of Sensuality <touch@taosense.uk>",
       to: process.env.EMAIL_TO!,
-      subject: `New Workshop Application from ${name.trim()}`,
+      subject: `New Workshop Booking Request from ${name.trim()}`,
       html: `
         <div style="font-family:Arial,sans-serif;line-height:1.6;color:#111;">
-          <h2 style="color:#C9A46C;">New Workshop Application</h2>
+          <h2 style="color:#C9A46C;">New Workshop Booking Request</h2>
           <p><strong>Name:</strong> ${name.trim()}</p>
           <p><strong>Age:</strong> ${ageNum}</p>
           <p><strong>Town / City:</strong> ${city.trim()}</p>
@@ -218,13 +218,13 @@ export async function POST(req: Request) {
           ${workshopId ? `<p><strong>Workshop ID:</strong> ${workshopId}</p>` : ""}
           <p style="margin-top:16px;">
             <a href="${appUrl}/admin/workshop-enquiries" style="color:#C9A46C;">
-              View all applicants →
+              View all booking requests →
             </a>
           </p>
           <hr style="margin:24px 0;border:none;border-top:1px solid #ddd;"/>
           <p style="font-size:12px;color:#888;">
             Sent automatically from The Art of Sensuality website.
-            Application ID: ${record.id}
+            Booking request ID: ${record.id}
           </p>
         </div>
       `,
@@ -238,7 +238,7 @@ export async function POST(req: Request) {
     await resend.emails.send({
       from: "The Art of Sensuality <touch@taosense.uk>",
       to: normalizedEmail,
-      subject: "Your TAOS Workshop Application",
+      subject: "Your TAOS Workshop Booking Request",
       html: `
         <div style="font-family:Arial,sans-serif;line-height:1.6;color:#111;max-width:640px;margin:0 auto;padding:24px;">
           <div style="text-align:center;margin-bottom:24px;">
@@ -251,11 +251,11 @@ export async function POST(req: Request) {
 
           <p>Dear ${name.trim().split(" ")[0]},</p>
 
-          <p>Thank you for applying to the TAOS workshop — your application has been received.</p>
+          <p>Thank you for your TAOS workshop booking request — it has been received.</p>
 
           <p>
-            Please note that this is an <strong>application</strong>, not a confirmed booking.
-            We carefully review each application to keep the group well-balanced, so places
+            Please note that this is a <strong>booking request</strong>, not yet a confirmed place.
+            We carefully review each booking request to keep the group well-balanced, so places
             are not offered on a first-come-first-served basis.
           </p>
 
