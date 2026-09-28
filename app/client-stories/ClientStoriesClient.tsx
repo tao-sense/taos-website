@@ -220,6 +220,51 @@ export default function ClientStoriesClient() {
                 {openStory === 3 ? "Read less ▲" : "Read more ▼"}
               </button>
             </article>
+
+            <div className="h-px w-full bg-gradient-to-r from-transparent via-gold/60 to-transparent my-10" />
+
+            {/* Story 4 */}
+            <article>
+              <h2 className="font-playfair text-2xl font-semibold text-gold mb-4">
+                Learning to Receive
+              </h2>
+              <p className="text-lg leading-relaxed">
+                “Appointments with Wesley have helped me learn to receive.
+                Relationship history and conditioning had me not feeling worthy of
+                physical attention or love.”
+              </p>
+
+              <AnimatePresence initial={false}>
+                {openStory === 4 && (
+                  <motion.div
+                    key="story4"
+                    initial={{ opacity: 0, y: -10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: -10 }}
+                    transition={{ duration: 0.5 }}
+                    className="mt-4 space-y-4 text-lg leading-relaxed"
+                  >
+                    <p>
+                      “With Wesley, I felt safe, seen and cared about. This was new
+                      for me and not only nice in the moment, but also helpful for
+                      moving on with new understanding of how I’d like physical
+                      connection to be.”
+                    </p>
+                    <p>
+                      “Thank you so much for the unique and invaluable support.”
+                    </p>
+                    <p className="font-semibold text-gold">— C.D.</p>
+                  </motion.div>
+                )}
+              </AnimatePresence>
+
+              <button
+                onClick={() => toggleStory(4)}
+                className="mt-4 text-gold hover:underline focus:outline-none"
+              >
+                {openStory === 4 ? "Read less ▲" : "Read more ▼"}
+              </button>
+            </article>
           </div>
         </section>
       </ScrollFade>
