@@ -24,6 +24,18 @@ export const personRef = {
 
 export const organizationRef = { "@id": ORGANIZATION_ID };
 
+const ROYAL_HOLLOWAY = {
+  "@type": "CollegeOrUniversity",
+  name: "Royal Holloway, University of London",
+  url: "https://www.royalholloway.ac.uk",
+};
+
+const BRITISH_SCHOOL_OF_OSTEOPATHY = {
+  "@type": "CollegeOrUniversity",
+  name: "British School of Osteopathy",
+  alternateName: "University College of Osteopathy",
+};
+
 export const person = {
   "@context": "https://schema.org",
   "@type": "Person",
@@ -35,20 +47,27 @@ export const person = {
   description:
     "Founder and practitioner of The Art of Sensuality (TAOS). Wesley studied osteopathy at the British School of Osteopathy from 2003 to 2007 (BOst BSc) and practised as a registered osteopath from 2007 to 2020. He has taught movement since 1999, beginning with kung fu and qi gong, then gymnastic fitness, and has since worked with a blend of therapeutic massage, bodywork and Tantra massage.",
   worksFor: organizationRef,
-  alumniOf: {
-    "@type": "CollegeOrUniversity",
-    name: "British School of Osteopathy",
-  },
-  hasCredential: {
-    "@type": "EducationalOccupationalCredential",
-    name: "BOst BSc",
-    credentialCategory: "degree",
-    description: "BOst BSc, British School of Osteopathy (studied 2003–2007).",
-    recognizedBy: {
-      "@type": "CollegeOrUniversity",
-      name: "British School of Osteopathy",
+  alumniOf: [ROYAL_HOLLOWAY, BRITISH_SCHOOL_OF_OSTEOPATHY],
+  hasCredential: [
+    {
+      "@type": "EducationalOccupationalCredential",
+      name: "BOst BSc",
+      credentialCategory: "degree",
+      description: "BOst BSc, British School of Osteopathy (studied 2003–2007).",
+      recognizedBy: BRITISH_SCHOOL_OF_OSTEOPATHY,
+      dateCreated: "2007",
     },
-  },
+    {
+      "@type": "EducationalOccupationalCredential",
+      name: "BSc Biology",
+      credentialCategory: "degree",
+      recognizedBy: {
+        "@type": "CollegeOrUniversity",
+        name: "Royal Holloway, University of London",
+      },
+      dateCreated: "2000",
+    },
+  ],
   knowsAbout: [
     "Tantra massage",
     "Intimacy coaching",
