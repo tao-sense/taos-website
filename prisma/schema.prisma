@@ -4,8 +4,8 @@ generator client {
 
 datasource db {
   provider  = "postgresql"
-  url       = env("DATABASE_URL")  // pooled for app/runtime
-  directUrl = env("DIRECT_URL")    // direct for migrations/studio
+  url       = env("DATABASE_URL") // pooled for app/runtime
+  directUrl = env("DIRECT_URL") // direct for migrations/studio
 }
 
 enum Role {
@@ -64,16 +64,16 @@ model VerificationToken {
 }
 
 model Subscription {
-  id                   String   @id @default(cuid())
-  userId               String   @unique
+  id                   String    @id @default(cuid())
+  userId               String    @unique
   stripeCustomerId     String?
   stripeSubscriptionId String?
   status               String?
   priceId              String?
   currentPeriodEnd     DateTime?
-  user                 User     @relation(fields: [userId], references: [id], onDelete: Cascade)
-  createdAt            DateTime @default(now())
-  updatedAt            DateTime @updatedAt
+  user                 User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+  createdAt            DateTime  @default(now())
+  updatedAt            DateTime  @updatedAt
 }
 
 model Workshop {
