@@ -3,7 +3,7 @@ import ClientStoriesClient from "./ClientStoriesClient";
 
 export const metadata: Metadata = {
   title:
-    "Client Stories | Tantra Massage Experiences with The Art of Sensuality (TAOS)",
+    "Client Stories | Tantra Massage Experiences",
   description:
     "Read real Tantra Massage client stories and experiences shared with The Art of Sensuality (TAOS). Discover how people describe feeling safe, seen, and deeply transformed through conscious touch and connection.",
   keywords: [

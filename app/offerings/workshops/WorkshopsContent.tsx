@@ -239,7 +239,7 @@ export default function WorkshopsContent({ workshops }: { workshops: any[] }) {
                   <strong>Language:</strong> Sessions conducted in English
                 </li>
                 <li>
-                  <strong>Instructor:</strong> Wesley Tan — osteopath, bodyworker, and Tantra educator
+                  <strong>Instructor:</strong> Wesley Tan (BOst BSc) — bodyworker and Tantra educator with an osteopathy background
                 </li>
               </ul>
             </div>

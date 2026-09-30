@@ -1,8 +1,11 @@
 import HomeClient from "./HomeClient";
 
 export const metadata = {
-  title:
-    "Tantra Massage Workshops & Intimacy Coaching | The Art of Sensuality (TAOS)",
+  // Absolute: the root layout's title template doesn't apply to the root page.
+  title: {
+    absolute:
+      "Tantra Massage, Workshops & Intimacy Coaching | The Art of Sensuality (TAOS)",
+  },
   description:
     "Experience Tantra Massage, Intimacy Coaching, and Tantra Massage Workshops with TAOS — based in Stroud, Gloucestershire and teaching across the UK.",
   openGraph: {

@@ -3,7 +3,7 @@ import OfferingsClient from "./OfferingsClient";
 
 export const metadata: Metadata = {
   title:
-    "Tantra Massage Workshops & Offerings | The Art of Sensuality (TAOS) Stroud, UK",
+    "Tantra Massage Workshops & Offerings | Stroud, UK",
   description:
     "Explore Tantra Massage Workshops across the UK, Intimacy Coaching in Stroud, and Sensual Massage experiences with TAOS — The Art of Sensuality. Learn the art of Tantra Massage through transformative workshops, private sessions, and coaching to awaken connection, trust, and embodied pleasure.",
   keywords: [

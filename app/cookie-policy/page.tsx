@@ -1,7 +1,7 @@
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Cookie Policy | The Art of Sensuality",
+  title: "Cookie Policy",
   description:
     "Learn how The Art of Sensuality (TAOS) uses cookies and similar technologies on our website.",
   alternates: {

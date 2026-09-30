@@ -3,7 +3,7 @@ import FAQClient from "./FAQClient";
 
 export const metadata: Metadata = {
   title:
-    "Tantra Massage FAQ | The Art of Sensuality (TAOS) | Tantra Workshops & Intimacy Coaching",
+    "Tantra Massage FAQ | Tantra Workshops & Intimacy Coaching",
   description:
     "Find answers to your questions about Tantra Massage, workshops, and intimacy coaching with The Art of Sensuality (TAOS). Learn what to expect from sessions, how to prepare, and how we ensure a safe and supportive environment.",
   keywords: [

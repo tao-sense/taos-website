@@ -135,8 +135,8 @@ export default function AboutClient() {
                   Founder & Practitioner, TAOS – The Art of Sensuality
                 </p>
                 <p className="text-black/80 max-w-lg">
-                  I’m a qualified osteopath, bodyworker, and teacher of gymnastic
-                  fitness with over two decades of experience helping people
+                  I trained in osteopathy (BOst BSc) and am a bodyworker and teacher
+                  of gymnastic fitness with over two decades of experience helping people
                   reconnect with their bodies through movement, awareness, and touch.
                   TAOS is the synthesis of this lifelong journey — blending science,
                   presence, and sensuality into a path of healing and connection.
@@ -175,8 +175,10 @@ export default function AboutClient() {
                   Osteopathy & Bodywork
                 </h3>
                 <p>
-                  For over 18 years, I’ve worked with a blend of osteopathy,
-                  therapeutic massage, and teaching gymnastic fitness. These
+                  I practised as a registered osteopath from 2007 to 2020. Since
+                  then I’ve worked with a blend of therapeutic massage, bodywork
+                  and teaching gymnastic fitness, grounded in that clinical
+                  background. These
                   modalities gave me an incredible foundation: helping people
                   understand pain, heal injuries, and process emotions stored in the
                   body.

@@ -7,6 +7,10 @@ const BASE_URL = "https://theartofsensuality.com";
 // Re-generate hourly so new workshops and blog posts appear without a redeploy.
 export const revalidate = 3600;
 
+// lastModified for the static routes below. Update this by hand when their
+// content changes meaningfully (blog posts and workshops use their own dates).
+const STATIC_ROUTES_LAST_MODIFIED = new Date("2026-09-30");
+
 // Public marketing routes only — auth, admin, and api excluded.
 // Workshop and blog post pages are added dynamically in sitemap() below.
 const publicRoutes: {
@@ -91,12 +95,10 @@ async function getPostEntries(): Promise<MetadataRoute.Sitemap> {
 }
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
-  const now = new Date();
-
   const staticEntries: MetadataRoute.Sitemap = publicRoutes.map(
     ({ path, priority, changeFrequency }) => ({
       url: `${BASE_URL}${path}`,
-      lastModified: now,
+      lastModified: STATIC_ROUTES_LAST_MODIFIED,
       changeFrequency,
       priority,
     })

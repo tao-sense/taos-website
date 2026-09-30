@@ -1,7 +1,7 @@
 import ContactClient from "./ContactClient";
 
 export const metadata = {
-  title: "Contact | The Art of Sensuality (TAOS)",
+  title: "Contact",
   description:
     "Get in touch with The Art of Sensuality (TAOS) to enquire about Tantra Massage, Workshops, or Intimacy Coaching with Wesley Tan in Stroud and across the UK.",
   keywords: [
