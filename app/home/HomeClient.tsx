@@ -4,9 +4,9 @@ import Image from "next/image";
 import Link from "next/link";
 import ScrollFade from "@/components/ScrollFade";
 import { motion } from "framer-motion";
-import BlogCarousel from '@/components/BlogCarousel'
+import BlogCarouselClient, { type Post } from '@/components/BlogCarouselClient'
 
-export default function Home() {
+export default function Home({ posts }: { posts: Post[] }) {
   return (
     <main className="bg-black text-white overflow-x-hidden">
       {/* HERO */}
@@ -429,7 +429,7 @@ export default function Home() {
               Perspectives on tantra, intimacy, and conscious living.
             </p>
           </div>
-          <BlogCarousel />
+          <BlogCarouselClient posts={posts} />
           <div className="text-center mt-10">
             <Link
               href="/blog"
