@@ -9,68 +9,24 @@ export default function AboutClient() {
     <main className="bg-black text-white">
       {/* Hero Section */}
       <section className="relative w-full text-center overflow-hidden bg-[#f3d08b]">
-        {/* --- Mobile Version --- */}
-        <div className="block md:hidden relative w-full">
-          <Image
-            src="/images/journey.png"
-            alt="Wesley Tan – The Art of Sensuality Journey toward connection"
-            width={1920}
-            height={1080}
-            className="w-full h-auto object-contain object-center"
-            priority
-          />
-
-          {/* Overlay Text */}
-          <div className="absolute inset-0 flex flex-col items-center justify-center z-10 px-6 space-y-4">
-            <ScrollFade>
-              <h1 className="font-playfair text-4xl font-semibold text-white/90 leading-tight">
-                My Journey
-                <br />
-                <span className="text-white/90 font-light text-2xl">
-                  The Story Behind The Art of Sensuality (TAOS)
-                </span>
-              </h1>
-            </ScrollFade>
-
-            <ScrollFade delay={0.1}>
-              <p className="text-lg text-white/85 max-w-2xl mx-auto mt-3">
-                A path toward connection, love, and an open heart — Tantra Massage in Stroud.
-              </p>
-            </ScrollFade>
-
-            {/* Scroll Chevron */}
-            <div className="absolute bottom-8 animate-bounce z-10">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                className="h-6 w-6 text-white"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-                strokeWidth={3}
-              >
-                <path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7" />
-              </svg>
-            </div>
-          </div>
-        </div>
-
-        {/* --- Desktop Version --- */}
-        <div className="hidden md:block relative w-full h-[90vh] lg:h-[90vh]">
+        {/* Mobile: image at its natural 3:2 ratio. Desktop: 90vh cover crop. */}
+        <div className="relative w-full aspect-[3/2] md:aspect-auto md:h-[90vh]">
           <Image
             src="/images/journey.png"
             alt="The Art of Sensuality – My Journey by Wesley Tan"
             fill
-            className="object-cover object-[50%_25%]"
+            sizes="100vw"
+            className="object-contain object-center md:object-cover md:object-[50%_25%]"
             priority
           />
 
           {/* Overlay Text */}
           <div className="absolute inset-0 flex flex-col items-center justify-center z-10 px-6 space-y-4">
             <ScrollFade>
-              <h1 className="font-playfair text-5xl lg:text-6xl font-semibold text-white/90 leading-tight">
+              <h1 className="font-playfair text-4xl md:text-5xl lg:text-6xl font-semibold text-white/90 leading-tight">
                 My Journey
                 <br />
-                <span className="text-white/90 font-light text-3xl">
+                <span className="text-white/90 font-light text-2xl md:text-3xl">
                   The Story Behind The Art of Sensuality (TAOS)
                 </span>
               </h1>
