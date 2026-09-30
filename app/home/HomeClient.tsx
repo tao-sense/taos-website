@@ -139,12 +139,13 @@ export default function Home() {
             />
           </div>
 
-          <div className="hidden md:flex absolute inset-0 bg-black/30 items-center">
-            <div className="container mx-auto px-6 py-20 max-w-3xl text-left">
-              <h2 className="font-playfair text-3xl md:text-4xl font-semibold text-gold mb-6">
+          {/* Mobile: text block below the image. Desktop: overlay on the image. */}
+          <div className="bg-black px-6 py-12 md:absolute md:inset-0 md:flex md:items-center md:bg-black/30 md:p-0">
+            <div className="md:w-full md:max-w-6xl md:mx-auto md:px-4 md:py-20 text-left">
+              <h2 className="font-playfair text-2xl md:text-4xl font-semibold text-gold mb-4 md:mb-6">
                 The Modern Disconnect
               </h2>
-              <div className="space-y-6 text-white/90 text-base md:text-lg leading-relaxed">
+              <div className="space-y-4 md:space-y-6 text-white/90 text-base md:text-lg leading-relaxed">
                 <p>
                   In today's modern world, life often moves faster than we can
                   follow. Technology makes many tasks easier, yet it quietly
@@ -167,35 +168,6 @@ export default function Home() {
                   make the longing for safe connection feel even further away.
                 </p>
               </div>
-            </div>
-          </div>
-
-          <div className="block md:hidden bg-black px-6 py-12">
-            <h2 className="font-playfair text-2xl font-semibold text-gold mb-4">
-              The Modern Disconnect
-            </h2>
-            <div className="space-y-4 text-white/90 text-base leading-relaxed">
-              <p>
-                In today's modern world, life often moves faster than we can
-                follow. Technology makes many tasks easier, yet it quietly erodes
-                the very fabric of human connection. While we are globally
-                connected, many of us feel more isolated than ever.
-              </p>
-              <p>
-                Screens replace faces. Messages replace touch. More people work
-                from home than ever before. The pandemic left its mark — causing
-                distrust between friends and families.
-              </p>
-              <p>
-                Internet pornography has become the reference point for many on
-                matters of sex — leaving out the richness of real intimacy,
-                presence, and tenderness.
-              </p>
-              <p>
-                In this environment, embodied, loving, intimate touch feels
-                increasingly absent — and for some, past wounds or trauma can make
-                the longing for safe connection feel even further away.
-              </p>
             </div>
           </div>
         </section>

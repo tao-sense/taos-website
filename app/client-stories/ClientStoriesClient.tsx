@@ -3,9 +3,53 @@
 import { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion } from "framer-motion";
 import { ChevronDown } from "lucide-react";
 import ScrollFade from "@/components/ScrollFade";
+
+// The full story is always rendered (so it's in the server HTML for crawlers)
+// and collapsed visually until "Read more" is pressed.
+function StoryMore({
+  id,
+  open,
+  onToggle,
+  className,
+  children,
+}: {
+  id: string;
+  open: boolean;
+  onToggle: () => void;
+  className: string;
+  children: React.ReactNode;
+}) {
+  return (
+    <>
+      <motion.div
+        id={id}
+        initial={false}
+        animate={
+          open
+            ? { height: "auto", opacity: 1, y: 0 }
+            : { height: 0, opacity: 0, y: -10 }
+        }
+        transition={{ duration: 0.5 }}
+        className="overflow-hidden"
+        aria-hidden={!open}
+      >
+        <div className={`pt-4 ${className}`}>{children}</div>
+      </motion.div>
+
+      <button
+        onClick={onToggle}
+        aria-expanded={open}
+        aria-controls={id}
+        className="mt-4 text-gold hover:underline focus:outline-none"
+      >
+        {open ? "Read less ▲" : "Read more ▼"}
+      </button>
+    </>
+  );
+}
 
 export default function ClientStoriesClient() {
   const [openStory, setOpenStory] = useState<number | null>(null);
@@ -86,38 +130,25 @@ export default function ClientStoriesClient() {
                 checked in often to ensure I was comfortable.”
               </p>
 
-              <AnimatePresence initial={false}>
-                {openStory === 1 && (
-                  <motion.div
-                    key="story1"
-                    initial={{ opacity: 0, y: -10 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    exit={{ opacity: 0, y: -10 }}
-                    transition={{ duration: 0.5 }}
-                    className="mt-4 space-y-4 text-lg leading-relaxed"
-                  >
-                    <p>
-                      “He has a very calming presence and healing energy. I have never
-                      experienced such a release, celebration, and healing of feelings
-                      and emotions. Wesley provides a safe space and time to express
-                      emotions freely.”
-                    </p>
-                    <p>
-                      “I am still feeling a deep peace. Prior to my Tantra Massage, I
-                      was having frequent nightmares, but since the massage I no longer
-                      have them. I am so grateful — thank you, Wesley.”
-                    </p>
-                    <p className="font-semibold text-gold">— C.A.</p>
-                  </motion.div>
-                )}
-              </AnimatePresence>
-
-              <button
-                onClick={() => toggleStory(1)}
-                className="mt-4 text-gold hover:underline focus:outline-none"
+              <StoryMore
+                id="story-1-more"
+                open={openStory === 1}
+                onToggle={() => toggleStory(1)}
+                className="space-y-4 text-lg leading-relaxed"
               >
-                {openStory === 1 ? "Read less ▲" : "Read more ▼"}
-              </button>
+                <p>
+                  “He has a very calming presence and healing energy. I have never
+                  experienced such a release, celebration, and healing of feelings
+                  and emotions. Wesley provides a safe space and time to express
+                  emotions freely.”
+                </p>
+                <p>
+                  “I am still feeling a deep peace. Prior to my Tantra Massage, I
+                  was having frequent nightmares, but since the massage I no longer
+                  have them. I am so grateful — thank you, Wesley.”
+                </p>
+                <p className="font-semibold text-gold">— C.A.</p>
+              </StoryMore>
             </article>
 
             <div className="h-px w-full bg-gradient-to-r from-transparent via-gold/60 to-transparent my-10" />
@@ -134,50 +165,37 @@ export default function ClientStoriesClient() {
                 path forward.”
               </p>
 
-              <AnimatePresence initial={false}>
-                {openStory === 2 && (
-                  <motion.div
-                    key="story2"
-                    initial={{ opacity: 0, y: -10 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    exit={{ opacity: 0, y: -10 }}
-                    transition={{ duration: 0.5 }}
-                    className="mt-4 space-y-4 text-lg leading-relaxed"
-                  >
-                    <p>
-                      “My session with Wes was nothing short of transformative.
-                      Lasting two hours, the Tantra Massage was conducted with utmost
-                      care, creating an environment where I felt exceptionally safe,
-                      held, and deeply cared for. For the first time in a long while,
-                      I experienced a profound sense of release and a genuine orgasm —
-                      a moment of liberation I hadn’t thought possible.”
-                    </p>
-                    <p>
-                      “The impact has been far-reaching in my life. It acted as a
-                      catalyst not only for sexual awakening but also for personal
-                      empowerment and emotional healing. I’ve since ventured into the
-                      world of dating and, to my delight, entered a relationship —
-                      something I previously thought unattainable due to my past
-                      trauma.”
-                    </p>
-                    <p>
-                      “Wesley’s skilled approach helped me break through the
-                      stagnation in my root chakra, bringing newfound freedom and
-                      openness in both my sexual and personal life. His therapy was one
-                      of the key elements in my journey towards healing and
-                      rediscovery.”
-                    </p>
-                    <p className="font-semibold text-gold">— C.B.</p>
-                  </motion.div>
-                )}
-              </AnimatePresence>
-
-              <button
-                onClick={() => toggleStory(2)}
-                className="mt-4 text-gold hover:underline focus:outline-none"
+              <StoryMore
+                id="story-2-more"
+                open={openStory === 2}
+                onToggle={() => toggleStory(2)}
+                className="space-y-4 text-lg leading-relaxed"
               >
-                {openStory === 2 ? "Read less ▲" : "Read more ▼"}
-              </button>
+                <p>
+                  “My session with Wes was nothing short of transformative.
+                  Lasting two hours, the Tantra Massage was conducted with utmost
+                  care, creating an environment where I felt exceptionally safe,
+                  held, and deeply cared for. For the first time in a long while,
+                  I experienced a profound sense of release and a genuine orgasm —
+                  a moment of liberation I hadn’t thought possible.”
+                </p>
+                <p>
+                  “The impact has been far-reaching in my life. It acted as a
+                  catalyst not only for sexual awakening but also for personal
+                  empowerment and emotional healing. I’ve since ventured into the
+                  world of dating and, to my delight, entered a relationship —
+                  something I previously thought unattainable due to my past
+                  trauma.”
+                </p>
+                <p>
+                  “Wesley’s skilled approach helped me break through the
+                  stagnation in my root chakra, bringing newfound freedom and
+                  openness in both my sexual and personal life. His therapy was one
+                  of the key elements in my journey towards healing and
+                  rediscovery.”
+                </p>
+                <p className="font-semibold text-gold">— C.B.</p>
+              </StoryMore>
             </article>
 
             <div className="h-px w-full bg-gradient-to-r from-transparent via-gold/60 to-transparent my-10" />
@@ -193,32 +211,19 @@ export default function ClientStoriesClient() {
                 through my life.”
               </p>
 
-              <AnimatePresence initial={false}>
-                {openStory === 3 && (
-                  <motion.div
-                    key="story3"
-                    initial={{ opacity: 0, y: -10 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    exit={{ opacity: 0, y: -10 }}
-                    transition={{ duration: 0.5 }}
-                    className="mt-4 text-lg leading-relaxed"
-                  >
-                    <p>
-                      “I have felt a quiet strength since my massage — not sure what to
-                      do with it, but it makes me feel peaceful. I can’t say how
-                      privileged I feel for this experience. Thank you.”
-                    </p>
-                    <p className="font-semibold text-gold">— C.C.</p>
-                  </motion.div>
-                )}
-              </AnimatePresence>
-
-              <button
-                onClick={() => toggleStory(3)}
-                className="mt-4 text-gold hover:underline focus:outline-none"
+              <StoryMore
+                id="story-3-more"
+                open={openStory === 3}
+                onToggle={() => toggleStory(3)}
+                className="text-lg leading-relaxed"
               >
-                {openStory === 3 ? "Read less ▲" : "Read more ▼"}
-              </button>
+                <p>
+                  “I have felt a quiet strength since my massage — not sure what to
+                  do with it, but it makes me feel peaceful. I can’t say how
+                  privileged I feel for this experience. Thank you.”
+                </p>
+                <p className="font-semibold text-gold">— C.C.</p>
+              </StoryMore>
             </article>
 
             <div className="h-px w-full bg-gradient-to-r from-transparent via-gold/60 to-transparent my-10" />
@@ -234,36 +239,23 @@ export default function ClientStoriesClient() {
                 physical attention or love.”
               </p>
 
-              <AnimatePresence initial={false}>
-                {openStory === 4 && (
-                  <motion.div
-                    key="story4"
-                    initial={{ opacity: 0, y: -10 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    exit={{ opacity: 0, y: -10 }}
-                    transition={{ duration: 0.5 }}
-                    className="mt-4 space-y-4 text-lg leading-relaxed"
-                  >
-                    <p>
-                      “With Wesley, I felt safe, seen and cared about. This was new
-                      for me and not only nice in the moment, but also helpful for
-                      moving on with new understanding of how I’d like physical
-                      connection to be.”
-                    </p>
-                    <p>
-                      “Thank you so much for the unique and invaluable support.”
-                    </p>
-                    <p className="font-semibold text-gold">— C.D.</p>
-                  </motion.div>
-                )}
-              </AnimatePresence>
-
-              <button
-                onClick={() => toggleStory(4)}
-                className="mt-4 text-gold hover:underline focus:outline-none"
+              <StoryMore
+                id="story-4-more"
+                open={openStory === 4}
+                onToggle={() => toggleStory(4)}
+                className="space-y-4 text-lg leading-relaxed"
               >
-                {openStory === 4 ? "Read less ▲" : "Read more ▼"}
-              </button>
+                <p>
+                  “With Wesley, I felt safe, seen and cared about. This was new
+                  for me and not only nice in the moment, but also helpful for
+                  moving on with new understanding of how I’d like physical
+                  connection to be.”
+                </p>
+                <p>
+                  “Thank you so much for the unique and invaluable support.”
+                </p>
+                <p className="font-semibold text-gold">— C.D.</p>
+              </StoryMore>
             </article>
           </div>
         </section>
