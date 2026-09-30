@@ -5,6 +5,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { ChevronDown } from "lucide-react";
 import ScrollFade from "@/components/ScrollFade";
+import { sessionFaqs, workshopFaqs, type FaqItem, type FaqPart } from "@/lib/faq";
 
 export default function FAQClient() {
   // Smooth scroll for internal links
@@ -105,84 +106,11 @@ export default function FAQClient() {
                 Private Tantra Massage Sessions
               </h2>
 
-              <Question title="What is Tantra Massage?">
-                Tantra Massage is a deeply healing and sensual full-body
-                experience that combines breathwork, ritual, and conscious
-                touch. It invites you to reconnect with your natural vitality
-                and the unconditioned self beneath layers of tension or shame.
-                Each session honours your boundaries and invites presence, trust,
-                and self-awareness.
-              </Question>
-
-              <Question title="Who is Tantra Massage for?">
-                Tantra Massage is open to all adults, singles and couples. It can
-                help you reconnect with your sensuality, especially if you’ve felt
-                disconnected through stress, responsibility, or relationship
-                patterns. It’s equally valuable if you already feel attuned and
-                wish to explore intimacy more deeply.
-              </Question>
-
-              <Question title="What should I expect from my first session?">
-                Your session begins with a short conversation to revisit your
-                intentions, boundaries, and any concerns we’ve discussed
-                beforehand. The space is prepared with warmth, soft light, and
-                calming music. We begin clothed in a lunghi (sarong), allowing
-                time to settle and relax. As the session unfolds, touch becomes
-                slower and more intimate, always guided by consent.
-              </Question>
-
-              <Question title="I have suffered sexual abuse in the past. Can Tantra Massage help me?">
-                Tantra Massage can be part of a healing journey for those
-                rebuilding trust and connection with their bodies. It’s not a
-                replacement for therapy, but many find it supportive alongside
-                professional guidance. You will always set the pace, and nothing
-                happens without your explicit consent.
-              </Question>
-
-              <Question title="How should I prepare for my first treatment?">
-                Eat something light an hour or more before your session. Take a
-                shower at home so you feel fresh and relaxed. Wear comfortable
-                clothing, and please arrive on time. The session lasts around two
-                hours, so plan a little quiet time afterwards to integrate.
-              </Question>
-
-              <Question title="Is the goal of Tantra Massage to have an orgasm?">
-                No. The focus is on presence and awareness — awakening energy and
-                pleasure throughout the body without seeking a specific outcome.
-                Orgasms may happen, but they are neither expected nor required.
-                The true aim is to feel more alive and at peace in your body.
-              </Question>
-
-              <Question title="Will I be naked during the massage? Will you be naked?">
-                Yes. Tantra Massage embraces the natural human form as part of its
-                philosophy of acceptance and equality. Both giver and receiver
-                begin covered in a lunghi and may gradually undress as trust and
-                comfort deepen. Nudity is never sexualised and never forced.
-              </Question>
-
-              <Question title="How do I book a session or workshop?">
-                You can book via the{" "}
-                <Link href="/contact" className="text-gold underline">
-                  contact form
-                </Link>{" "}
-                or explore dates on the{" "}
-                <Link href="/offerings/workshops" className="text-gold underline">
-                  Workshops
-                </Link>{" "}
-                page. Once you reach out, you’ll receive confirmation and
-                preparation details by email.
-              </Question>
-
-              <Question title="Is Tantra Massage safe?">
-                Absolutely. Sessions are guided by clear boundaries, active
-                consent, and confidentiality. You are always in control, and
-                nothing happens without your agreement.
-              </Question>
-
-              <Question title="Where do sessions take place?">
-                Sessions are held in a calm, private space in Stroud,
-                Gloucestershire — designed to feel safe, warm, and grounding.
-              </Question>
+              {sessionFaqs.map((item) => (
+                <Question key={item.question} title={item.question}>
+                  <FaqAnswer item={item} />
+                </Question>
+              ))}
             </div>
           </ScrollFade>
 
@@ -196,155 +124,11 @@ export default function FAQClient() {
                 Tantra Massage Workshops
               </h2>
 
-              <Question title="What happens during a workshop?">
-                Each workshop blends theory, demonstration, and paired practice.
-                You’ll learn principles of conscious touch, communication, and
-                presence. Sessions include grounding, movement, and breathwork
-                to cultivate trust and sensitivity.
-              </Question>
-
-              <Question title="Can I participate in a seminar alone?">
-                Yes — you don&rsquo;t need a partner to attend. Many participants
-                come on their own, and it&rsquo;s easy to connect with others
-                once you&rsquo;re there.
-              </Question>
-
-              <Question title="Can singles and couples participate?">
-                Yes, both are equally welcome. If you&rsquo;re attending as a
-                couple, you can decide together how you&rsquo;d like to approach
-                the practice sessions — practising together, with other
-                participants, or focusing on your own experience within the
-                group.
-              </Question>
-
-              <Question title="Can I participate without a partner?">
-                Yes. Pairing for practice sessions happens organically among
-                participants rather than being assigned — it isn&rsquo;t
-                something Wesley gets involved in unless an issue comes up.
-                You&rsquo;re welcome to wait and see who approaches you, or to
-                take the initiative yourself; either is completely fine.
-              </Question>
-
-              <Question title="Can I choose the shared-occupancy rate even if I’m attending as a solo individual?">
-                Yes. If you&rsquo;d prefer the shared rate rather than paying for
-                a single room, we&rsquo;ll pair you with another solo attendee of
-                the same sex to share a room with. Just let us know when you
-                register.
-              </Question>
-
-              <Question title="What should I bring?">
-                Bring a sarong, water bottle, notebook, and loose clothing.
-                Everything else — mats, towels, oils — is provided. Accommodation
-                and meals vary by event; see each listing for details.
-              </Question>
-
-              <Question title="Is nudity part of the workshops?">
-                <p>
-                  When we learn and practise the Tantra Massage sequences,
-                  you&rsquo;ll be wearing loose fabric coverings like sarongs.
-                  For certain stages of the massage, both the giver and receiver
-                  may be fully nude — but you&rsquo;ll always have choice and
-                  sovereignty over your body.
-                </p>
-                <p>
-                  We don&rsquo;t treat nudity as something remarkable or
-                  performative. When it&rsquo;s part of a seminar, it&rsquo;s as
-                  ordinary as walking barefoot on grass or swimming in open water
-                  — unstaged, without expectation, and always held with real
-                  respect for each person&rsquo;s own boundaries.
-                </p>
-                <p>
-                  For many of us, it&rsquo;s unfamiliar to experience our own
-                  body without the judgments and expectations we usually carry. A
-                  mindfully held space can make room for more ease,
-                  self-acceptance, and freedom in how you relate to your body.
-                </p>
-                <p>
-                  Where an exercise involves nudity, whether to take part is
-                  always your choice. No one is asked or pressured to undress.
-                </p>
-                <p>
-                  Nudity isn&rsquo;t a goal here, and it isn&rsquo;t a
-                  requirement for anything — it&rsquo;s simply natural. What
-                  matters, always, is consent, mutual respect, and care for
-                  everyone&rsquo;s personal boundaries.
-                </p>
-              </Question>
-
-              <Question title="How do I book a place on a workshop or retreat?">
-                Submitting the registration form on the workshop or retreat page
-                is a binding request for a place, but it isn&rsquo;t confirmed
-                until we&rsquo;ve reviewed it. We aim to get back to you within
-                48 hours. Once confirmed, we&rsquo;ll
-                ask for a deposit of £200 by bank transfer.
-              </Question>
-
-              <Question title="Is there a minimum age?">
-                Yes, you must be 18 or over to attend.
-              </Question>
-
-              <Question title="What happens after I submit my registration?">
-                We review every registration individually, partly to keep the
-                group balanced. Once confirmed, you&rsquo;ll be asked for a
-                £200 deposit by bank transfer. The remaining balance, along
-                with a packing list and directions to the venue, is sent by
-                email three weeks before the event, and the balance is due by
-                bank transfer at that point.
-              </Question>
-
-              <Question title="What’s your cancellation policy?">
-                If you cancel 70 or more days before the event starts, a £100
-                administration fee will be deducted from the deposit amount.
-                Between 30 and 69 days before, 50% of your total cost. With
-                less than 30 days&rsquo; notice, 90% of your total cost.
-              </Question>
-
-              <Question title="Is my health information kept private?">
-                Yes. Any health information you share is seen only by Wesley,
-                used to help keep everyone safe during practice sessions. If
-                your registration isn&rsquo;t taken forward, that data is deleted
-                on request and, in any case, within 90 days.
-              </Question>
-
-              <Question title="Is travel to the venue included?">
-                No, travel is for you to arrange. If you&rsquo;re travelling from
-                a similar area to other participants, let us know and we may be
-                able to put you in touch with each other.
-              </Question>
-
-              <Question title="What’s the difference between a tantra seminar and a tantra massage seminar?">
-                Other tantra seminars, from other providers, may have different
-                focuses — depending on the event, that might be body awareness,
-                conscious touch, meditation, encounter, sensuality, an open
-                heart, healing from trauma, or personal development. Our Tantra
-                Massage Seminar places a special emphasis on learning and
-                practising Tantra massage specifically. You&rsquo;ll study touch,
-                presence, body awareness, and the full structure of a Tantra
-                massage in depth, including Lingam and Yoni massage as components
-                of the ritual.
-              </Question>
-
-              <Question title="Are your tantra seminars about sex?">
-                No. This isn&rsquo;t a course in sensual massage, and it
-                isn&rsquo;t a space for seeking sexual contact. Sensuality and
-                the body are part of what we work with, but the aim is presence,
-                not performance — touch as a way of accepting yourself and others
-                more fully, not an end in itself.
-              </Question>
-
-              <Question title="How are Lingam and Yoni massage integrated into the seminar?">
-                They&rsquo;re taught as part of the full Tantra massage ritual.
-                In our mixed four-day format, women learn to give the Lingam
-                massage and men learn to give the Yoni massage — this split lets
-                us teach both massage forms thoroughly within a balanced, mixed
-                group.
-              </Question>
-
-              <Question title="Will I receive a certificate for the massage training?">
-                Yes — you&rsquo;ll receive a certificate of completion after the
-                seminar, along with a written summary of what was covered, so you
-                can keep practising what you&rsquo;ve learned.
-              </Question>
+              {workshopFaqs.map((item) => (
+                <Question key={item.question} title={item.question}>
+                  <FaqAnswer item={item} />
+                </Question>
+              ))}
             </div>
           </ScrollFade>
         </div>
@@ -385,5 +169,35 @@ function Question({
       <h3 className="font-playfair text-2xl font-semibold text-gold mb-3">{title}</h3>
       <div className="text-black/80 leading-relaxed space-y-4">{children}</div>
     </div>
+  );
+}
+
+/* --- Renders an answer from lib/faq.ts: one paragraph inline, several as <p> --- */
+function FaqAnswer({ item }: { item: FaqItem }) {
+  if (item.answer.length === 1) return <FaqParts parts={item.answer[0]} />;
+  return (
+    <>
+      {item.answer.map((paragraph, i) => (
+        <p key={i}>
+          <FaqParts parts={paragraph} />
+        </p>
+      ))}
+    </>
+  );
+}
+
+function FaqParts({ parts }: { parts: FaqPart[] }) {
+  return (
+    <>
+      {parts.map((part, i) =>
+        typeof part === "string" ? (
+          part
+        ) : (
+          <Link key={i} href={part.href} className="text-gold underline">
+            {part.text}
+          </Link>
+        )
+      )}
+    </>
   );
 }

@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
 import OfferingsClient from "./OfferingsClient";
+import JsonLd from "@/components/JsonLd";
+import { breadcrumbJsonLd, OFFERINGS_CRUMB } from "@/lib/structured-data";
 
 export const metadata: Metadata = {
   title:
@@ -42,5 +44,10 @@ export const metadata: Metadata = {
 };
 
 export default function OfferingsPage() {
-  return <OfferingsClient />;
+  return (
+    <>
+      <JsonLd data={breadcrumbJsonLd([OFFERINGS_CRUMB])} />
+      <OfferingsClient />
+    </>
+  );
 }

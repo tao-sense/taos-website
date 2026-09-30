@@ -4,6 +4,13 @@ import Link from 'next/link'
 import { PortableText } from 'next-sanity'
 import { client, urlFor } from '@/lib/sanity'
 import { notFound } from 'next/navigation'
+import JsonLd from '@/components/JsonLd'
+import {
+  breadcrumbJsonLd,
+  personRef,
+  ARTICLES_CRUMB,
+  BUSINESS_ID,
+} from '@/lib/structured-data'
 
 export const revalidate = 60
 
@@ -14,6 +21,7 @@ async function getPost(slug: string) {
       title,
       slug,
       publishedAt,
+      _updatedAt,
       excerpt,
       mainImage,
       categories,
@@ -148,14 +156,13 @@ export default async function PostPage({
     headline: post.title,
     description: post.excerpt || '',
     datePublished: post.publishedAt,
+    dateModified: post._updatedAt || post.publishedAt,
     url: `https://theartofsensuality.com/blog/${slug}`,
-    author: {
-      '@type': 'Person',
-      name: 'Wesley Tan',
-    },
+    mainEntityOfPage: `https://theartofsensuality.com/blog/${slug}`,
+    author: personRef,
     publisher: {
       '@type': 'LocalBusiness',
-      '@id': 'https://theartofsensuality.com/#business',
+      '@id': BUSINESS_ID,
     },
     ...(post.mainImage && {
       image: urlFor(post.mainImage).width(1200).height(630).url(),
@@ -164,9 +171,12 @@ export default async function PostPage({
 
   return (
     <main className="bg-black text-white">
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      <JsonLd data={jsonLd} />
+      <JsonLd
+        data={breadcrumbJsonLd([
+          ARTICLES_CRUMB,
+          { name: post.title, path: `/blog/${slug}` },
+        ])}
       />
 
       {/* Hero with overlaid title */}

@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
 import CoachingClient from "./CoachingClient";
+import JsonLd from "@/components/JsonLd";
+import { breadcrumbJsonLd, OFFERINGS_CRUMB } from "@/lib/structured-data";
 
 export const metadata: Metadata = {
   title: "Intimacy Coaching in Stroud for Couples & Singles | Tantra Coaching UK",
@@ -114,6 +116,12 @@ export default function CoachingPage() {
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
+      <JsonLd
+        data={breadcrumbJsonLd([
+          OFFERINGS_CRUMB,
+          { name: "Intimacy Coaching", path: "/offerings/coaching" },
+        ])}
       />
       <CoachingClient />
     </>

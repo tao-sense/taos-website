@@ -1,5 +1,8 @@
 import type { Metadata } from "next";
 import TantraClient from "./TantraClient";
+import JsonLd from "@/components/JsonLd";
+import { faqPageJsonLd, tantraPageFaqs } from "@/lib/faq";
+import { breadcrumbJsonLd, OFFERINGS_CRUMB } from "@/lib/structured-data";
 
 export const metadata: Metadata = {
   title: "Tantra Massage in Stroud | Sensual Massage | Tantra Massage UK",
@@ -76,6 +79,13 @@ export default function TantraPage() {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
+      <JsonLd
+        data={breadcrumbJsonLd([
+          OFFERINGS_CRUMB,
+          { name: "Tantra Massage", path: "/offerings/tantra" },
+        ])}
+      />
+      <JsonLd data={faqPageJsonLd("/offerings/tantra", tantraPageFaqs)} />
       <TantraClient />
     </>
   );

@@ -2,6 +2,14 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import WorkshopBookingForm from "@/app/offerings/workshops/[id]/workshop-booking-form";
+import JsonLd from "@/components/JsonLd";
+import {
+  breadcrumbJsonLd,
+  organizationRef,
+  personRef,
+  OFFERINGS_CRUMB,
+  WORKSHOPS_CRUMB,
+} from "@/lib/structured-data";
 
 const WORKSHOP_ID = "cmudsv18m0000id04441fotyp"; // Workshop record: "Tantra Massage Seminar - Garth Barns & Country House"
 
@@ -97,15 +105,8 @@ export default function Powys2027Page() {
       buildOffer("Single occupancy", singlePrice),
       buildOffer("Shared double (per person)", sharedPrice),
     ],
-    organizer: {
-      "@type": "Organization",
-      name: "The Art of Sensuality",
-      url: BASE_URL,
-    },
-    performer: {
-      "@type": "Person",
-      name: "Wesley Tan",
-    },
+    organizer: organizationRef,
+    performer: personRef,
     url: RETREAT_URL,
   };
 
@@ -114,6 +115,13 @@ export default function Powys2027Page() {
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
+      <JsonLd
+        data={breadcrumbJsonLd([
+          OFFERINGS_CRUMB,
+          WORKSHOPS_CRUMB,
+          { name: "Tantra Massage Seminar, Powys 2027", path: "/retreats/powys-2027" },
+        ])}
       />
 
       {/* ── HERO ── */}

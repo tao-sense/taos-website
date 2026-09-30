@@ -9,6 +9,17 @@ import CookieBanner from "@/components/CookieBanner";
 import { Analytics } from "@vercel/analytics/next";
 import type { Metadata } from "next";
 import { Playfair_Display, Inter } from "next/font/google";
+import JsonLd from "@/components/JsonLd";
+import {
+  SITE_URL,
+  WEBSITE_ID,
+  ORGANIZATION_ID,
+  BUSINESS_ID,
+  SAME_AS,
+  LOGO_URL,
+  personRef,
+  organizationRef,
+} from "@/lib/structured-data";
 
 const playfair = Playfair_Display({
   subsets: ["latin"],
@@ -84,10 +95,36 @@ export const metadata: Metadata = {
   },
 };
 
-const jsonLd = {
-  "@context": "https://schema.org",
+const website = {
+  "@type": "WebSite",
+  "@id": WEBSITE_ID,
+  url: SITE_URL,
+  name: "The Art of Sensuality (TAOS)",
+  alternateName: "TAOS",
+  inLanguage: "en-GB",
+  publisher: organizationRef,
+};
+
+const organization = {
+  "@type": "Organization",
+  "@id": ORGANIZATION_ID,
+  name: "The Art of Sensuality (TAOS)",
+  alternateName: "TAOS",
+  url: SITE_URL,
+  logo: {
+    "@type": "ImageObject",
+    url: LOGO_URL,
+    width: 1024,
+    height: 1024,
+  },
+  email: "touch@taosense.uk",
+  founder: personRef,
+  sameAs: SAME_AS,
+};
+
+const localBusiness = {
   "@type": "LocalBusiness",
-  "@id": "https://theartofsensuality.com/#business",
+  "@id": BUSINESS_ID,
   name: "The Art of Sensuality (TAOS)",
   description:
     "Professional Tantra Massage, Intimacy Coaching, and Workshops in Stroud, Gloucestershire, UK.",
@@ -109,10 +146,9 @@ const jsonLd = {
     addressRegion: "Gloucestershire",
     addressCountry: "GB",
   },
-  founder: {
-    "@type": "Person",
-    name: "Wesley Tan",
-  },
+  founder: personRef,
+  parentOrganization: organizationRef,
+  logo: LOGO_URL,
   hasOfferCatalog: {
     "@type": "OfferCatalog",
     name: "Services",
@@ -143,7 +179,12 @@ const jsonLd = {
       },
     ],
   },
-  sameAs: ["https://www.instagram.com/tao_sense"],
+  sameAs: SAME_AS,
+};
+
+const siteJsonLd = {
+  "@context": "https://schema.org",
+  "@graph": [website, organization, localBusiness],
 };
 
 export default function RootLayout({
@@ -154,10 +195,7 @@ export default function RootLayout({
   return (
     <html lang="en" className={`${playfair.variable} ${inter.variable}`}>
       <body className="min-h-screen flex flex-col font-inter">
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
-        />
+        <JsonLd data={siteJsonLd} />
         <CookieConsentProvider>
           <Providers>
             <GoogleAnalytics />

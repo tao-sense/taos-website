@@ -1,4 +1,6 @@
 import AboutClient from "./AboutClient";
+import JsonLd from "@/components/JsonLd";
+import { person } from "@/lib/structured-data";
 
 export const metadata = {
   title: "About Wesley Tan",
@@ -35,5 +37,10 @@ export const metadata = {
 };
 
 export default function AboutPage() {
-  return <AboutClient />;
+  return (
+    <>
+      <JsonLd data={person} />
+      <AboutClient />
+    </>
+  );
 }

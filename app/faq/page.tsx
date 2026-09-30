@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
 import FAQClient from "./FAQClient";
+import JsonLd from "@/components/JsonLd";
+import { faqPageJsonLd, sessionFaqs, workshopFaqs } from "@/lib/faq";
 
 export const metadata: Metadata = {
   title:
@@ -40,5 +42,10 @@ export const metadata: Metadata = {
 };
 
 export default function FAQPage() {
-  return <FAQClient />;
+  return (
+    <>
+      <JsonLd data={faqPageJsonLd("/faq", [...sessionFaqs, ...workshopFaqs])} />
+      <FAQClient />
+    </>
+  );
 }

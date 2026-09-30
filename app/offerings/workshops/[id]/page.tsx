@@ -4,6 +4,8 @@ import Image from "next/image";
 import Link from "next/link";
 import WorkshopBookingForm from "./workshop-booking-form";
 import { notFound } from "next/navigation";
+import JsonLd from "@/components/JsonLd";
+import { breadcrumbJsonLd, OFFERINGS_CRUMB, WORKSHOPS_CRUMB } from "@/lib/structured-data";
 
 export async function generateMetadata({
   params,
@@ -104,6 +106,13 @@ export default async function WorkshopPage({
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
+      <JsonLd
+        data={breadcrumbJsonLd([
+          OFFERINGS_CRUMB,
+          WORKSHOPS_CRUMB,
+          { name: workshop.title, path: `/offerings/workshops/${id}` },
+        ])}
       />
 
       {/* Hero Section */}

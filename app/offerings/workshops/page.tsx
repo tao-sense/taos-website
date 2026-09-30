@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import { prisma } from "@/lib/prisma";
 import WorkshopsContent from "./WorkshopsContent";
+import JsonLd from "@/components/JsonLd";
+import { breadcrumbJsonLd, OFFERINGS_CRUMB, WORKSHOPS_CRUMB } from "@/lib/structured-data";
 
 export const revalidate = 20;
 
@@ -79,6 +81,7 @@ export default async function WorkshopsPage() {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
+      <JsonLd data={breadcrumbJsonLd([OFFERINGS_CRUMB, WORKSHOPS_CRUMB])} />
       <WorkshopsContent workshops={workshops} />
     </>
   );

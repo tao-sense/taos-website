@@ -3,6 +3,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import ScrollFade from "@/components/ScrollFade";
+import { tantraPageFaqs } from "@/lib/faq";
 
 export default function TantraPage() {
   return (
@@ -275,54 +276,14 @@ export default function TantraPage() {
               Tantra Massage FAQs
             </h2>
             <div className="space-y-6 text-black/80">
-              <div>
-                <h3 className="font-semibold text-black mb-2">
-                  Will I be naked during the massage?
-                </h3>
-                <p>
-                  The session begins with both of us covered in a lunghi
-                  (sarong). As the massage progresses, clothing may be removed —
-                  always at your pace, and always with equal states of dress. You
-                  will never be pushed beyond what feels right for you.
-                </p>
-              </div>
-
-              <div>
-                <h3 className="font-semibold text-black mb-2">
-                  Is orgasm the goal of Tantra Massage?
-                </h3>
-                <p>
-                  No. The focus is on presence, connection, and awakening the
-                  body’s natural flow of energy. Orgasms may happen, but they are
-                  not expected or required. What matters is how you feel in your
-                  body — relaxed, alive, and more connected to yourself.
-                </p>
-              </div>
-
-              <div>
-                <h3 className="font-semibold text-black mb-2">
-                  What if I feel uncomfortable at any point?
-                </h3>
-                <p>
-                  You are always in charge of the session. You can pause, adjust,
-                  or stop at any time. Consent and clear communication are the
-                  foundation of Tantra Massage, so your boundaries are fully
-                  respected.
-                </p>
-              </div>
-
-              <div>
-                <h3 className="font-semibold text-black mb-2">
-                  Can Tantra Massage help if I’ve experienced trauma?
-                </h3>
-                <p>
-                  Tantra Massage can be a gentle support for reconnecting with
-                  your body and rebuilding trust in intimacy. While it is not a
-                  substitute for therapy, many people find it helps them soften
-                  protective tension and rediscover the pleasure of being touched
-                  in a safe, honouring way.
-                </p>
-              </div>
+              {tantraPageFaqs.map((item) => (
+                <div key={item.question}>
+                  <h3 className="font-semibold text-black mb-2">{item.question}</h3>
+                  {item.answer.map((paragraph, i) => (
+                    <p key={i}>{paragraph.map((part) => (typeof part === "string" ? part : part.text))}</p>
+                  ))}
+                </div>
+              ))}
             </div>
 
             <div className="text-center mt-10">
