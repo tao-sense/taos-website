@@ -5,7 +5,7 @@ import Link from 'next/link'
 import { urlFor } from '@/lib/sanity'
 import { ChevronLeft, ChevronRight } from 'lucide-react'
 
-type Post = {
+export type Post = {
   _id: string
   title: string
   slug: { current: string }

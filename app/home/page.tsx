@@ -1,4 +1,31 @@
 import HomeClient from "./HomeClient";
+import { client } from "@/lib/sanity";
+import type { Post } from "@/components/BlogCarouselClient";
+
+// Refresh the "From the Journal" posts every minute, same as /blog.
+export const revalidate = 60;
+
+// Fetched on the server only. This used to live in an async component
+// rendered inside HomeClient ("use client"), which re-ran the query in the
+// browser on every render.
+async function getLatestPosts(): Promise<Post[]> {
+  try {
+    return await client.fetch(
+      `*[_type == "post"] | order(publishedAt desc) [0...6] {
+        _id,
+        title,
+        slug,
+        publishedAt,
+        excerpt,
+        mainImage,
+        categories
+      }`
+    );
+  } catch (error) {
+    console.error("Home: failed to fetch latest posts from Sanity.", error);
+    return [];
+  }
+}
 
 export const metadata = {
   // Absolute: the root layout's title template doesn't apply to the root page.
@@ -27,6 +54,7 @@ export const metadata = {
   },
 };
 
-export default function HomePage() {
-  return <HomeClient />;
+export default async function HomePage() {
+  const posts = await getLatestPosts();
+  return <HomeClient posts={posts} />;
 }
