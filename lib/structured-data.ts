@@ -9,10 +9,21 @@ export const ORGANIZATION_ID = `${SITE_URL}/#organization`;
 export const BUSINESS_ID = `${SITE_URL}/#business`;
 export const PERSON_ID = `${SITE_URL}/about#wesley-tan`;
 
+export const MAPS_URL = "https://maps.app.goo.gl/PSu5Vns7TQK2jpeU9";
+
 export const SAME_AS = [
   "https://instagram.com/tao_sense",
   "https://facebook.com/profile.php?id=61589678035309",
+  MAPS_URL,
 ];
+
+// Town-level only: no street address or postcode is published.
+export const ADDRESS = {
+  "@type": "PostalAddress",
+  addressLocality: "Stroud",
+  addressRegion: "Gloucestershire",
+  addressCountry: "GB",
+};
 
 export const LOGO_URL = `${SITE_URL}/images/taos-logo.png`;
 

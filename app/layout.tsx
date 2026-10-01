@@ -17,6 +17,8 @@ import {
   BUSINESS_ID,
   SAME_AS,
   LOGO_URL,
+  ADDRESS,
+  MAPS_URL,
   personRef,
   organizationRef,
 } from "@/lib/structured-data";
@@ -118,6 +120,8 @@ const organization = {
     height: 1024,
   },
   email: "touch@taosense.uk",
+  address: ADDRESS,
+  hasMap: MAPS_URL,
   founder: personRef,
   sameAs: SAME_AS,
 };
@@ -140,12 +144,8 @@ const localBusiness = {
     { "@type": "AdministrativeArea", name: "Gloucestershire" },
     { "@type": "Country", name: "United Kingdom" },
   ],
-  address: {
-    "@type": "PostalAddress",
-    addressLocality: "Stroud",
-    addressRegion: "Gloucestershire",
-    addressCountry: "GB",
-  },
+  address: ADDRESS,
+  hasMap: MAPS_URL,
   founder: personRef,
   parentOrganization: organizationRef,
   logo: LOGO_URL,
