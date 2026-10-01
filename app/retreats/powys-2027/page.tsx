@@ -359,18 +359,19 @@ export default function Powys2027Page() {
           <div className="space-y-4">
             <h2 className="font-playfair text-3xl font-semibold text-gold">Practice format</h2>
             <p className="text-lg leading-relaxed text-black/80">
-              Sessions combine guided demonstration with paired practice. Pairs are arranged with
-              a mix of male and female participants, which is part of why group balance matters
-              to us.
-            </p>
-            <p className="text-lg leading-relaxed text-black/80">
-              We do our best to keep the group evenly balanced between women and men when
-              confirming registrations, since it shapes how the paired practice works. We
-              can&rsquo;t guarantee an exact balance in every case, particularly if someone
-              withdraws close to the seminar, but we&rsquo;ll always look for the best solution
-              for the group if that happens.
-            </p>
-          </div>
+                Sessions combine guided demonstration with paired practice. We aim for a balanced
+                number of women and men, so everyone has a partner to practise with. Partnering
+                isn&rsquo;t assigned: each person chooses who they practise with, session by session,
+                and for most of the ritual any pairing works. Couples can stay together throughout or
+                practise with others.
+              </p>
+              <p className="text-lg leading-relaxed text-black/80">
+                The yoni and lingam sections follow a set structure: women learn lingam massage and
+                men learn yoni massage, practising in woman&ndash;man pairs. We can&rsquo;t guarantee
+                an exact balance in every case, particularly if someone withdraws close to the
+                seminar, but we&rsquo;ll always look for the best solution for the group.
+              </p>
+            </div>
         </div>
       </section>
 

@@ -75,7 +75,8 @@ const navItems = [
     href: '/offerings',
     children: [
       { title: 'Classic Tantra Massage', href: '/offerings/tantra' },
-      { title: 'Tantra Massage Seminars', href: '/offerings/workshops' },
+      { title: 'Tantra Massage Training & Workshops', href: '/offerings/workshops' },
+      { title: 'Couples Tantra Massage Training', href: '/offerings/couples-tantra-massage-training' },
       { title: 'Intimacy Coaching', href: '/offerings/coaching' },
     ],
   },

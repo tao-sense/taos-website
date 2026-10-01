@@ -4,7 +4,10 @@ import JsonLd from "@/components/JsonLd";
 import { breadcrumbJsonLd, OFFERINGS_CRUMB } from "@/lib/structured-data";
 
 export const metadata: Metadata = {
-  title: "Intimacy Coaching in Stroud for Couples & Singles | Tantra Coaching UK",
+  // Absolute: this title already ends with the brand, so skip the layout template.
+  title: {
+    absolute: "Intimacy Coaching for Couples & Individuals | Stroud & Online | TAOS",
+  },
   description:
     "Intimacy Coaching with The Art of Sensuality (TAOS) in Stroud and across the UK. A guided, body-based approach to connection, sensual awareness, and conscious communication for individuals and couples.",
   keywords: [
@@ -94,14 +97,6 @@ const jsonLd = {
       priceCurrency: "GBP",
       description:
         "60-minute initial consultation, credited toward any package if you continue",
-    },
-    {
-      "@type": "Offer",
-      name: "Tantra Massage Training for Couples",
-      price: "1800",
-      priceCurrency: "GBP",
-      description:
-        "15-hour bespoke Tantra Massage Training for couples, typically 5 × 3-hour sessions",
     },
   ],
   audience: {

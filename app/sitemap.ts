@@ -24,6 +24,7 @@ const publicRoutes: {
   { path: "/offerings/tantra",     priority: 0.85, changeFrequency: "monthly" },
   { path: "/offerings/coaching",   priority: 0.85, changeFrequency: "monthly" },
   { path: "/offerings/workshops",  priority: 0.85, changeFrequency: "weekly"  },
+  { path: "/offerings/couples-tantra-massage-training", priority: 0.85, changeFrequency: "monthly" },
   { path: "/retreats/powys-2027",  priority: 0.85, changeFrequency: "weekly"  },
   { path: "/blog",                 priority: 0.8,  changeFrequency: "weekly"  },
   { path: "/client-stories",       priority: 0.7,  changeFrequency: "monthly" },

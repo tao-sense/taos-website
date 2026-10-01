@@ -2,7 +2,7 @@
 
 import { trackContact } from "@/lib/fpixel";
 import { event as gtagEvent } from "@/lib/gtag";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { ChevronDown } from "lucide-react";
@@ -16,6 +16,16 @@ export default function ContactClient() {
     message: "",
   });
   const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
+
+  // Links like /contact?subject=Couples%20Tantra%20Massage%20Training start the
+  // message off with the topic. Read on mount so the page can stay static.
+  useEffect(() => {
+    const subject = new URLSearchParams(window.location.search).get("subject")?.trim();
+    if (!subject) return;
+    setFormData((current) =>
+      current.message ? current : { ...current, message: `Enquiry about: ${subject.slice(0, 100)}\n\n` }
+    );
+  }, []);
 
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();

@@ -52,6 +52,7 @@ export const person = {
   "@type": "Person",
   "@id": PERSON_ID,
   name: "Wesley Tan",
+  honorificSuffix: "BOst BSc",
   url: `${SITE_URL}/about`,
   image: `${SITE_URL}/images/wesley-tan.jpg`,
   jobTitle: "Tantra massage practitioner and bodywork educator",
@@ -107,7 +108,7 @@ export function breadcrumbJsonLd(crumbs: Crumb[]) {
 // Breadcrumb trails shared by several pages.
 export const OFFERINGS_CRUMB: Crumb = { name: "Offerings", path: "/offerings" };
 export const WORKSHOPS_CRUMB: Crumb = {
-  name: "Tantra Massage Workshops",
+  name: "Tantra Massage Training & Workshops",
   path: "/offerings/workshops",
 };
 export const ARTICLES_CRUMB: Crumb = { name: "Articles", path: "/blog" };

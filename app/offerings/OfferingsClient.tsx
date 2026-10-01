@@ -6,6 +6,43 @@ import { motion } from "framer-motion";
 import { ChevronDown } from "lucide-react";
 import ScrollFade from "@/components/ScrollFade";
 
+
+// Card order: Classic Tantra Massage, Training & Workshops, Couples Training, Intimacy Coaching.
+const offeringCards = [
+  {
+    title: "Classic Tantra Massage",
+    text: "Held in a safe space and taken at your own pace, unconditional touch with no expectations. A deeply nourishing full-body experience designed to awaken energy, promote healing, and reconnect you with your sensual self.",
+    href: "/offerings/tantra",
+    cta: "Discover Tantra Massage →",
+    image: "/images/tantrabed.png",
+    alt: "Classic Tantra Massage in Stroud – Sensual Full-Body Healing by TAOS",
+  },
+  {
+    title: "Tantra Massage Training & Workshops",
+    text: "Learn the complete Tantra Massage ritual on a 4-day foundation training for singles and couples. TAOS certificate and printed manual included.",
+    href: "/offerings/workshops",
+    cta: "Explore Events →",
+    image: "/images/workshop-card.png",
+    alt: "Tantra Massage Training & Workshops across the UK – The Art of Sensuality (TAOS)",
+  },
+  {
+    title: "Couples Tantra Massage Training",
+    text: "The complete Tantra Massage ritual, taught privately to just the two of you over 15 hours.",
+    href: "/offerings/couples-tantra-massage-training",
+    cta: "Read More →",
+    image: "/images/oilyhands.png",
+    alt: "Couples Tantra Massage Training in Stroud – The Art of Sensuality (TAOS)",
+  },
+  {
+    title: "Intimacy Coaching",
+    text: "Guidance for couples and singles to move through blockages around sex and intimacy. Rekindle curiosity, see one another anew, and bring deeper dimensions into your intimate life.",
+    href: "/offerings/coaching",
+    cta: "Read More →",
+    image: "/images/coaching.png",
+    alt: "Intimacy Coaching in Stroud – Personal and Couples Sessions by The Art of Sensuality",
+  },
+];
+
 export default function OfferingsClient() {
   return (
     <main className="bg-black text-white">
@@ -28,7 +65,7 @@ export default function OfferingsClient() {
 
           <ScrollFade delay={0.1}>
             <p className="text-lg text-white/80">
-              Three distinct paths — massage, seminars, and coaching — each
+              Three distinct paths — massage, training, and coaching — each
               designed to invite you deeper into connection, pleasure, and
               authentic presence. These are the core services of TAOS.
             </p>
@@ -56,7 +93,7 @@ export default function OfferingsClient() {
           </div>
 
           <motion.div
-            className="container mx-auto px-6 grid md:grid-cols-3 gap-10"
+            className="container mx-auto px-6 grid md:grid-cols-2 gap-10"
             variants={{
               hidden: {},
               visible: {
@@ -67,118 +104,40 @@ export default function OfferingsClient() {
             whileInView="visible"
             viewport={{ once: true, amount: 0.15 }}
           >
-            {/* Card 1 */}
-            <motion.div
-              variants={{
-                hidden: { opacity: 0, y: 40 },
-                visible: {
-                  opacity: 1,
-                  y: 0,
-                  transition: { duration: 0.8, ease: [0.25, 0.1, 0.25, 1] },
-                },
-              }}
-              className="bg-white rounded-2xl overflow-hidden border border-gray-200 shadow-xl hover:shadow-2xl transition-shadow duration-300"
-            >
-              <Image
-                src="/images/workshop-card.png"
-                alt="Tantra Massage Workshops across the UK – Learn Tantra Massage with TAOS"
-                width={600}
-                height={400}
-                className="w-full h-56 object-cover"
-              />
-              <div className="p-6">
-                <h2 className="font-playfair text-2xl font-semibold text-gold mb-3">
-                  Tantra Massage Seminars
-                </h2>
-                <p className="mb-4">
-                  For men, women, singles, and couples — learn the art of Tantra
-                  Massage in transformative workshops that nourish connection,
-                  trust, and pleasure. Safety and consent form the foundation
-                  for authentic meeting.
-                </p>
-                <Link
-                  href="/offerings/workshops"
-                  className="inline-block px-4 py-2 rounded-xl bg-gold text-black hover:opacity-90"
-                >
-                  Explore Events →
-                </Link>
-              </div>
-            </motion.div>
-
-            {/* Card 2 */}
-            <motion.div
-              variants={{
-                hidden: { opacity: 0, y: 40 },
-                visible: {
-                  opacity: 1,
-                  y: 0,
-                  transition: { duration: 0.8, ease: [0.25, 0.1, 0.25, 1] },
-                },
-              }}
-              className="bg-white rounded-2xl overflow-hidden border border-gray-200 shadow-xl hover:shadow-2xl transition-shadow duration-300"
-            >
-              <Image
-                src="/images/coaching.png"
-                alt="Intimacy Coaching in Stroud – Personal and Couples Sessions by The Art of Sensuality"
-                width={600}
-                height={400}
-                className="w-full h-56 object-cover"
-              />
-              <div className="p-6">
-                <h2 className="font-playfair text-2xl font-semibold text-gold mb-3">
-                  Intimacy Coaching
-                </h2>
-                <p className="mb-4">
-                  Guidance for couples and singles to move through blockages
-                  around sex and intimacy. Rekindle curiosity, see one another
-                  anew, and bring deeper dimensions into your intimate life.
-                </p>
-                <Link
-                  href="/offerings/coaching"
-                  className="inline-block px-4 py-2 rounded-xl bg-gold text-black hover:opacity-90"
-                >
-                  Read More →
-                </Link>
-              </div>
-            </motion.div>
-
-            {/* Card 3 */}
-            <motion.div
-              variants={{
-                hidden: { opacity: 0, y: 40 },
-                visible: {
-                  opacity: 1,
-                  y: 0,
-                  transition: { duration: 0.8, ease: [0.25, 0.1, 0.25, 1] },
-                },
-              }}
-              className="bg-white rounded-2xl overflow-hidden border border-gray-200 shadow-xl hover:shadow-2xl transition-shadow duration-300"
-            >
-              <Image
-                src="/images/tantrabed.png"
-                alt="Classic Tantra Massage in Stroud – Sensual Full-Body Healing by TAOS"
-                width={600}
-                height={400}
-                className="w-full h-56 object-cover"
-              />
-              <div className="p-6">
-                <h2 className="font-playfair text-2xl font-semibold text-gold mb-3">
-                  Classic Tantra Massage
-                </h2>
-                <p className="mb-4">
-                  Held in a safe space and taken at your own pace,
-                  unconditional touch with no expectations. A deeply nourishing
-                  full-body experience designed to awaken energy, promote
-                  healing, and reconnect you with your sensual self.
-                </p>
-                <Link
-                  href="/offerings/tantra"
-                  className="inline-block px-4 py-2 rounded-xl bg-gold text-black hover:opacity-90"
-                >
-                  Discover Tantra Massage →
-                </Link>
-              </div>
-            </motion.div>
+            {offeringCards.map((card) => (
+              <motion.div
+                key={card.href}
+                variants={{
+                  hidden: { opacity: 0, y: 40 },
+                  visible: {
+                    opacity: 1,
+                    y: 0,
+                    transition: { duration: 0.8, ease: [0.25, 0.1, 0.25, 1] },
+                  },
+                }}
+                className="bg-white rounded-2xl overflow-hidden border border-gray-200 shadow-xl hover:shadow-2xl transition-shadow duration-300"
+              >
+                <Image
+                  src={card.image}
+                  alt={card.alt}
+                  width={600}
+                  height={400}
+                  className="w-full h-56 object-cover"
+                />
+                <div className="p-6">
+                  <h2 className="font-playfair text-2xl font-semibold text-gold mb-3">
+                    {card.title}
+                  </h2>
+                  <p className="mb-4">{card.text}</p>
+                  <Link
+                    href={card.href}
+                    className="inline-block px-4 py-2 rounded-xl bg-gold text-black hover:opacity-90"
+                  >
+                    {card.cta}
+                  </Link>
+                </div>
+              </motion.div>
+            ))}
           </motion.div>
         </section>
       </ScrollFade>

@@ -107,8 +107,14 @@ export default function Footer() {
       </div>
 
       {/* Bottom bar */}
-      <div className="border-t border-white/10 mt-10 py-6 text-center text-sm text-white/50">
-        © {new Date().getFullYear()} TAOS. All rights reserved.
+      <div className="border-t border-white/10 mt-10 py-6 text-center text-sm text-white/50 space-y-2">
+        <p>
+          The Art of Sensuality · Stroud, Gloucestershire · Workshops across the UK ·{" "}
+          <a href="mailto:touch@taosense.uk" className="hover:text-gold">
+            touch@taosense.uk
+          </a>
+        </p>
+        <p>© {new Date().getFullYear()} TAOS. All rights reserved.</p>
       </div>
     </footer>
   );

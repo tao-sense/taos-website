@@ -4,8 +4,10 @@ import JsonLd from "@/components/JsonLd";
 import { breadcrumbJsonLd, OFFERINGS_CRUMB } from "@/lib/structured-data";
 
 export const metadata: Metadata = {
-  title:
-    "Tantra Massage Workshops & Offerings | Stroud, UK",
+  // Absolute: this title already ends with the brand, so skip the layout template.
+  title: {
+    absolute: "Tantra Massage, Training & Intimacy Coaching | Stroud, UK | TAOS",
+  },
   description:
     "Explore Tantra Massage Workshops across the UK, Intimacy Coaching in Stroud, and Sensual Massage experiences with TAOS — The Art of Sensuality. Learn the art of Tantra Massage through transformative workshops, private sessions, and coaching to awaken connection, trust, and embodied pleasure.",
   keywords: [

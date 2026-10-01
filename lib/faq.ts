@@ -238,3 +238,99 @@ export function faqPageJsonLd(path: string, items: FaqItem[]) {
     })),
   };
 }
+
+// /offerings/workshops — Tantra massage training FAQ (no FAQPage schema)
+export const trainingFaqs: FaqItem[] = [
+  {
+    question: "Do I need any experience?",
+    answer: [["No. The training starts from the beginning. You need openness, respect, and to be comfortable on the floor."]],
+  },
+  {
+    question: "Can I come on my own?",
+    answer: [["Yes. Many people do. You choose who you practise with, session by session."]],
+  },
+  {
+    question: "We’re a couple. Do we have to work with other people?",
+    answer: [["No. You can stay together for the whole workshop, or explore working with others. It’s your choice, every session, and either is completely fine."]],
+  },
+  {
+    question: "Will I receive a certificate?",
+    answer: [["Yes. A TAOS certificate of attendance and completion of basic training in Tantra Massage, plus a printed step-by-step manual of the full routine and ritual."]],
+  },
+  {
+    question: "Can I use this training to work professionally?",
+    answer: [["The foundation training gives you the complete ritual and a solid base. If you want to practise professionally, ongoing mentoring is available. You’ll also need your own insurance and to meet any requirements where you work. The TAOS certificate isn’t an external accreditation."]],
+  },
+  {
+    question: "Is nudity part of the training?",
+    answer: [["During massage practice, yes, with loose coverings. Full nudity is optional. It’s always consensual and never sexualised."]],
+  },
+  {
+    question: "Is this about sex?",
+    answer: [["No. The focus is presence, acceptance and conscious touch, not performance or sexual contact."]],
+  },
+  {
+    question: "How are yoni and lingam massage taught?",
+    answer: [["As part of the complete ritual sequence, through demonstration and guided practice. In the 4-day format, women learn lingam massage and men learn yoni massage, practising in woman–man pairs for these sections."]],
+  },
+  {
+    question: "Can I learn yoni massage as a woman, or lingam massage as a man?",
+    answer: [["The yoni and lingam sections are structured for woman–man pairs, so the group stays balanced and both techniques can be taught properly. If you have a different interest, get in touch before booking, and we’ll talk through what’s possible."]],
+  },
+  {
+    question: "Can I pair with someone of the same sex?",
+    answer: [["Yes, for most of the ritual, such as the back, arms, face and full-body work. Only the yoni and lingam sections follow the woman–man structure."]],
+  },
+  {
+    question: "Is the group balanced?",
+    answer: [["We aim for a balanced number of women and men in each workshop, for an even group energy and so everyone has a partner."]],
+  },
+  {
+    question: "Can I come back after the foundation?",
+    answer: [["Yes. Returners can attend future workshops at a reduced rate. Returner rates are available on request."]],
+  },
+  {
+    question: "Is there a minimum age?",
+    answer: [["Yes, 18."]],
+  },
+  {
+    question: "How do I book?",
+    answer: [["Choose a date and submit the registration form on the event page. Registrations are reviewed within 48 hours. A £200 deposit secures your place once confirmed."]],
+  },
+];
+
+// /offerings/couples-tantra-massage-training — Couples training FAQ (no FAQPage schema)
+export const couplesTrainingFaqs: FaqItem[] = [
+  {
+    question: "Do we need any experience?",
+    answer: [["No. We start from the beginning."]],
+  },
+  {
+    question: "Will anyone else be there?",
+    answer: [["No. It’s just the two of you and Wesley."]],
+  },
+  {
+    question: "Is it sexual?",
+    answer: [["No. The ritual includes intimate touch, but the focus is presence and connection, not sex or performance."]],
+  },
+  {
+    question: "What if one of us is more nervous than the other?",
+    answer: [["That’s common, and the pace adapts to it. Nothing happens without both of you agreeing."]],
+  },
+  {
+    question: "Do we need to be undressed?",
+    answer: [["Parts of the practice involve undressing, with coverings. Everything is agreed in advance and can change at any time."]],
+  },
+  {
+    question: "Can we spread the sessions out?",
+    answer: [["Yes. The schedule is agreed with you."]],
+  },
+  {
+    question: "Can we pay in instalments?",
+    answer: [["Yes. The balance can be paid in instalments by arrangement after the £350 deposit."]],
+  },
+  {
+    question: "Is this therapy or counselling?",
+    answer: [["No. It’s practical teaching. If you’re working through specific difficulties, intimacy coaching may suit you better."]],
+  },
+];
