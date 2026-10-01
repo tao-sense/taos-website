@@ -447,9 +447,10 @@ export default function WorkshopsContent({ workshops }: { workshops: Workshop[] 
             <p>
               Wesley Tan BOst BSc trained in osteopathy and has spent most of his working life in
               bodywork and movement teaching. He trained in Tantra Massage with Spiritual Tantra in
-              Berlin in 2019 and has offered Tantra Massage, workshops and intimacy coaching since.
-              He brings an understanding of the body from his osteopathy training together with a
-              grounded, practical way of teaching. The focus stays on the work, not the teacher.
+              Berlin in 2019 and with the Yindo school, also of Berlin, in 2023. He has offered Tantra
+              Massage, workshops and intimacy coaching ever since. He brings an understanding of the
+              body from his osteopathy training together with a grounded, practical way of teaching.
+              The focus stays on the work, not the teacher.
             </p>
             <p>
               <Link href="/about" className="text-gold font-semibold hover:underline">
