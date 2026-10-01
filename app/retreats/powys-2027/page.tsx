@@ -319,6 +319,21 @@ export default function Powys2027Page() {
             />
           </div>
         </div>
+
+        {/* About the training — link back to the training hub */}
+        <div className="max-w-5xl mx-auto mt-12 border border-gold rounded-xl p-6 md:p-8">
+          <p className="text-lg leading-relaxed text-black/80">
+            This seminar is TAOS&rsquo;s 4-day Tantra Massage foundation training. You&rsquo;ll
+            receive a TAOS certificate and a printed step-by-step manual of the complete ritual,
+            and you can return to future workshops at a reduced rate.
+          </p>
+          <Link
+            href="/offerings/workshops"
+            className="mt-6 inline-block px-8 py-3 bg-gold text-black font-semibold rounded-full hover:bg-black hover:text-white transition"
+          >
+            About the training →
+          </Link>
+        </div>
       </section>
 
       {/* ── SCHEDULE ── */}
