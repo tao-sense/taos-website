@@ -2,31 +2,37 @@ import type { Metadata } from "next";
 import { prisma } from "@/lib/prisma";
 import WorkshopsContent from "./WorkshopsContent";
 import JsonLd from "@/components/JsonLd";
-import { breadcrumbJsonLd, OFFERINGS_CRUMB, WORKSHOPS_CRUMB } from "@/lib/structured-data";
+import {
+  breadcrumbJsonLd,
+  personRef,
+  BUSINESS_ID,
+  OFFERINGS_CRUMB,
+  SITE_URL,
+  WORKSHOPS_CRUMB,
+} from "@/lib/structured-data";
 
 export const revalidate = 20;
 
 export const metadata: Metadata = {
-  title: "Tantra Massage Workshops & Training UK",
+  // Absolute: this title already ends with the brand, so skip the layout template.
+  title: {
+    absolute: "Tantra Massage Training & Workshops UK | 4-Day Foundation Course | TAOS",
+  },
   description:
-    "Join Tantra Massage Workshops and professional Tantra Massage Training with The Art of Sensuality (TAOS). Held in beautiful venues across the South West, South East, and wider UK — guided by Wesley Tan. Learn the art of conscious touch, presence, and authentic connection.",
+    "Learn the complete Tantra Massage ritual on a 4-day foundation training for singles and couples. TAOS certificate, printed step-by-step manual, and a path to professional practice.",
   keywords: [
-    "Tantra Massage Workshops UK",
     "Tantra Massage Training UK",
-    "Tantra Massage Courses",
+    "Tantra Massage Workshops UK",
+    "Tantra Massage Course",
+    "Tantra Massage Foundation Training",
     "Tantra Workshops UK",
-    "Tantra Massage Retreats",
-    "Tantra Massage Seminars",
-    "Tantra Massage South West",
-    "Tantra Massage South East",
-    "Tantra Massage Events",
+    "Yoni and Lingam Massage Training",
     "The Art of Sensuality",
-    "TAOS Tantra Workshops",
   ],
   openGraph: {
-    title: "Tantra Massage Workshops & Training UK | The Art of Sensuality (TAOS)",
+    title: "Tantra Massage Training & Workshops UK | 4-Day Foundation Course | TAOS",
     description:
-      "Transformative Tantra Massage Workshops and Training held across the UK by The Art of Sensuality (TAOS). Learn conscious touch, trust, and embodied connection in a supportive space.",
+      "Learn the complete Tantra Massage ritual on a 4-day foundation training for singles and couples. TAOS certificate, printed step-by-step manual, and a path to professional practice.",
     url: "https://theartofsensuality.com/offerings/workshops",
     siteName: "The Art of Sensuality",
     images: [
@@ -45,29 +51,44 @@ export const metadata: Metadata = {
   },
 };
 
-const jsonLd = {
-  "@context": "https://schema.org",
-  "@type": "Service",
-  "@id": "https://theartofsensuality.com/offerings/workshops#service",
-  name: "Tantra Massage Workshops & Training",
-  alternateName: "Tantra Workshops UK",
-  description:
-    "Transformative Tantra Massage Workshops and Training held across the UK by The Art of Sensuality (TAOS). Learn conscious touch, trust, and embodied connection in a supportive space guided by Wesley Tan.",
-  url: "https://theartofsensuality.com/offerings/workshops",
-  provider: {
-    "@type": "LocalBusiness",
-    "@id": "https://theartofsensuality.com/#business",
-  },
-  areaServed: [
-    { "@type": "AdministrativeArea", name: "South West England" },
-    { "@type": "AdministrativeArea", name: "South East England" },
-    { "@type": "Country", name: "United Kingdom" },
-  ],
-  audience: {
-    "@type": "Audience",
-    audienceType: "Individuals, Couples",
-  },
-};
+const FOUNDATION_DAYS = 4;
+
+type CourseWorkshop = { id: string; date: Date; location: string | null; link: string | null };
+
+// Course schema, with one CourseInstance per upcoming published workshop.
+// Workshops only store a start date, so the end date is start + 3 days (4-day format).
+function courseJsonLd(workshops: CourseWorkshop[]) {
+  const upcoming = workshops.filter((w) => w.date >= new Date());
+  return {
+    "@context": "https://schema.org",
+    "@type": "Course",
+    "@id": `${SITE_URL}/offerings/workshops#course`,
+    name: "Tantra Massage Training — 4-Day Foundation Workshop",
+    description:
+      "A 4-day foundation training in the complete Tantra Massage ritual for singles and couples. Includes a TAOS certificate of completion and a printed step-by-step manual.",
+    url: `${SITE_URL}/offerings/workshops`,
+    provider: { "@id": BUSINESS_ID },
+    hasCourseInstance: upcoming.map((w) => {
+      const end = new Date(w.date);
+      end.setUTCDate(end.getUTCDate() + FOUNDATION_DAYS - 1);
+      return {
+        "@type": "CourseInstance",
+        courseMode: "onsite",
+        startDate: w.date.toISOString().slice(0, 10),
+        endDate: end.toISOString().slice(0, 10),
+        url: w.link ? `${SITE_URL}${w.link}` : `${SITE_URL}/offerings/workshops/${w.id}`,
+        ...(w.location && {
+          location: {
+            "@type": "Place",
+            name: w.location,
+            address: { "@type": "PostalAddress", addressCountry: "GB" },
+          },
+        }),
+        instructor: personRef,
+      };
+    }),
+  };
+}
 
 export default async function WorkshopsPage() {
   const workshops = await prisma.workshop.findMany({
@@ -77,10 +98,7 @@ export default async function WorkshopsPage() {
 
   return (
     <>
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
-      />
+      <JsonLd data={courseJsonLd(workshops)} />
       <JsonLd data={breadcrumbJsonLd([OFFERINGS_CRUMB, WORKSHOPS_CRUMB])} />
       <WorkshopsContent workshops={workshops} />
     </>

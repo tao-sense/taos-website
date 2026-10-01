@@ -131,7 +131,7 @@ const localBusiness = {
   "@id": BUSINESS_ID,
   name: "The Art of Sensuality (TAOS)",
   description:
-    "Professional Tantra Massage, Intimacy Coaching, and Workshops in Stroud, Gloucestershire, UK.",
+    "Tantra Massage, Tantra Massage training workshops and intimacy coaching in Stroud, Gloucestershire and across the UK.",
   url: "https://theartofsensuality.com",
   telephone: "+447792510682",
   email: "touch@taosense.uk",
@@ -142,6 +142,10 @@ const localBusiness = {
   areaServed: [
     { "@type": "City", name: "Stroud" },
     { "@type": "AdministrativeArea", name: "Gloucestershire" },
+    { "@type": "City", name: "Cheltenham" },
+    { "@type": "City", name: "Gloucester" },
+    { "@type": "City", name: "Bristol" },
+    { "@type": "City", name: "Bath" },
     { "@type": "Country", name: "United Kingdom" },
   ],
   address: ADDRESS,
@@ -173,8 +177,16 @@ const localBusiness = {
         "@type": "Offer",
         itemOffered: {
           "@type": "Service",
-          name: "Tantra Massage Workshops",
+          name: "Tantra Massage Training & Workshops",
           url: "https://theartofsensuality.com/offerings/workshops",
+        },
+      },
+      {
+        "@type": "Offer",
+        itemOffered: {
+          "@type": "Service",
+          name: "Tantra Massage Training for Couples",
+          url: "https://theartofsensuality.com/offerings/couples-tantra-massage-training",
         },
       },
     ],

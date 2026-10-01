@@ -19,13 +19,12 @@ export default function CoachingClient() {
         />
         <div className="relative z-10 px-6">
           
-  <h1 className="font-playfair text-4xl md:text-6xl font-semibold text-gold mb-4 leading-tight text-center">
-  Intimacy Coaching
-  <br />
-  <span className="text-white/90 font-light text-2xl md:text-3xl">
+  <h1 className="font-playfair text-4xl md:text-6xl font-semibold text-gold mb-2 leading-tight text-center">
+    Intimacy Coaching for Couples and Individuals
+  </h1>
+  <p className="text-white/90 font-light text-2xl md:text-3xl mb-4">
     by The Art of Sensuality (TAOS)
-  </span>
-</h1>
+  </p>
 <p className="max-w-2xl mx-auto text-lg text-white/85">
   A guided journey into deeper connection, sensual awareness, and embodied presence — 
   rooted in the art and principles of Tantra massage. Sessions offered in Stroud, 
@@ -234,83 +233,26 @@ export default function CoachingClient() {
         </section>
       </ScrollFade>
 
-      {/* Tantra Massage Training for Couples */}
+      {/* Tantra Massage Training for Couples (summary; full page at /offerings/couples-tantra-massage-training) */}
       <ScrollFade>
         <section
           id="couples-training"
-          className="bg-black text-white py-20 px-6 border-t border-white/10 border-b border-white/10"
+          className="bg-black text-white py-16 px-6 border-t border-white/10 border-b border-white/10"
         >
-          <div className="flex justify-center mb-10">
-            <Image
-              src="/images/swirl-divider.png"
-              alt="Decorative gold swirl divider – Tantra Massage Training for Couples UK"
-              width={200}
-              height={60}
-              className="h-12 md:h-16 w-auto opacity-90"
-            />
-          </div>
-
-          <div className="max-w-6xl mx-auto space-y-12 text-center">
-            <h2 className="font-playfair text-3xl md:text-4xl font-semibold text-gold">
+          <div className="max-w-3xl mx-auto text-center space-y-6">
+            <h3 className="font-playfair text-2xl md:text-3xl font-semibold text-gold">
               Tantra Massage Training for Couples
-            </h2>
-
-            <p className="max-w-3xl mx-auto text-white/80 text-lg leading-relaxed">
-              For couples who wish to go deeper, this bespoke training offers
-              the complete Tantra Massage ritual and sequence taught across
-              approximately 15 hours of guided tuition. Available in Stroud and
-              throughout the UK, sessions combine demonstration, guided
-              practice, and integration — all within a safe, professional
-              environment.
+            </h3>
+            <p className="text-white/80 text-lg leading-relaxed">
+              Learn the complete Tantra Massage ritual together, taught privately over 15 hours
+              (£1,800 per couple).
             </p>
-
-            <div className="grid md:grid-cols-2 gap-6 lg:gap-10 items-center max-w-4xl mx-auto">
-              <div className="space-y-6 text-left max-w-md mx-auto">
-                <ul className="list-disc list-inside text-white/80 text-lg leading-relaxed space-y-2">
-                  <li>15 hours total (typically 5 × 3-hour sessions)</li>
-                  <li>Step-by-step teaching of the full Tantra Massage ritual</li>
-                  <li>Personalised pace and progression for each couple</li>
-                  <li>Includes discussion, integration, and reflection</li>
-                  <li>Confidential, ethical, and boundaried setting</li>
-                </ul>
-
-                <div className="bg-white/10 rounded-2xl p-6 mt-6 text-center border border-white/20">
-                  <h3 className="font-playfair text-2xl font-semibold text-gold mb-2">
-                    Investment
-                  </h3>
-                  <p className="text-white/85 text-lg">
-                    <strong>£1,800 per couple</strong> <br />
-                    (includes all teaching and materials)
-                  </p>
-                  <p className="text-white/70 text-sm mt-2 leading-relaxed">
-                    <span className="text-gold font-medium">Deposit:</span> £350
-                    non-refundable — required to secure your booking. Remaining
-                    balance due before the first session or payable in
-                    instalments by arrangement.
-                  </p>
-                </div>
-              </div>
-
-              <div className="relative h-[36rem] md:h-[42rem] rounded-2xl overflow-hidden shadow-lg flex items-center justify-center bg-black/10">
-                <Image
-                  src="/images/oilyhands.png"
-                  alt="Tantra Massage Training for Couples in Stroud – TAOS The Art of Sensuality UK"
-                  fill
-                  className="object-contain md:object-scale-down opacity-95"
-                  sizes="(max-width: 768px) 100vw, 50vw"
-                  priority
-                />
-              </div>
-            </div>
-
-            <div className="pt-8 text-center">
-              <Link
-                href="/contact"
-                className="inline-block px-8 py-3 rounded-lg bg-gold text-black font-semibold hover:opacity-90 transition"
-              >
-                Enquire About Training
-              </Link>
-            </div>
+            <Link
+              href="/offerings/couples-tantra-massage-training"
+              className="inline-block px-8 py-3 rounded-lg bg-gold text-black font-semibold hover:opacity-90 transition"
+            >
+              About couples training →
+            </Link>
           </div>
         </section>
       </ScrollFade>

@@ -108,6 +108,10 @@ export default function Home({ posts }: { posts: Post[] }) {
                   deeper connection — with yourself, with others, and with life
                   itself.
                 </p>
+                <p>
+                  Based in Stroud, Gloucestershire, with Tantra Massage sessions
+                  in Stroud and training workshops across the UK.
+                </p>
               </div>
               <blockquote className="mt-8 italic text-black/70 border-l-4 border-gold pl-4">
                 "I was nervous at first, but Wesley made me feel completely safe.
@@ -334,7 +338,7 @@ export default function Home({ posts }: { posts: Post[] }) {
           >
             {[
               {
-                title: "Tantra Massage Seminars",
+                title: "Tantra Massage Training & Workshops",
                 text: "Learn the art of Tantra Massage. Transformational workshop experiences that invite you to feel more alive, nourish connection, trust and pleasure.",
                 href: "/offerings/workshops",
                 link: "Learn More",
