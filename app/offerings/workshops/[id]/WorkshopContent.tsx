@@ -11,7 +11,7 @@ export default function WorkshopContent({ workshop }: { workshop: any }) {
       {/* Hero Section */}
       <section className="relative h-[60vh] w-full flex items-center justify-center text-center overflow-hidden">
         <Image
-          src="/images/grouptantra.png"
+          src="/images/workshop-card.webp"
           alt={workshop.title}
           fill
           className="object-cover opacity-60"
