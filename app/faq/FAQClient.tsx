@@ -32,7 +32,7 @@ export default function FAQClient() {
       {/* Hero */}
       <section className="relative h-[90vh] flex items-center justify-center text-center">
         <Image
-          src="/images/faq.png"
+          src="/images/faq.webp"
           alt="Tantra Massage FAQ with The Art of Sensuality (TAOS)"
           fill
           className="object-cover opacity-95"

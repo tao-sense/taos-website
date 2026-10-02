@@ -11,7 +11,7 @@ export default function CoachingClient() {
       {/* Hero Section */}
       <section className="relative h-[90vh] flex flex-col items-center justify-center text-center overflow-hidden">
         <Image
-          src="/images/coaching.png"
+          src="/images/coaching.webp"
           alt="Intimacy Coaching in Stroud – The Art of Sensuality (TAOS)"
           fill
           className="object-cover opacity-95"
@@ -207,7 +207,7 @@ export default function CoachingClient() {
 
               <div className="relative h-80 rounded-2xl overflow-hidden shadow-lg">
                 <Image
-                  src="/images/hands.png"
+                  src="/images/hands.webp"
                   alt="Intimacy Coaching for Couples in Stroud – TAOS The Art of Sensuality"
                   fill
                   className="object-cover opacity-90"

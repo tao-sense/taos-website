@@ -57,7 +57,7 @@ export default function ContactClient() {
       {/* Hero Section */}
       <section className="relative h-[90vh] w-full flex flex-col items-center justify-center text-center overflow-hidden">
         <Image
-          src="/images/contact.png"
+          src="/images/contact.webp"
           alt="Contact The Art of Sensuality — writing a message in warm candlelight"
           fill
           className="object-cover opacity-90"

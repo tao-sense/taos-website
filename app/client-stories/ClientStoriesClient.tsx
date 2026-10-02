@@ -61,7 +61,7 @@ export default function ClientStoriesClient() {
       {/* HERO */}
       <section className="relative h-[90vh] flex items-center justify-center text-center">
         <Image
-          src="/images/client-stories.png"
+          src="/images/client-stories.webp"
           alt="Tantra Massage Client Stories and Experiences – The Art of Sensuality (TAOS)"
           fill
           className="object-cover opacity-90"

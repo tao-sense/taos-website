@@ -14,7 +14,7 @@ const offeringCards = [
     text: "Held in a safe space and taken at your own pace, unconditional touch with no expectations. A deeply nourishing full-body experience designed to awaken energy, promote healing, and reconnect you with your sensual self.",
     href: "/offerings/tantra",
     cta: "Discover Tantra Massage →",
-    image: "/images/tantrabed.png",
+    image: "/images/tantrabed.webp",
     alt: "Classic Tantra Massage in Stroud – Sensual Full-Body Healing by TAOS",
   },
   {
@@ -22,7 +22,7 @@ const offeringCards = [
     text: "Learn the complete Tantra Massage ritual on a 4-day foundation training for singles and couples. TAOS certificate and printed manual included.",
     href: "/offerings/workshops",
     cta: "Explore Events →",
-    image: "/images/workshop-card.png",
+    image: "/images/workshop-card.webp",
     alt: "Tantra Massage Training & Workshops across the UK – The Art of Sensuality (TAOS)",
   },
   {
@@ -30,7 +30,7 @@ const offeringCards = [
     text: "The complete Tantra Massage ritual, taught privately to just the two of you over 15 hours.",
     href: "/offerings/couples-tantra-massage-training",
     cta: "Read More →",
-    image: "/images/oilyhands.png",
+    image: "/images/oilyhands.webp",
     alt: "Couples Tantra Massage Training in Stroud – The Art of Sensuality (TAOS)",
   },
   {
@@ -38,7 +38,7 @@ const offeringCards = [
     text: "Guidance for couples and singles to move through blockages around sex and intimacy. Rekindle curiosity, see one another anew, and bring deeper dimensions into your intimate life.",
     href: "/offerings/coaching",
     cta: "Read More →",
-    image: "/images/coaching.png",
+    image: "/images/coaching.webp",
     alt: "Intimacy Coaching in Stroud – Personal and Couples Sessions by The Art of Sensuality",
   },
 ];
@@ -49,7 +49,7 @@ export default function OfferingsClient() {
       {/* HERO */}
       <section className="relative h-[90vh] flex items-center justify-center text-center">
         <Image
-          src="/images/offeringsgold.png"
+          src="/images/offeringsgold.webp"
           alt="Tantra Massage Workshops and Offerings by TAOS in Stroud, Gloucestershire"
           fill
           className="object-cover opacity-100"

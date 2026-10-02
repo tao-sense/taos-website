@@ -13,7 +13,7 @@ export default function Home({ posts }: { posts: Post[] }) {
       <section className="relative w-full">
         <div className="relative w-full text-center">
           <Image
-            src="/images/hero-banner2.jpg"
+            src="/images/hero-banner2.webp"
             alt="Tantra Massage, Workshops and Intimacy Coaching with TAOS"
             width={1600}
             height={900}
@@ -120,7 +120,7 @@ export default function Home({ posts }: { posts: Post[] }) {
             </div>
             <div className="relative w-full h-64 md:h-80 rounded-xl overflow-hidden">
               <Image
-                src="/images/about-taos.png"
+                src="/images/about-taos.webp"
                 alt="About TAOS – Tantra Massage and Intimacy Coaching in Stroud"
                 fill
                 className="object-cover"
@@ -135,7 +135,7 @@ export default function Home({ posts }: { posts: Post[] }) {
         <section className="relative w-full">
           <div className="relative w-full h-64 sm:h-80 md:h-[600px]">
             <Image
-              src="/images/modern-disconnect.png"
+              src="/images/modern-disconnect.webp"
               alt="Modern disconnect – representing isolation and loss of connection in contemporary life"
               fill
               className="object-cover object-center"
@@ -216,7 +216,7 @@ export default function Home({ posts }: { posts: Post[] }) {
             </div>
             <div className="relative w-full h-64 md:h-80 rounded-xl overflow-hidden">
               <Image
-                src="/images/purpose.png"
+                src="/images/purpose.webp"
                 alt="Our Purpose – Tantra Massage and Intimacy Coaching with The Art of Sensuality"
                 fill
                 className="object-cover"
@@ -231,7 +231,7 @@ export default function Home({ posts }: { posts: Post[] }) {
         <section
           className="relative bg-black text-white px-6 py-24 overflow-hidden"
           style={{
-            backgroundImage: "url('/images/taos-path2.png')",
+            backgroundImage: "url('/images/taos-path2.webp')",
             backgroundSize: "cover",
             backgroundPosition: "center",
           }}

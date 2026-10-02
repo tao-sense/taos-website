@@ -11,7 +11,7 @@ export default function TantraPage() {
       {/* Hero */}
       <section className="relative h-[90vh] flex flex-col items-center justify-center text-center">
         <Image
-          src="/images/tantrabed.png"
+          src="/images/tantrabed.webp"
           alt="Classic Tantra Massage in Stroud – The Art of Sensuality (TAOS)"
           fill
           className="object-cover opacity-95"
@@ -92,7 +92,7 @@ export default function TantraPage() {
             </div>
             <div className="relative h-80 rounded-2xl overflow-hidden shadow-lg">
               <Image
-                src="/images/tantragesture.png"
+                src="/images/tantragesture.webp"
                 alt="Tantra Massage gesture and technique – Stroud Gloucestershire TAOS"
                 fill
                 className="object-cover"
@@ -155,7 +155,7 @@ export default function TantraPage() {
             </div>
             <div className="relative h-80 rounded-2xl overflow-hidden shadow-lg">
               <Image
-                src="/images/silk.png"
+                src="/images/silk.webp"
                 alt="Tantra Massage space and environment – The Art of Sensuality Stroud"
                 fill
                 className="object-cover"
