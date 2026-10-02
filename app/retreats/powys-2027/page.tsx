@@ -25,6 +25,12 @@ const PAGE_TITLE = "Tantra Massage Seminar · 11–14 Feb 2027 · Powys, Wales";
 const PAGE_DESCRIPTION =
   "A four-day residential retreat to learn the full Tantra massage ritual, with consent, presence and breath at its heart. Early bird offer for registrations by 31 October.";
 const PAGE_URL = "https://theartofsensuality.com/retreats/powys-2027";
+const OG_IMAGE = {
+  url: "/images/retreats/powys-2027/og.jpg",
+  width: 1200,
+  height: 630,
+  alt: "Garth Barns & Country House, Powys — TAOS Tantra Massage Seminar February 2027",
+};
 
 export const metadata: Metadata = {
   title: PAGE_TITLE,
@@ -36,11 +42,13 @@ export const metadata: Metadata = {
     locale: "en_GB",
     title: PAGE_TITLE,
     description: PAGE_DESCRIPTION,
+    images: [OG_IMAGE],
   },
   twitter: {
     card: "summary_large_image",
     title: PAGE_TITLE,
     description: PAGE_DESCRIPTION,
+    images: [OG_IMAGE.url],
   },
   alternates: {
     canonical: PAGE_URL,

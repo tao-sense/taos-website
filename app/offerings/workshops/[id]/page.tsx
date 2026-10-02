@@ -42,6 +42,12 @@ export async function generateMetadata({
       locale: "en_GB",
       type: "website",
     },
+    twitter: {
+      card: "summary_large_image",
+      title,
+      description,
+      images: ["https://theartofsensuality.com/images/og-banner.jpg"],
+    },
     alternates: {
       canonical: url,
     },
