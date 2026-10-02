@@ -325,7 +325,7 @@ export default function Home({ posts }: { posts: Post[] }) {
 
         <ScrollFade type="stagger" staggerChildren={0.3} distance={40}>
           <motion.div
-            className="container mx-auto grid md:grid-cols-3 gap-8"
+            className="container mx-auto grid md:grid-cols-2 xl:grid-cols-4 gap-8"
             variants={{
               hidden: {},
               visible: {
@@ -338,22 +338,28 @@ export default function Home({ posts }: { posts: Post[] }) {
           >
             {[
               {
+                title: "Classic Tantra Massage",
+                text: "Experience the transformative power of Tantra Massage. Reconnect with your sensual self, free from learned conditions. Awaken the senses & open your heart.",
+                href: "/offerings/tantra",
+                link: "Book a Session",
+              },
+              {
                 title: "Tantra Massage Training & Workshops",
-                text: "Learn the art of Tantra Massage. Transformational workshop experiences that invite you to feel more alive, nourish connection, trust and pleasure.",
+                text: "Learn the complete Tantra Massage ritual on a 4-day foundation training for singles and couples. TAOS certificate and printed manual included.",
                 href: "/offerings/workshops",
                 link: "Learn More",
+              },
+              {
+                title: "Couples Tantra Massage Training",
+                text: "The complete Tantra Massage ritual, taught privately to just the two of you over 15 hours.",
+                href: "/offerings/couples-tantra-massage-training",
+                link: "Discover",
               },
               {
                 title: "Intimacy Coaching",
                 text: "A guided journey into deeper connection, sensual awareness, and embodied presence — rooted in the art and principles of Tantra massage.",
                 href: "/offerings/coaching",
                 link: "Begin the Journey",
-              },
-              {
-                title: "Classic Tantra Massage",
-                text: "Experience the transformative power of Tantra Massage. Reconnect with your sensual self, free from learned conditions. Awaken the senses & open your heart.",
-                href: "/offerings/tantra",
-                link: "Book a Session",
               },
             ].map((card, i) => (
               <motion.div
@@ -369,13 +375,13 @@ export default function Home({ posts }: { posts: Post[] }) {
                     },
                   },
                 }}
-                className="rounded-2xl border border-black/10 bg-black/5 p-6 hover:shadow-lg transition text-left"
+                className="flex flex-col rounded-2xl border border-black/10 bg-black/5 p-6 hover:shadow-lg transition text-left"
               >
                 <h3 className="font-playfair text-xl font-semibold text-gold">{card.title}</h3>
-                <p className="mt-3 text-black/80 leading-relaxed">{card.text}</p>
+                <p className="mt-3 flex-1 text-black/80 leading-relaxed">{card.text}</p>
                 <Link
                   href={card.href}
-                  className="mt-5 inline-block px-4 py-2 rounded-xl bg-gold text-black hover:opacity-90"
+                  className="mt-5 self-start inline-block px-4 py-2 rounded-xl bg-gold text-black hover:opacity-90"
                 >
                   {card.link}
                 </Link>
