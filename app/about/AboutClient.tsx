@@ -12,7 +12,7 @@ export default function AboutClient() {
         {/* Mobile: image at its natural 3:2 ratio. Desktop: 90vh cover crop. */}
         <div className="relative w-full aspect-[3/2] md:aspect-auto md:h-[90vh]">
           <Image
-            src="/images/journey.png"
+            src="/images/journey.webp"
             alt="The Art of Sensuality – My Journey by Wesley Tan"
             fill
             sizes="100vw"
@@ -77,7 +77,7 @@ export default function AboutClient() {
             <div className="flex flex-col md:flex-row items-center md:items-start gap-6 mb-10">
               <div className="w-40 h-40 rounded-full overflow-hidden border-4 border-gold shadow-lg">
                 <Image
-                  src="/images/wesley-tan.jpg"
+                  src="/images/wesley-tan.webp"
                   alt="Portrait of Wesley Tan – Founder of The Art of Sensuality (TAOS)"
                   width={160}
                   height={160}

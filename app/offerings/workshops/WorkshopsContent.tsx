@@ -116,7 +116,7 @@ export default function WorkshopsContent({ workshops }: { workshops: Workshop[] 
       {/* HERO SECTION */}
       <section className="relative h-[90vh] w-full flex items-center justify-center text-center overflow-hidden">
         <Image
-          src="/images/workshops.png"
+          src="/images/workshops.webp"
           alt="Tantra massage training workshop UK – The Art of Sensuality (TAOS)"
           fill
           className="object-cover opacity-90"
@@ -272,7 +272,7 @@ export default function WorkshopsContent({ workshops }: { workshops: Workshop[] 
             </div>
             <div className="relative h-80 rounded-2xl overflow-hidden shadow-lg">
               <Image
-                src="/images/warmoil.png"
+                src="/images/warmoil.webp"
                 alt="Tantra massage training workshop space – The Art of Sensuality"
                 fill
                 className="object-cover"

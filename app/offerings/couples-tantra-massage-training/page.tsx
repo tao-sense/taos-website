@@ -34,14 +34,6 @@ export const metadata: Metadata = {
     description: DESCRIPTION,
     url: PAGE_URL,
     siteName: "The Art of Sensuality",
-    images: [
-      {
-        url: `${SITE_URL}/images/og-banner.jpg`,
-        width: 1200,
-        height: 630,
-        alt: "Tantra Massage Training for Couples – The Art of Sensuality (TAOS)",
-      },
-    ],
     locale: "en_GB",
     type: "website",
   },
@@ -86,7 +78,7 @@ export default function CouplesTrainingPage() {
         {/* HERO */}
         <section className="relative h-[90vh] w-full flex items-center justify-center text-center overflow-hidden">
           <Image
-            src="/images/oilyhands.png"
+            src="/images/oilyhands.webp"
             alt="Tantra Massage Training for Couples in Stroud – The Art of Sensuality (TAOS)"
             fill
             className="object-cover opacity-90"

@@ -55,7 +55,7 @@ export default async function BlogPage() {
       {/* Hero */}
       <section className="relative h-[90vh] w-full flex flex-col items-center justify-center text-center overflow-hidden">
         <Image
-          src="/images/articles-hero.jpg"
+          src="/images/articles-hero.webp"
           alt="Woman reading — Articles by The Art of Sensuality (TAOS)"
           fill
           className="object-cover object-[60%_44%] opacity-90"

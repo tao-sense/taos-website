@@ -25,12 +25,6 @@ const PAGE_TITLE = "Tantra Massage Seminar · 11–14 Feb 2027 · Powys, Wales";
 const PAGE_DESCRIPTION =
   "A four-day residential retreat to learn the full Tantra massage ritual, with consent, presence and breath at its heart. Early bird offer for registrations by 31 October.";
 const PAGE_URL = "https://theartofsensuality.com/retreats/powys-2027";
-const OG_IMAGE = {
-  url: "/images/retreats/powys-2027/og.jpg",
-  width: 1200,
-  height: 630,
-  alt: "Garth Barns & Country House, Powys — TAOS Tantra Massage Seminar February 2027",
-};
 
 export const metadata: Metadata = {
   title: PAGE_TITLE,
@@ -42,13 +36,11 @@ export const metadata: Metadata = {
     locale: "en_GB",
     title: PAGE_TITLE,
     description: PAGE_DESCRIPTION,
-    images: [OG_IMAGE],
   },
   twitter: {
     card: "summary_large_image",
     title: PAGE_TITLE,
     description: PAGE_DESCRIPTION,
-    images: [OG_IMAGE.url],
   },
   alternates: {
     canonical: PAGE_URL,
@@ -97,9 +89,9 @@ export default function Powys2027Page() {
       },
     },
     image: [
-      `${BASE_URL}/images/retreats/powys-2027/Hero.jpg`,
-      `${BASE_URL}/images/retreats/powys-2027/Venue-1.jpg`,
-      `${BASE_URL}/images/retreats/powys-2027/Venue-2.jpg`,
+      `${BASE_URL}/images/retreats/powys-2027/Hero.webp`,
+      `${BASE_URL}/images/retreats/powys-2027/Venue-1.webp`,
+      `${BASE_URL}/images/retreats/powys-2027/Venue-2.webp`,
     ],
     offers: [
       buildOffer("Single occupancy", singlePrice),
@@ -127,7 +119,7 @@ export default function Powys2027Page() {
       {/* ── HERO ── */}
       <section className="relative h-[90vh] w-full flex items-end justify-center overflow-hidden">
         <Image
-          src="/images/retreats/powys-2027/Hero.jpg"
+          src="/images/retreats/powys-2027/Hero.webp"
           alt="Garth Barns & Country House set across the Powys hills, Wales — venue for the TAOS Tantra Massage Seminar February 2027"
           fill
           className="object-cover"
@@ -190,7 +182,7 @@ export default function Powys2027Page() {
         <div className="max-w-5xl mx-auto mt-14 grid grid-cols-1 md:grid-cols-2 gap-4">
           <div className="relative h-72 md:h-96 rounded-xl overflow-hidden">
             <Image
-              src="/images/retreats/powys-2027/Venue-1.jpg"
+              src="/images/retreats/powys-2027/Venue-1.webp"
               alt="Exterior of Garth Barns & Country House, Powys"
               fill
               className="object-cover"
@@ -198,7 +190,7 @@ export default function Powys2027Page() {
           </div>
           <div className="relative h-72 md:h-96 rounded-xl overflow-hidden">
             <Image
-              src="/images/retreats/powys-2027/Venue-2.jpg"
+              src="/images/retreats/powys-2027/Venue-2.webp"
               alt="Garth Barns country house and gardens, Powys, Wales"
               fill
               className="object-cover"
@@ -229,7 +221,7 @@ export default function Powys2027Page() {
           </div>
           <div className="relative h-80 rounded-xl overflow-hidden">
             <Image
-              src="/images/retreats/powys-2027/Studiomain.jpg"
+              src="/images/retreats/powys-2027/Studiomain.webp"
               alt="The main studio space at Garth Barns where sessions take place"
               fill
               className="object-cover"
@@ -260,7 +252,7 @@ export default function Powys2027Page() {
         <div className="max-w-5xl mx-auto grid md:grid-cols-2 gap-12 items-start">
           <div className="relative h-80 md:h-full min-h-[320px] rounded-xl overflow-hidden order-last md:order-first">
             <Image
-              src="/images/retreats/powys-2027/retreatsetting.jpg"
+              src="/images/retreats/powys-2027/retreatsetting.webp"
               alt="The retreat setting at Garth Barns in the Powys hills"
               fill
               className="object-cover"
@@ -312,7 +304,7 @@ export default function Powys2027Page() {
           </div>
           <div className="relative h-72 rounded-xl overflow-hidden">
             <Image
-              src="/images/retreats/powys-2027/Massage.jpg"
+              src="/images/retreats/powys-2027/Massage.webp"
               alt="Tantra massage being given at a TAOS seminar"
               fill
               className="object-cover"
@@ -408,7 +400,7 @@ export default function Powys2027Page() {
           <div className="grid grid-cols-2 md:grid-cols-3 gap-3 mb-3">
             <div className="relative h-56 rounded-lg overflow-hidden col-span-2 md:col-span-2">
               <Image
-                src="/images/retreats/powys-2027/venue-3.jpg"
+                src="/images/retreats/powys-2027/venue-3.webp"
                 alt="Garth Barns & Country House approach and grounds, Powys"
                 fill
                 className="object-cover"
@@ -417,7 +409,7 @@ export default function Powys2027Page() {
             {/* col-span-2 on mobile: odd item, spans full width instead of leaving blank cell */}
             <div className="relative h-56 rounded-lg overflow-hidden col-span-2 md:col-span-1">
               <Image
-                src="/images/retreats/powys-2027/retreatview.jpg"
+                src="/images/retreats/powys-2027/retreatview.webp"
                 alt="Views across the Powys hills from Garth Barns"
                 fill
                 className="object-cover"
@@ -429,7 +421,7 @@ export default function Powys2027Page() {
           <div className="grid grid-cols-2 md:grid-cols-3 gap-3 mb-3">
             <div className="relative h-52 rounded-lg overflow-hidden">
               <Image
-                src="/images/retreats/powys-2027/lake.jpg"
+                src="/images/retreats/powys-2027/lake.webp"
                 alt="The private lake at Garth Barns for wild swimming"
                 fill
                 className="object-cover"
@@ -437,7 +429,7 @@ export default function Powys2027Page() {
             </div>
             <div className="relative h-52 rounded-lg overflow-hidden">
               <Image
-                src="/images/retreats/powys-2027/lakeview.jpg"
+                src="/images/retreats/powys-2027/lakeview.webp"
                 alt="View over the private lake and surrounding hills at Garth Barns"
                 fill
                 className="object-cover"
@@ -446,7 +438,7 @@ export default function Powys2027Page() {
             {/* col-span-2 on mobile: odd item, spans full width instead of leaving blank cell */}
             <div className="relative h-52 rounded-lg overflow-hidden col-span-2 md:col-span-1">
               <Image
-                src="/images/retreats/powys-2027/thedingle.jpg"
+                src="/images/retreats/powys-2027/thedingle.webp"
                 alt="The Dingle woodland walk at Garth Barns"
                 fill
                 className="object-cover"
@@ -458,7 +450,7 @@ export default function Powys2027Page() {
           <div className="grid grid-cols-2 gap-3 mb-3">
             <div className="relative h-56 rounded-lg overflow-hidden">
               <Image
-                src="/images/retreats/powys-2027/studio3.jpg"
+                src="/images/retreats/powys-2027/studio3.webp"
                 alt="Light-filled studio space at Garth Barns where sessions take place"
                 fill
                 className="object-cover"
@@ -466,7 +458,7 @@ export default function Powys2027Page() {
             </div>
             <div className="relative h-56 rounded-lg overflow-hidden">
               <Image
-                src="/images/retreats/powys-2027/studio4.jpg"
+                src="/images/retreats/powys-2027/studio4.webp"
                 alt="The studio at Garth Barns prepared for seminar sessions"
                 fill
                 className="object-cover"
@@ -479,10 +471,10 @@ export default function Powys2027Page() {
             <p className="text-white/50 uppercase tracking-widest text-xs mb-4">Accommodation</p>
             <div className="grid grid-cols-2 md:grid-cols-4 gap-3 mb-3">
               {[
-                { src: "Room1.jpg",  alt: "Bedroom 1 at Garth Barns" },
-                { src: "room2.jpg",  alt: "Bedroom 2 at Garth Barns" },
-                { src: "room3.jpg",  alt: "Bedroom 3 at Garth Barns" },
-                { src: "room4.jpg",  alt: "Bedroom 4 at Garth Barns" },
+                { src: "Room1.webp",  alt: "Bedroom 1 at Garth Barns" },
+                { src: "room2.webp",  alt: "Bedroom 2 at Garth Barns" },
+                { src: "room3.webp",  alt: "Bedroom 3 at Garth Barns" },
+                { src: "room4.webp",  alt: "Bedroom 4 at Garth Barns" },
               ].map(({ src, alt }) => (
                 <div key={src} className="relative h-40 rounded-lg overflow-hidden">
                   <Image
@@ -496,10 +488,10 @@ export default function Powys2027Page() {
             </div>
             <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
               {[
-                { src: "room1ensuite.jpg", alt: "En-suite bathroom for bedroom 1 at Garth Barns" },
-                { src: "room2ensuite.jpg", alt: "En-suite bathroom for bedroom 2 at Garth Barns" },
-                { src: "room3ensuite.jpg", alt: "En-suite bathroom for bedroom 3 at Garth Barns" },
-                { src: "room4ensuite.jpg", alt: "En-suite bathroom for bedroom 4 at Garth Barns" },
+                { src: "room1ensuite.webp", alt: "En-suite bathroom for bedroom 1 at Garth Barns" },
+                { src: "room2ensuite.webp", alt: "En-suite bathroom for bedroom 2 at Garth Barns" },
+                { src: "room3ensuite.webp", alt: "En-suite bathroom for bedroom 3 at Garth Barns" },
+                { src: "room4ensuite.webp", alt: "En-suite bathroom for bedroom 4 at Garth Barns" },
               ].map(({ src, alt }) => (
                 <div key={src} className="relative h-40 rounded-lg overflow-hidden">
                   <Image

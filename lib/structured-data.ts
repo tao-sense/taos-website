@@ -54,7 +54,7 @@ export const person = {
   name: "Wesley Tan",
   honorificSuffix: "BOst BSc",
   url: `${SITE_URL}/about`,
-  image: `${SITE_URL}/images/wesley-tan.jpg`,
+  image: `${SITE_URL}/images/wesley-tan.webp`,
   jobTitle: "Tantra massage practitioner and bodywork educator",
   description:
     "Founder and practitioner of The Art of Sensuality (TAOS). Wesley completed a BSc in Biology at Royal Holloway, University of London (2000), then studied osteopathy at the British School of Osteopathy from 2003 to 2007 (BOst BSc), and practised as a registered osteopath from 2007 to 2020. He now practises as a massage therapist, working with a blend of therapeutic massage, bodywork and Tantra massage, and has taught movement since 1999, beginning with kung fu and qi gong, then gymnastic fitness.",

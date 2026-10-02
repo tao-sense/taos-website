@@ -35,14 +35,6 @@ export const metadata: Metadata = {
       "Learn the complete Tantra Massage ritual on a 4-day foundation training for singles and couples. TAOS certificate, printed step-by-step manual, and a path to professional practice.",
     url: "https://theartofsensuality.com/offerings/workshops",
     siteName: "The Art of Sensuality",
-    images: [
-      {
-        url: "https://theartofsensuality.com/images/og-banner.jpg",
-        width: 1200,
-        height: 630,
-        alt: "Tantra Massage Workshops & Training Across the UK by The Art of Sensuality (TAOS)",
-      },
-    ],
     locale: "en_GB",
     type: "website",
   },
