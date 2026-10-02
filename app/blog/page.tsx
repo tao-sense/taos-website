@@ -30,6 +30,13 @@ export const metadata: Metadata = {
     locale: 'en_GB',
     type: 'website',
   },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Articles | The Art of Sensuality (TAOS)',
+    description:
+      'Perspectives on tantra, intimacy, bodywork and conscious relationships from The Art of Sensuality.',
+    images: ['https://theartofsensuality.com/images/og-blog.jpg'],
+  },
 }
 
 async function getPosts() {
