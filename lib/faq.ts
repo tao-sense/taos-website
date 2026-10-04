@@ -142,7 +142,7 @@ export const workshopFaqs: FaqItem[] = [
   {
     question: "What’s your cancellation policy?",
     answer: [
-      ["If you cancel 70 or more days before the event starts, a £100 [PER PERSON / PER BOOKING] administration fee will be deducted from the deposit. Between 30 and 69 days before, 50% of your total cost. With less than 30 days’ notice, 90% of your total cost."],
+      ["If you cancel 70 or more days before the event starts, a £100 per person administration fee will be deducted from the deposit. Between 30 and 69 days before, 50% of your total cost. With less than 30 days’ notice, 90% of your total cost."],
     ],
   },
   {

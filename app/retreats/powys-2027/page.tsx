@@ -617,7 +617,7 @@ export default function Powys2027Page() {
           <div className="space-y-3 text-black/80">
             <div className="flex gap-4 border-b border-black/10 pb-3">
               <span className="w-56 shrink-0 font-medium">70+ days before</span>
-              <span>£100 [PER PERSON / PER BOOKING] administration fee deducted from the deposit</span>
+              <span>£100 per person administration fee deducted from the deposit</span>
             </div>
             <div className="flex gap-4 border-b border-black/10 pb-3">
               <span className="w-56 shrink-0 font-medium">30–69 days before</span>

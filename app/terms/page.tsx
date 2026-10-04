@@ -88,7 +88,7 @@ export default function TermsPage() {
           <p className="font-semibold mt-4">Cancellation</p>
           <p>
             If you cancel 70 or more days before the event starts, a £100
-            [PER PERSON / PER BOOKING] administration fee will be deducted
+            per person administration fee will be deducted
             from the deposit. Between 30 and 69 days before, 50% of the total
             price. With less than 30 days&rsquo; notice, 90% of the total
             price.
