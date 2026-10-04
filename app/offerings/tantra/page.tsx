@@ -5,9 +5,9 @@ import { faqPageJsonLd, tantraPageFaqs } from "@/lib/faq";
 import { breadcrumbJsonLd, OFFERINGS_CRUMB } from "@/lib/structured-data";
 
 export const metadata: Metadata = {
-  title: "Tantra Massage in Stroud | Sensual Massage | Tantra Massage UK",
+  title: "Tantra Massage in Stroud, Gloucestershire | For Women | TAOS",
   description:
-    "Experience professional Tantra Massage in Stroud with The Art of Sensuality (TAOS). A deeply nourishing full-body journey that reconnects you with sensuality, presence, and self-awareness. Private sessions for singles and couples.",
+    "Professional Tantra Massage in Stroud for women, with The Art of Sensuality (TAOS). A deeply nourishing full-body journey that reconnects you with sensuality, presence, and self-awareness.",
   keywords: [
     "Tantra Massage",
     "Tantra Massage Stroud",
@@ -59,6 +59,16 @@ const jsonLd = {
     { "@type": "City", name: "Stroud" },
     { "@type": "AdministrativeArea", name: "Gloucestershire" },
     { "@type": "Country", name: "United Kingdom" },
+    { "@type": "City", name: "Stonehouse" },
+    { "@type": "City", name: "Nailsworth" },
+    { "@type": "City", name: "Painswick" },
+    { "@type": "City", name: "Gloucester" },
+    { "@type": "City", name: "Cheltenham" },
+    { "@type": "City", name: "Cirencester" },
+    { "@type": "City", name: "Tetbury" },
+    { "@type": "City", name: "Dursley" },
+    { "@type": "City", name: "Bath" },
+    { "@type": "City", name: "Bristol" },
   ],
   offers: {
     "@type": "Offer",
@@ -68,7 +78,7 @@ const jsonLd = {
   },
   audience: {
     "@type": "Audience",
-    audienceType: "Women, Couples",
+    audienceType: "Women",
   },
 };
 

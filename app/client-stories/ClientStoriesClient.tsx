@@ -6,6 +6,7 @@ import Link from "next/link";
 import { motion } from "framer-motion";
 import { ChevronDown } from "lucide-react";
 import ScrollFade from "@/components/ScrollFade";
+import { classicTantraStories } from "@/lib/client-stories";
 
 // The full story is always rendered (so it's in the server HTML for crawlers)
 // and collapsed visually until "Read more" is pressed.
@@ -119,144 +120,34 @@ export default function ClientStoriesClient() {
       <ScrollFade delay={0.1}>
         <section className="bg-white text-black py-20 px-6 border-t border-gray-100">
           <div className="max-w-3xl mx-auto space-y-20">
-            {/* Story 1 */}
-            <article>
-              <h2 className="font-playfair text-2xl font-semibold text-gold mb-4">
-                Finding Safety and Peace
-              </h2>
-              <p className="text-lg leading-relaxed">
-                “I hadn’t heard of a Tantra Massage and was quite nervous, but Wesley
-                made me feel more than safe. He was professional, considerate, and
-                checked in often to ensure I was comfortable.”
-              </p>
+            {classicTantraStories.map((story, index) => (
+              <div key={story.id}>
+                <article>
+                  <h2 className="font-playfair text-2xl font-semibold text-gold mb-4">
+                    {story.title}
+                  </h2>
+                  <p className="text-lg leading-relaxed">
+                    &ldquo;{story.preview}&rdquo;
+                  </p>
 
-              <StoryMore
-                id="story-1-more"
-                open={openStory === 1}
-                onToggle={() => toggleStory(1)}
-                className="space-y-4 text-lg leading-relaxed"
-              >
-                <p>
-                  “He has a very calming presence and healing energy. I have never
-                  experienced such a release, celebration, and healing of feelings
-                  and emotions. Wesley provides a safe space and time to express
-                  emotions freely.”
-                </p>
-                <p>
-                  “I am still feeling a deep peace. Prior to my Tantra Massage, I
-                  was having frequent nightmares, but since the massage I no longer
-                  have them. I am so grateful — thank you, Wesley.”
-                </p>
-                <p className="font-semibold text-gold">— C.A.</p>
-              </StoryMore>
-            </article>
+                  <StoryMore
+                    id={`story-${index + 1}-more`}
+                    open={openStory === index + 1}
+                    onToggle={() => toggleStory(index + 1)}
+                    className="space-y-4 text-lg leading-relaxed"
+                  >
+                    {story.extended.map((para, i) => (
+                      <p key={i}>&ldquo;{para}&rdquo;</p>
+                    ))}
+                    <p className="font-semibold text-gold">— {story.initials}</p>
+                  </StoryMore>
+                </article>
 
-            <div className="h-px w-full bg-gradient-to-r from-transparent via-gold/60 to-transparent my-10" />
-
-            {/* Story 2 */}
-            <article>
-              <h2 className="font-playfair text-2xl font-semibold text-gold mb-4">
-                From Trauma to Freedom
-              </h2>
-              <p className="text-lg leading-relaxed">
-                “For many years, I grappled with a deep-seated trauma response around
-                intimacy and my root chakra. My journey eventually brought me to
-                Wesley Tan, whose expertise in Tantra Massage therapy presented a new
-                path forward.”
-              </p>
-
-              <StoryMore
-                id="story-2-more"
-                open={openStory === 2}
-                onToggle={() => toggleStory(2)}
-                className="space-y-4 text-lg leading-relaxed"
-              >
-                <p>
-                  “My session with Wes was nothing short of transformative.
-                  Lasting two hours, the Tantra Massage was conducted with utmost
-                  care, creating an environment where I felt exceptionally safe,
-                  held, and deeply cared for. For the first time in a long while,
-                  I experienced a profound sense of release and a genuine orgasm —
-                  a moment of liberation I hadn’t thought possible.”
-                </p>
-                <p>
-                  “The impact has been far-reaching in my life. It acted as a
-                  catalyst not only for sexual awakening but also for personal
-                  empowerment and emotional healing. I’ve since ventured into the
-                  world of dating and, to my delight, entered a relationship —
-                  something I previously thought unattainable due to my past
-                  trauma.”
-                </p>
-                <p>
-                  “Wesley’s skilled approach helped me break through the
-                  stagnation in my root chakra, bringing newfound freedom and
-                  openness in both my sexual and personal life. His therapy was one
-                  of the key elements in my journey towards healing and
-                  rediscovery.”
-                </p>
-                <p className="font-semibold text-gold">— C.B.</p>
-              </StoryMore>
-            </article>
-
-            <div className="h-px w-full bg-gradient-to-r from-transparent via-gold/60 to-transparent my-10" />
-
-            {/* Story 3 */}
-            <article>
-              <h2 className="font-playfair text-2xl font-semibold text-gold mb-4">
-                A Quiet Strength Awakened
-              </h2>
-              <p className="text-lg leading-relaxed">
-                “After my massage I felt amazing — Wesley’s connection and insight are
-                invaluable, and the sense of peace I left with continues to ripple
-                through my life.”
-              </p>
-
-              <StoryMore
-                id="story-3-more"
-                open={openStory === 3}
-                onToggle={() => toggleStory(3)}
-                className="text-lg leading-relaxed"
-              >
-                <p>
-                  “I have felt a quiet strength since my massage — not sure what to
-                  do with it, but it makes me feel peaceful. I can’t say how
-                  privileged I feel for this experience. Thank you.”
-                </p>
-                <p className="font-semibold text-gold">— C.C.</p>
-              </StoryMore>
-            </article>
-
-            <div className="h-px w-full bg-gradient-to-r from-transparent via-gold/60 to-transparent my-10" />
-
-            {/* Story 4 */}
-            <article>
-              <h2 className="font-playfair text-2xl font-semibold text-gold mb-4">
-                Learning to Receive
-              </h2>
-              <p className="text-lg leading-relaxed">
-                “Appointments with Wesley have helped me learn to receive.
-                Relationship history and conditioning had me not feeling worthy of
-                physical attention or love.”
-              </p>
-
-              <StoryMore
-                id="story-4-more"
-                open={openStory === 4}
-                onToggle={() => toggleStory(4)}
-                className="space-y-4 text-lg leading-relaxed"
-              >
-                <p>
-                  “With Wesley, I felt safe, seen and cared about. This was new
-                  for me and not only nice in the moment, but also helpful for
-                  moving on with new understanding of how I’d like physical
-                  connection to be.”
-                </p>
-                <p>
-                  “Thank you so much for the unique and invaluable support.”
-                </p>
-                <p className="font-semibold text-gold">— C.D.</p>
-              </StoryMore>
-            </article>
+                {index < classicTantraStories.length - 1 && (
+                  <div className="h-px w-full bg-gradient-to-r from-transparent via-gold/60 to-transparent my-10" />
+                )}
+              </div>
+            ))}
           </div>
         </section>
       </ScrollFade>

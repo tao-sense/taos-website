@@ -20,7 +20,8 @@ export const sessionFaqs: FaqItem[] = [
   {
     question: "Who is Tantra Massage for?",
     answer: [
-      ["Tantra Massage is open to all adults, singles and couples. It can help you reconnect with your sensuality, especially if you’ve felt disconnected through stress, responsibility, or relationship patterns. It’s equally valuable if you already feel attuned and wish to explore intimacy more deeply."],
+      ["Private 1-to-1 Tantra Massage sessions are offered to women. If you’re coming as a couple, see the ", { text: "Couples Tantra Massage Training", href: "/offerings/couples-tantra-massage-training" }, " or ", { text: "Intimacy Coaching", href: "/offerings/coaching" }, " pages for more information."],
+      ["Sessions can help you reconnect with your sensuality — especially if you’ve felt disconnected through stress, responsibility, or relationship patterns. They’re equally valuable if you already feel attuned and wish to explore your body and intimacy more deeply."],
     ],
   },
   {

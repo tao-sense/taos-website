@@ -4,6 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import ScrollFade from "@/components/ScrollFade";
 import { tantraPageFaqs } from "@/lib/faq";
+import { classicTantraStories } from "@/lib/client-stories";
 
 export default function TantraPage() {
   return (
@@ -102,6 +103,18 @@ export default function TantraPage() {
         </section>
       </ScrollFade>
 
+      {/* Credentials */}
+      <section className="bg-white text-black py-5 px-6 border-t border-gray-100">
+        <div className="max-w-4xl mx-auto text-center">
+          <p className="text-sm text-black/55 leading-relaxed">
+            <Link href="/about" className="font-medium text-black/75 hover:text-black transition">
+              Wesley Tan BOst BSc
+            </Link>
+            {" · "}Trained in osteopathy{" · "}Trained in Tantra Massage with Spiritual Tantra, Berlin (2019) and the Yindo school, Berlin (2023)
+          </p>
+        </div>
+      </section>
+
       {/* Session Details */}
       <ScrollFade delay={0.1}>
         <section className="bg-gray-50 py-20 px-6 text-black">
@@ -199,16 +212,22 @@ export default function TantraPage() {
               I currently offer 1-to-1{" "}
               <strong>Tantra Massage sessions in Stroud</strong> for women only.
               This boundary allows me to hold a space that remains aligned with
-              the nature of my work and my personal experience in this field. I
-              also offer a service for couples (where at least one partner is a
-              woman); more details about this offering can be found in the{" "}
+              the nature of my work and my personal experience in this field. For
+              couples, see{" "}
+              <Link
+                href="/offerings/couples-tantra-massage-training"
+                className="text-gold font-semibold hover:underline"
+              >
+                Couples Tantra Massage Training
+              </Link>{" "}
+              or{" "}
               <Link
                 href="/offerings/coaching"
                 className="text-gold font-semibold hover:underline"
               >
                 Intimacy Coaching
-              </Link>{" "}
-              section.
+              </Link>
+              .
             </p>
 
             <p>
@@ -253,6 +272,47 @@ export default function TantraPage() {
               layers and return to the simple beauty of being touched — with
               presence, honour, and care.
             </p>
+          </div>
+        </section>
+      </ScrollFade>
+
+      {/* Testimonials */}
+      <ScrollFade delay={0.35}>
+        <section className="bg-white text-black py-20 px-6 border-t border-gray-200">
+          <div className="flex justify-center mb-10">
+            <Image
+              src="/images/swirl-divider.png"
+              alt="Decorative gold swirl divider – Tantra Massage Client Stories"
+              width={200}
+              height={60}
+              className="h-12 md:h-16 w-auto"
+            />
+          </div>
+
+          <div className="max-w-3xl mx-auto">
+            <h2 className="font-playfair text-2xl font-semibold text-gold mb-10 text-center">
+              Client Experiences
+            </h2>
+
+            <div className="space-y-10">
+              {classicTantraStories.map((story) => (
+                <blockquote key={story.id} className="border-l-2 border-gold/40 pl-6">
+                  <p className="text-lg leading-relaxed text-black/80 italic">
+                    &ldquo;{story.preview}&rdquo;
+                  </p>
+                  <footer className="mt-3 text-sm font-semibold text-gold">— {story.initials}</footer>
+                </blockquote>
+              ))}
+            </div>
+
+            <div className="text-center mt-12">
+              <Link
+                href="/client-stories"
+                className="text-gold hover:underline font-semibold"
+              >
+                Read more client stories →
+              </Link>
+            </div>
           </div>
         </section>
       </ScrollFade>
@@ -322,6 +382,11 @@ export default function TantraPage() {
               trust, embodiment, and presence. Sessions take place in a private,
               peaceful space in <strong>Stroud, Gloucestershire</strong>, with
               The Art of Sensuality (TAOS).
+            </p>
+
+            <p className="text-base text-black/60">
+              Clients travel from Stonehouse, Nailsworth, Painswick, Gloucester,
+              Cheltenham, Cirencester, Tetbury, Dursley, Bath and Bristol.
             </p>
 
             <div className="text-3xl font-semibold text-black mt-6">
