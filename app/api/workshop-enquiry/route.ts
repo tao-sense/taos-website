@@ -65,7 +65,15 @@ export async function POST(req: Request) {
     consentTerms,
     consentHealth,
     website, // honeypot
+    // Partner fields — optional
+    partnerName,
+    partnerAge,
+    partnerHeightCm,
+    partnerWeightKg,
+    partnerHealthNotes,
   } = data;
+
+  const withPartner = !!(partnerName && typeof partnerName === "string" && partnerName.trim());
 
   // Honeypot — bots fill this; return success silently without saving anything
   if (website) {
@@ -144,6 +152,40 @@ export async function POST(req: Request) {
     );
   }
 
+  // Partner field validation — only when toggle was on
+  let partnerAgeNum: number | null = null;
+  let partnerHeightNum: number | null = null;
+  let partnerWeightNum: number | null = null;
+  if (withPartner) {
+    partnerAgeNum = Number(partnerAge);
+    if (isNaN(partnerAgeNum) || partnerAgeNum < 18 || partnerAgeNum > 99) {
+      return NextResponse.json(
+        { error: "Please enter a valid age for your partner (18–99)." },
+        { status: 400 }
+      );
+    }
+    partnerHeightNum = Number(partnerHeightCm);
+    if (isNaN(partnerHeightNum) || partnerHeightNum < 100 || partnerHeightNum > 250) {
+      return NextResponse.json(
+        { error: "Please enter a valid height for your partner (100–250 cm)." },
+        { status: 400 }
+      );
+    }
+    partnerWeightNum = Number(partnerWeightKg);
+    if (isNaN(partnerWeightNum) || partnerWeightNum < 30 || partnerWeightNum > 300) {
+      return NextResponse.json(
+        { error: "Please enter a valid weight for your partner (30–300 kg)." },
+        { status: 400 }
+      );
+    }
+    if (!partnerHealthNotes || typeof partnerHealthNotes !== "string" || !partnerHealthNotes.trim()) {
+      return NextResponse.json(
+        { error: "Please complete the health information field for your partner." },
+        { status: 400 }
+      );
+    }
+  }
+
   // Duplicate check — same workshop + email
   if (workshopId) {
     const duplicate = await prisma.workshopEnquiry.findFirst({
@@ -185,6 +227,12 @@ export async function POST(req: Request) {
         consent_terms: true,
         consent_health: true,
         consent_at: new Date(),
+        // Partner fields
+        partner_name: withPartner ? (partnerName as string).trim() : null,
+        partner_age: partnerAgeNum,
+        partner_height_cm: partnerHeightNum,
+        partner_weight_kg: partnerWeightNum,
+        partner_health_notes: withPartner ? (partnerHealthNotes as string).trim() : null,
       },
       select: { id: true },
     });
@@ -214,17 +262,21 @@ export async function POST(req: Request) {
           <p><strong>Email:</strong> ${normalizedEmail}</p>
           <p><strong>Phone:</strong> ${phone.trim()}</p>
           <p><strong>About them:</strong><br/>${motivation.trim()}</p>
+          ${withPartner ? `<p><strong>Attending with partner:</strong> ${(partnerName as string).trim()} (age ${partnerAgeNum})</p>` : ""}
           <p><strong>Early bird:</strong> ${isEarlyBird ? `Yes ✓ (submitted before 31 Oct 2026 deadline; £${EARLY_BIRD_DISCOUNT} off applies if deposit paid within 7 days of acceptance)` : "No"}</p>
           ${workshopId ? `<p><strong>Workshop ID:</strong> ${workshopId}</p>` : ""}
-          <p style="margin-top:16px;">
-            <a href="${appUrl}/admin/workshop-enquiries" style="color:#C9A46C;">
-              View all booking requests →
+          <p style="margin-top:16px;font-size:12px;color:#888;">
+            Booking request ID: <strong>${record.id}</strong><br/>
+            Full details (including health &amp; body measurements) are on the protected admin page.
+          </p>
+          <p style="margin-top:8px;">
+            <a href="${appUrl}/signin" style="color:#C9A46C;">
+              Admin login →
             </a>
           </p>
           <hr style="margin:24px 0;border:none;border-top:1px solid #ddd;"/>
           <p style="font-size:12px;color:#888;">
             Sent automatically from The Art of Sensuality website.
-            Booking request ID: ${record.id}
           </p>
         </div>
       `,

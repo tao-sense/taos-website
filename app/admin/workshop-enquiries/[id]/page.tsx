@@ -126,6 +126,24 @@ export default async function ApplicantPage({
           />
         </Section>
 
+        {/* Partner details — shown only when a partner was included in the booking */}
+        {enquiry.partner_name && (
+          <Section title="Partner Details">
+            <Field label="Name"   value={enquiry.partner_name} />
+            <Field label="Age"    value={enquiry.partner_age?.toString()} />
+            <Field label="Height" value={enquiry.partner_height_cm ? `${enquiry.partner_height_cm} cm` : null} />
+            <Field label="Weight" value={enquiry.partner_weight_kg ? `${enquiry.partner_weight_kg} kg` : null} />
+            <div className="pt-2">
+              <span className="text-white/40 text-sm block mb-1">Health Information</span>
+              <div className="bg-white/5 rounded p-4 text-white/80 text-sm whitespace-pre-wrap">
+                {enquiry.partner_health_notes ?? (
+                  <span className="text-white/30 italic">Not provided</span>
+                )}
+              </div>
+            </div>
+          </Section>
+        )}
+
         {/* Interactive section handled client-side */}
         <ApplicantDetail
           id={enquiry.id}
