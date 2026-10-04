@@ -431,7 +431,7 @@ export default function WorkshopBookingForm({
 
       {earlyBird && (
         <p className="text-sm text-gold/80 pt-1 border-t border-black/10">
-          Early bird pricing applies to this registration — £50 off the retreat fee, subject to acceptance and deposit paid within 7 days.
+          Early bird pricing applies — £50 off per person, subject to acceptance and the £200 per person deposit paid within 7 days of confirmation.
         </p>
       )}
 

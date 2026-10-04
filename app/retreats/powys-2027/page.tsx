@@ -580,7 +580,7 @@ export default function Powys2027Page() {
           </div>
           {isEarlyBird && (
             <p className="text-gold text-sm mb-6">
-              Early bird: register by 31 October to save £50. Deposit to be paid within 7 days of your place being confirmed.
+              Early bird: register by 31 October to save £50 per person. The £200 per person deposit is due within 7 days of your place being confirmed.
             </p>
           )}
           <p className="text-black/70 leading-relaxed">
@@ -604,9 +604,9 @@ export default function Powys2027Page() {
             It&rsquo;s binding on your side, but your place isn&rsquo;t confirmed until
             we&rsquo;ve reviewed your registration and sent confirmation, which we aim to do
             within 48 hours. Once confirmed, we&rsquo;ll ask for a
-            deposit of £200 by bank transfer. The remaining balance, along with practical details
-            like a packing list and directions to the venue, will be sent by email three weeks
-            before the seminar.
+            deposit of £200 per person by bank transfer within 7 days of confirmation. The balance
+            is due by bank transfer three weeks before the seminar begins — we&rsquo;ll also email
+            a packing list and directions to the venue at that point.
           </p>
         </div>
       </section>
@@ -618,7 +618,7 @@ export default function Powys2027Page() {
           <div className="space-y-3 text-black/80">
             <div className="flex gap-4 border-b border-black/10 pb-3">
               <span className="w-56 shrink-0 font-medium">70+ days before</span>
-              <span>£100 administration fee deducted from the deposit</span>
+              <span>£100 per person administration fee deducted from the deposit</span>
             </div>
             <div className="flex gap-4 border-b border-black/10 pb-3">
               <span className="w-56 shrink-0 font-medium">30–69 days before</span>

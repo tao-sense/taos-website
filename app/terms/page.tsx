@@ -78,26 +78,27 @@ export default function TermsPage() {
 
           <p className="font-semibold mt-4">Payment</p>
           <p>
-            Once your place is confirmed, a deposit of £200 is payable by bank
-            transfer. The remaining balance is due by bank transfer no later
-            than three weeks before the event begins, at which point
-            we&rsquo;ll also send a packing list and any final practical
-            details.
+            Once your place is confirmed, a deposit of £200 per person is
+            payable by bank transfer within 7 days of confirmation. The balance
+            is due by bank transfer no later than three weeks before the event
+            begins — we&rsquo;ll also email a packing list and any final
+            practical details at that point.
           </p>
 
           <p className="font-semibold mt-4">Cancellation</p>
           <p>
             If you cancel 70 or more days before the event starts, a £100
-            administration fee will be deducted from the deposit amount.
-            Between 30 and 69 days before, 50% of the total price. With less
-            than 30 days&rsquo; notice, 90% of the total price.
+            per person administration fee will be deducted
+            from the deposit. Between 30 and 69 days before, 50% of the total
+            price. With less than 30 days&rsquo; notice, 90% of the total
+            price.
           </p>
 
           <p className="font-semibold mt-4">Early bird pricing</p>
           <p>
             Early bird pricing applies to registrations submitted by the stated
-            deadline, where the £200 deposit is paid within 7 days of
-            acceptance.
+            deadline, where the £200 per person deposit is paid within 7 days
+            of acceptance.
           </p>
 
           <p className="font-semibold mt-4">Eligibility</p>

@@ -124,7 +124,7 @@ export const workshopFaqs: FaqItem[] = [
   {
     question: "How do I book a place on a workshop or retreat?",
     answer: [
-      ["Submitting the registration form on the workshop or retreat page is a binding request for a place, but it isn’t confirmed until we’ve reviewed it. We aim to get back to you within 48 hours. Once confirmed, we’ll ask for a deposit of £200 by bank transfer."],
+      ["Submitting the registration form on the workshop or retreat page is a binding request for a place, but it isn’t confirmed until we’ve reviewed it. We aim to get back to you within 48 hours. Once confirmed, we’ll ask for a deposit of £200 per person by bank transfer within 7 days."],
     ],
   },
   {
@@ -136,13 +136,13 @@ export const workshopFaqs: FaqItem[] = [
   {
     question: "What happens after I submit my registration?",
     answer: [
-      ["We review every registration individually, partly to keep the group balanced. Once confirmed, you’ll be asked for a £200 deposit by bank transfer. The remaining balance, along with a packing list and directions to the venue, is sent by email three weeks before the event, and the balance is due by bank transfer at that point."],
+      ["We review every registration individually, partly to keep the group balanced. Once confirmed, you’ll be asked for a £200 per person deposit by bank transfer within 7 days of confirmation. The balance is due by bank transfer three weeks before the event — we’ll email a packing list and directions to the venue at that point."],
     ],
   },
   {
     question: "What’s your cancellation policy?",
     answer: [
-      ["If you cancel 70 or more days before the event starts, a £100 administration fee will be deducted from the deposit amount. Between 30 and 69 days before, 50% of your total cost. With less than 30 days’ notice, 90% of your total cost."],
+      ["If you cancel 70 or more days before the event starts, a £100 per person administration fee will be deducted from the deposit. Between 30 and 69 days before, 50% of your total cost. With less than 30 days’ notice, 90% of your total cost."],
     ],
   },
   {
@@ -295,7 +295,7 @@ export const trainingFaqs: FaqItem[] = [
   },
   {
     question: "How do I book?",
-    answer: [["Choose a date and submit the registration form on the event page. Registrations are reviewed within 48 hours. A £200 deposit secures your place once confirmed."]],
+    answer: [["Choose a date and submit the registration form on the event page. Registrations are reviewed within 48 hours. A £200 per person deposit secures your place once confirmed, payable by bank transfer within 7 days."]],
   },
 ];
 

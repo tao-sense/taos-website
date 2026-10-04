@@ -260,7 +260,7 @@ export async function POST(req: Request) {
           <p><strong>Phone:</strong> ${phone.trim()}</p>
           <p><strong>About them:</strong><br/>${motivation.trim()}</p>
           ${withPartner ? `<p><strong>Attending with partner:</strong> ${(partnerName as string).trim()} (age ${partnerAgeNum})</p>` : ""}
-          <p><strong>Early bird:</strong> ${isEarlyBird ? `Yes ✓ (submitted before 31 Oct 2026 deadline; £${EARLY_BIRD_DISCOUNT} off applies if deposit paid within 7 days of acceptance)` : "No"}</p>
+          <p><strong>Early bird:</strong> ${isEarlyBird ? `Yes ✓ (submitted before 31 Oct 2026 deadline; £${EARLY_BIRD_DISCOUNT} off per person if the £200 per person deposit is paid within 7 days of acceptance)` : "No"}</p>
           ${workshopId ? `<p><strong>Workshop ID:</strong> ${workshopId}</p>` : ""}
           <p style="margin-top:16px;font-size:12px;color:#888;">
             Booking request ID: <strong>${record.id}</strong><br/>
@@ -313,7 +313,7 @@ export async function POST(req: Request) {
           ${isEarlyBird ? `
           <p style="background:#fdf8ee;border-left:3px solid #C9A46C;padding:12px 16px;margin:20px 0;">
             <strong style="color:#C9A46C;">Early bird pricing:</strong> Your registration has been submitted before the 31 October 2026 deadline.
-            If your place is confirmed, your seminar fee will be reduced by £${EARLY_BIRD_DISCOUNT} — provided your £200 deposit is paid within 7 days of acceptance.
+            If your place is confirmed, your seminar fee will be reduced by £${EARLY_BIRD_DISCOUNT} per person — provided your £200 per person deposit is paid within 7 days of acceptance.
           </p>
           ` : ""}
 
