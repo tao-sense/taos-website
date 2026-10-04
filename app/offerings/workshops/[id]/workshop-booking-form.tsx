@@ -28,6 +28,15 @@ export default function WorkshopBookingForm({
     website: "", // honeypot — must stay empty
   });
 
+  const [withPartner, setWithPartner] = useState(false);
+  const [partner, setPartner] = useState({
+    name: "",
+    age: "",
+    heightCm: "",
+    weightKg: "",
+    healthNotes: "",
+  });
+
   const [loading, setLoading] = useState(false);
   const [submitted, setSubmitted] = useState(false);
   const [errorMsg, setErrorMsg] = useState("");
@@ -61,6 +70,16 @@ export default function WorkshopBookingForm({
         consentTerms: form.consentTerms,
         consentHealth: form.consentHealth,
         website: form.website,
+        // Partner fields — only sent when toggle is on
+        ...(withPartner
+          ? {
+              partnerName: partner.name,
+              partnerAge: partner.age,
+              partnerHeightCm: partner.heightCm,
+              partnerWeightKg: partner.weightKg,
+              partnerHealthNotes: partner.healthNotes,
+            }
+          : {}),
       }),
     });
     setLoading(false);
@@ -87,7 +106,7 @@ export default function WorkshopBookingForm({
         <p className="text-xl text-gold font-medium">Booking request received.</p>
         <p className="text-white/80">
           Thank you, {form.name.split(" ")[0]}. We&rsquo;ll review your booking request
-          and be in touch within a few days.
+          and be in touch within 48 hours.
         </p>
       </div>
     );
@@ -193,6 +212,122 @@ export default function WorkshopBookingForm({
         </div>
       </div>
 
+      {/* ── PARTNER TOGGLE ── */}
+      <div
+        className={`rounded-xl border-2 transition-all duration-300 ${
+          withPartner
+            ? "border-gold bg-amber-50"
+            : "border-black/15 bg-gray-50"
+        }`}
+      >
+        {/* Toggle row */}
+        <button
+          type="button"
+          onClick={() => setWithPartner(!withPartner)}
+          className="w-full flex items-center justify-between px-5 py-4 text-left"
+          aria-expanded={withPartner}
+        >
+          <div>
+            <p className={`font-semibold text-base transition-colors ${withPartner ? "text-black" : "text-black/70"}`}>
+              {withPartner ? "Attending as a couple — partner details below" : "Attending with a partner?"}
+            </p>
+            <p className="text-xs text-black/50 mt-0.5">
+              {withPartner
+                ? "Toggle off to remove partner details"
+                : "Tap here to add your partner's details"}
+            </p>
+          </div>
+          {/* iOS-style toggle */}
+          <span
+            role="switch"
+            aria-checked={withPartner}
+            className={`relative inline-flex h-7 w-14 shrink-0 items-center rounded-full transition-colors duration-300 ${
+              withPartner ? "bg-gold" : "bg-black/20"
+            }`}
+          >
+            <span
+              className={`inline-block h-5 w-5 transform rounded-full bg-white shadow-md transition-transform duration-300 ${
+                withPartner ? "translate-x-8" : "translate-x-1"
+              }`}
+            />
+          </span>
+        </button>
+
+        {/* Partner fields — revealed when toggle is on */}
+        {withPartner && (
+          <div className="px-5 pb-5 space-y-4 border-t border-gold/30">
+            <p className="text-xs text-black/50 pt-4">
+              We screen all participants individually. Your partner&rsquo;s details are
+              seen only by Wesley and handled with the same confidentiality as yours.
+            </p>
+
+            <input
+              type="text"
+              placeholder="Partner's full name"
+              value={partner.name}
+              onChange={(e) => setPartner({ ...partner, name: e.target.value })}
+              className="w-full border p-2 rounded"
+              required={withPartner}
+            />
+
+            <div className="grid grid-cols-3 gap-4">
+              <div>
+                <label className="block text-xs text-black/60 mb-1">Partner's age</label>
+                <input
+                  type="number"
+                  min={18}
+                  max={99}
+                  placeholder="e.g. 34"
+                  value={partner.age}
+                  onChange={(e) => setPartner({ ...partner, age: e.target.value })}
+                  className="w-full border p-2 rounded"
+                  required={withPartner}
+                />
+              </div>
+              <div>
+                <label className="block text-xs text-black/60 mb-1">Height (cm)</label>
+                <input
+                  type="number"
+                  min={100}
+                  max={250}
+                  placeholder="e.g. 165"
+                  value={partner.heightCm}
+                  onChange={(e) => setPartner({ ...partner, heightCm: e.target.value })}
+                  className="w-full border p-2 rounded"
+                  required={withPartner}
+                />
+              </div>
+              <div>
+                <label className="block text-xs text-black/60 mb-1">Weight (kg)</label>
+                <input
+                  type="number"
+                  min={30}
+                  max={300}
+                  placeholder="e.g. 65"
+                  value={partner.weightKg}
+                  onChange={(e) => setPartner({ ...partner, weightKg: e.target.value })}
+                  className="w-full border p-2 rounded"
+                  required={withPartner}
+                />
+              </div>
+            </div>
+
+            <div className="space-y-1">
+              <textarea
+                placeholder="Partner's health information — any concerns about taking part in this seminar retreat"
+                value={partner.healthNotes}
+                onChange={(e) => setPartner({ ...partner, healthNotes: e.target.value })}
+                className="w-full border p-2 rounded min-h-[80px]"
+                required={withPartner}
+              />
+              <p className="text-xs text-black/50">
+                Seen only by Wesley. Handled with the same confidentiality as your own health information.
+              </p>
+            </div>
+          </div>
+        )}
+      </div>
+
       {/* About them / motivation */}
       <textarea
         placeholder="Please tell us a little about yourself and why you'd like to attend."
@@ -286,8 +421,9 @@ export default function WorkshopBookingForm({
             required
           />
           <span>
-            I consent to you storing the health information I provide, for the
-            purpose of assessing my booking request. I understand I can ask for it
+            I consent to you storing the health information I provide
+            {withPartner ? " (including my partner's)" : ""},
+            for the purpose of assessing our booking request. I understand I can ask for it
             to be deleted at any time.
           </span>
         </label>

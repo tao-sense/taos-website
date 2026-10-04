@@ -140,6 +140,12 @@ model WorkshopEnquiry {
   status            String    @default("pending")
   admin_notes       String?
   updated_at        DateTime? @db.Timestamptz(6)
+  // Partner fields — populated when two people book together
+  partner_name         String?
+  partner_age          Int?
+  partner_height_cm    Int?
+  partner_weight_kg    Int?
+  partner_health_notes String?
 
   @@map("workshop_enquiries")
 }
