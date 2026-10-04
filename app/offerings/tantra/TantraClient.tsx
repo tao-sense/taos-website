@@ -110,7 +110,16 @@ export default function TantraPage() {
             <Link href="/about" className="font-medium text-black/75 hover:text-black transition">
               Wesley Tan BOst BSc
             </Link>
-            {" · "}Trained in osteopathy{" · "}Trained in Tantra Massage with Spiritual Tantra, Berlin (2019) and the Yindo school, Berlin (2023)
+            {" · "}Graduated in osteopathy from the British School of Osteopathy (2007){" · "}Co-founded{" "}
+            <a
+              href="https://maps.app.goo.gl/Gvc7iqfTti9y96Hu6"
+              target="_blank"
+              rel="noopener"
+              className="underline underline-offset-2 hover:text-black/80 transition"
+            >
+              Forma Massage &amp; Osteopathy
+            </a>{" "}
+            in Stroud with his wife Claire, a registered osteopath, in 2008{" · "}Trained in Tantra Massage with Spiritual Tantra, Berlin (2019) and the Yindo school, Berlin (2023)
           </p>
         </div>
       </section>
