@@ -3,6 +3,13 @@ import { getServerSession } from "next-auth/next";
 import { authOptions } from "@/lib/auth";
 import { redirect } from "next/navigation";
 import Link from "next/link";
+import {
+  derivePaymentStatus,
+  PAYMENT_STATUS_LABELS,
+  PAYMENT_STATUS_COLOURS,
+  pence2gbp,
+} from "@/lib/payment-utils";
+import { getWorkshopPricing } from "@/lib/workshop-config";
 
 export const dynamic = "force-dynamic";
 
@@ -59,8 +66,32 @@ export default async function WorkshopEnquiriesPage({
       workshop_id: true,
       status: true,
       created_at: true,
+      // Payment fields
+      room_type: true,
+      people_count: true,
+      agreed_price_pp: true,
+      payment_status: true,
+      payments: { select: { amount_pence: true } },
     },
   });
+
+  // Summary cards — accepted records only, for each workshop
+  const acceptedByWorkshop: Record<
+    string,
+    { people: number; expectedPence: number; receivedPence: number }
+  > = {};
+  for (const e of enquiries) {
+    if (e.status !== "accepted") continue;
+    const wid = e.workshop_id ?? "unknown";
+    if (!acceptedByWorkshop[wid]) {
+      acceptedByWorkshop[wid] = { people: 0, expectedPence: 0, receivedPence: 0 };
+    }
+    const s = acceptedByWorkshop[wid];
+    const pc = e.people_count ?? 1;
+    s.people += pc;
+    if (e.agreed_price_pp) s.expectedPence += e.agreed_price_pp * pc;
+    s.receivedPence += e.payments.reduce((t, p) => t + p.amount_pence, 0);
+  }
 
   return (
     <main className="bg-black text-white min-h-screen p-10">
@@ -89,6 +120,54 @@ export default async function WorkshopEnquiriesPage({
           </div>
         ))}
       </div>
+
+      {/* Summary cards — accepted bookings per workshop */}
+      {Object.keys(acceptedByWorkshop).length > 0 && (
+        <div className="mb-10 space-y-3">
+          <h2 className="text-white/40 text-xs uppercase tracking-widest mb-3">Accepted bookings summary</h2>
+          {Object.entries(acceptedByWorkshop).map(([wid, s]) => {
+            const cfg = getWorkshopPricing(wid);
+            return (
+              <div key={wid} className="bg-white/5 rounded-lg p-5 flex flex-wrap gap-8 items-center">
+                <div>
+                  <p className="text-white/40 text-xs mb-1">Workshop</p>
+                  <p className="text-white/80 text-sm font-medium">{workshopMap[wid] ?? wid}</p>
+                </div>
+                <div>
+                  <p className="text-white/40 text-xs mb-1">Confirmed places</p>
+                  <p className="text-gold font-bold text-xl">{s.people}</p>
+                </div>
+                {s.expectedPence > 0 && (
+                  <>
+                    <div>
+                      <p className="text-white/40 text-xs mb-1">Total expected</p>
+                      <p className="text-white/80 font-semibold">{pence2gbp(s.expectedPence)}</p>
+                    </div>
+                    <div>
+                      <p className="text-white/40 text-xs mb-1">Received</p>
+                      <p className="text-green-400 font-semibold">{pence2gbp(s.receivedPence)}</p>
+                    </div>
+                    <div>
+                      <p className="text-white/40 text-xs mb-1">Outstanding</p>
+                      <p className="text-yellow-400 font-semibold">
+                        {pence2gbp(Math.max(0, s.expectedPence - s.receivedPence))}
+                      </p>
+                    </div>
+                  </>
+                )}
+                {cfg && (
+                  <p className="text-white/30 text-xs self-end">
+                    Balance due:{" "}
+                    {new Date(
+                      cfg.startDate.getTime() - cfg.balanceDueDaysBefore * 86400000
+                    ).toLocaleDateString("en-GB", { day: "numeric", month: "long", year: "numeric" })}
+                  </p>
+                )}
+              </div>
+            );
+          })}
+        </div>
+      )}
 
       {/* Filters */}
       <form method="GET" className="flex flex-wrap gap-4 mb-8 items-center">
@@ -151,7 +230,12 @@ export default async function WorkshopEnquiriesPage({
                 <th className="py-3 pr-6">Workshop</th>
                 <th className="py-3 pr-6">Status</th>
                 <th className="py-3 pr-6">Applied</th>
-                <th className="py-3 pr-6">Early Bird</th>
+                <th className="py-3 pr-6">EB</th>
+                <th className="py-3 pr-6">Room</th>
+                <th className="py-3 pr-6">Ppl</th>
+                <th className="py-3 pr-6">Pay</th>
+                <th className="py-3 pr-6">Paid</th>
+                <th className="py-3 pr-6">Owes</th>
                 <th className="py-3"></th>
               </tr>
             </thead>
@@ -186,6 +270,42 @@ export default async function WorkshopEnquiriesPage({
                     ) : (
                       <span className="text-white/20 text-xs">—</span>
                     )}
+                  </td>
+                  {/* Payment columns */}
+                  <td className="py-3 pr-6 text-white/50 text-xs capitalize">
+                    {e.room_type ?? <span className="text-white/20">—</span>}
+                  </td>
+                  <td className="py-3 pr-6 text-white/50 text-xs">
+                    {e.people_count ?? <span className="text-white/20">—</span>}
+                  </td>
+                  <td className="py-3 pr-6">
+                    {e.agreed_price_pp != null ? (() => {
+                      const pc = e.people_count ?? 1;
+                      const totalDue = e.agreed_price_pp * pc;
+                      const cfg = e.workshop_id ? getWorkshopPricing(e.workshop_id) : null;
+                      const depositDue = cfg ? cfg.depositPence * pc : 0;
+                      const totalPaid = e.payments.reduce((t, p) => t + p.amount_pence, 0);
+                      const ds = derivePaymentStatus(e.payment_status, totalPaid, totalDue, depositDue);
+                      return (
+                        <span className={`px-2 py-0.5 rounded text-xs font-semibold whitespace-nowrap ${PAYMENT_STATUS_COLOURS[ds]}`}>
+                          {PAYMENT_STATUS_LABELS[ds]}
+                        </span>
+                      );
+                    })() : <span className="text-white/20 text-xs">—</span>}
+                  </td>
+                  <td className="py-3 pr-6 text-green-400 text-xs font-semibold">
+                    {e.payments.length > 0
+                      ? pence2gbp(e.payments.reduce((t, p) => t + p.amount_pence, 0))
+                      : <span className="text-white/20">—</span>}
+                  </td>
+                  <td className="py-3 pr-6 text-xs">
+                    {e.agreed_price_pp != null ? (() => {
+                      const pc = e.people_count ?? 1;
+                      const owing = e.agreed_price_pp * pc - e.payments.reduce((t, p) => t + p.amount_pence, 0);
+                      return owing > 0
+                        ? <span className="text-yellow-400 font-semibold">{pence2gbp(owing)}</span>
+                        : <span className="text-white/20">—</span>;
+                    })() : <span className="text-white/20">—</span>}
                   </td>
                   <td className="py-3">
                     <Link

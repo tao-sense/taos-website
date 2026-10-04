@@ -10,14 +10,15 @@ import {
   OFFERINGS_CRUMB,
   WORKSHOPS_CRUMB,
 } from "@/lib/structured-data";
+import { getWorkshopPricing } from "@/lib/workshop-config";
 
 const WORKSHOP_ID = "cmudsv18m0000id04441fotyp"; // Workshop record: "Tantra Massage Seminar - Garth Barns & Country House"
 
-// Oct 31 is post-BST (clocks go back Oct 25, 2026), so 23:59 UK time = 23:59 UTC
-const EARLY_BIRD_DEADLINE = new Date("2026-10-31T23:59:59Z"); // 23:59 UK time; Oct 31 is post-BST (GMT)
-const EARLY_BIRD_DISCOUNT = 50;
-const SINGLE_FULL = 920;
-const SHARED_FULL = 720;
+const _cfg = getWorkshopPricing(WORKSHOP_ID)!;
+const EARLY_BIRD_DEADLINE = _cfg.earlyBirdDeadline;
+const EARLY_BIRD_DISCOUNT = _cfg.earlyBirdDiscountPence / 100;
+const SINGLE_FULL        = _cfg.singleFullPence / 100;
+const SHARED_FULL        = _cfg.sharedFullPence / 100;
 
 export const dynamic = "force-dynamic";
 
