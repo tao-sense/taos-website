@@ -21,7 +21,8 @@ cp .env.example .env.local
 # - Set DATABASE_URL (e.g., Neon/Supabase URL)
 # - Set NEXTAUTH_SECRET (e.g., `openssl rand -base64 32`)
 # - Set STRIPE_SECRET_KEY, STRIPE_WEBHOOK_SECRET, STRIPE_PRICE_ID
-# - Set NEXTAUTH_URL, NEXT_PUBLIC_APP_URL (http://localhost:3000 in dev)
+# - Set NEXT_PUBLIC_APP_URL=http://localhost:3000 (dev only; Production Vercel env only, not Preview)
+# - NEXTAUTH_URL is not read by source code; NextAuth infers the callback URL from the request
 
 # 3. Push the database schema
 npx prisma db push

@@ -74,8 +74,13 @@ Copy `.env.example` to `.env.local`. Required keys:
 
 ```
 NEXTAUTH_SECRET
-NEXTAUTH_URL / NEXT_PUBLIC_APP_URL
+NEXT_PUBLIC_APP_URL        # Production only: https://theartofsensuality.com
+                           # Do NOT set on Vercel Preview — previews fall back to
+                           # VERCEL_URL (auto-set by Vercel) for Stripe return URLs.
+                           # NEXTAUTH_URL is NOT read by source code; NextAuth infers
+                           # the callback URL from the incoming request.
 DATABASE_URL               # Postgres (use ?pgbouncer=true in prod)
+DIRECT_URL                 # Non-pooled Supabase URL — used by prisma migrate/studio
 RESEND_API_KEY
 STRIPE_SECRET_KEY
 STRIPE_WEBHOOK_SECRET

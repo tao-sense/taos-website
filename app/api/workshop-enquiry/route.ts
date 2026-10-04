@@ -244,9 +244,6 @@ export async function POST(req: Request) {
     );
   }
 
-  const appUrl =
-    process.env.NEXT_PUBLIC_APP_URL ?? "https://theartofsensuality.com";
-
   // Admin notification — health notes deliberately excluded from this email
   try {
     await resend.emails.send({
@@ -270,7 +267,7 @@ export async function POST(req: Request) {
             Full details (including health &amp; body measurements) are on the protected admin page.
           </p>
           <p style="margin-top:8px;">
-            <a href="${appUrl}/signin" style="color:#C9A46C;">
+            <a href="https://theartofsensuality.com/signin?callbackUrl=%2Fadmin%2Fworkshop-enquiries" style="color:#C9A46C;">
               Admin login →
             </a>
           </p>
