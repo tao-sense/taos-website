@@ -4,6 +4,12 @@ import { authOptions } from "@/lib/auth";
 import { redirect, notFound } from "next/navigation";
 import Link from "next/link";
 import ApplicantDetail from "./applicant-detail";
+import PaymentPanel from "./payment-panel";
+import {
+  getWorkshopPricing,
+  isEarlyBirdEligible,
+  balanceDueDate,
+} from "@/lib/workshop-config";
 
 export const dynamic = "force-dynamic";
 
@@ -17,7 +23,10 @@ export default async function ApplicantPage({
 
   const { id } = await params;
 
-  const enquiry = await prisma.workshopEnquiry.findUnique({ where: { id } });
+  const enquiry = await prisma.workshopEnquiry.findUnique({
+    where: { id },
+    include: { payments: true },
+  });
   if (!enquiry) notFound();
 
   let workshopTitle = "Unknown";
@@ -28,6 +37,17 @@ export default async function ApplicantPage({
     });
     if (workshop) workshopTitle = workshop.title;
   }
+
+  // Payment config
+  const pricingCfg = enquiry.workshop_id
+    ? getWorkshopPricing(enquiry.workshop_id)
+    : null;
+  const earlyBirdAuto = isEarlyBirdEligible(
+    enquiry.workshop_id ?? "",
+    enquiry.created_at
+  );
+  const balanceDue = pricingCfg ? balanceDueDate(pricingCfg) : null;
+  const suggestedPeople = enquiry.partner_name ? 2 : 1;
 
   return (
     <main className="bg-black text-white min-h-screen p-10">
@@ -144,7 +164,37 @@ export default async function ApplicantPage({
           </Section>
         )}
 
-        {/* Interactive section handled client-side */}
+        {/* Payment tracking */}
+        {pricingCfg ? (
+          <PaymentPanel
+            enquiryId={enquiry.id}
+            workshopId={enquiry.workshop_id}
+            roomType={enquiry.room_type}
+            peopleCount={enquiry.people_count}
+            agreedPricePp={enquiry.agreed_price_pp}
+            earlyBirdOverride={enquiry.early_bird_override}
+            manualPaymentStatus={enquiry.payment_status}
+            acceptedAt={enquiry.accepted_at?.toISOString() ?? null}
+            payments={enquiry.payments.map((p) => ({
+              id: p.id,
+              amount_pence: p.amount_pence,
+              paid_on: p.paid_on.toISOString(),
+              note: p.note,
+            }))}
+            depositPence={pricingCfg.depositPence}
+            balanceDueDateIso={balanceDue?.toISOString() ?? null}
+            earlyBirdAuto={earlyBirdAuto}
+            suggestedPeople={suggestedPeople}
+          />
+        ) : (
+          <Section title="Payments">
+            <p className="text-white/40 text-sm">
+              No pricing config found for this workshop — payment tracking unavailable.
+            </p>
+          </Section>
+        )}
+
+        {/* Status buttons, notes, reply, delete */}
         <ApplicantDetail
           id={enquiry.id}
           currentStatus={enquiry.status}

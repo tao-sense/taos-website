@@ -147,7 +147,29 @@ model WorkshopEnquiry {
   partner_weight_kg    Int?
   partner_health_notes String?
 
+  // Payment tracking — set by admin after acceptance
+  room_type              String?   // "single" | "shared"
+  people_count           Int?      // 1 or 2; auto-suggested from partner_name, overridable
+  agreed_price_pp        Int?      // pence per person, locked at setup time
+  early_bird_override    Boolean?  // null = auto (based on registration date), true/false = manual
+  payment_status         String?   // null | "refunded" | "cancelled" — derived statuses computed from payments
+  accepted_at            DateTime? @db.Timestamptz(6)
+
+  payments               BookingPayment[]
+
   @@map("workshop_enquiries")
+}
+
+model BookingPayment {
+  id           String          @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  enquiry_id   String          @db.Uuid
+  amount_pence Int
+  paid_on      DateTime        @db.Date
+  note         String?
+  created_at   DateTime?       @default(now()) @db.Timestamptz(6)
+  enquiry      WorkshopEnquiry @relation(fields: [enquiry_id], references: [id], onDelete: Cascade)
+
+  @@map("booking_payments")
 }
 
 model WorkshopInterest {

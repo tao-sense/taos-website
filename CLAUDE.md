@@ -8,10 +8,27 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 npm run dev          # Start dev server (localhost:3000)
 npm run build        # prisma generate + next build
 npm run lint         # next lint
-npx prisma migrate dev   # Run migrations (dev)
+npx prisma migrate dev   # Run migrations (dev, uses DIRECT_URL)
 npx prisma db push       # Push schema changes without migration history
 npx prisma studio        # Open Prisma Studio GUI
 ```
+
+### Vercel build command (production migrations)
+
+The Vercel project's Build Command is set to:
+```
+if [ "$VERCEL_ENV" = "production" ]; then npx prisma migrate deploy; fi && npm run build
+```
+This runs `prisma migrate deploy` only on Production deploys (not Preview).
+Preview builds share the production database — preview admin pages that read new
+columns will error until the migration runs on production.
+
+**When adding a schema migration:**
+1. Add the migration file to `prisma/migrations/` on your branch.
+2. Push the branch → Preview deploys, but migration does NOT run yet.
+3. Before merging: run `npx prisma migrate deploy` manually against DIRECT_URL (see env vars below).
+4. Verify the preview admin pages load cleanly.
+5. Merge to main → Production deploy runs the migration automatically via the build command.
 
 No test suite is configured.
 
