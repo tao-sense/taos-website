@@ -24,9 +24,12 @@ export function pageview() {
   fbq("track", "PageView");
 }
 
-export function trackWorkshopEnquiry(workshopId?: string) {
+export function trackWorkshopEnquiry(
+  workshopId?: string,
+  contentName = "Workshop Enquiry"
+) {
   fbq("track", "Lead", {
-    content_name: "Workshop Enquiry",
+    content_name: contentName,
     content_category: "Workshop",
     ...(workshopId ? { content_ids: [workshopId] } : {}),
   });

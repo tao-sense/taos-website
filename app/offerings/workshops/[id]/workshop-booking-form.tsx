@@ -1,5 +1,6 @@
 "use client";
 
+import { useCookieConsent } from "@/context/CookieConsent";
 import { trackWorkshopEnquiry } from "@/lib/fpixel";
 import { event as gtagEvent } from "@/lib/gtag";
 import { useState } from "react";
@@ -7,10 +8,14 @@ import { useState } from "react";
 export default function WorkshopBookingForm({
   workshopId,
   earlyBird = false,
+  leadName = "Workshop Enquiry",
 }: {
   workshopId: string;
   earlyBird?: boolean;
+  // content_name sent with the Meta Lead and GA4 generate_lead events
+  leadName?: string;
 }) {
+  const { consent } = useCookieConsent();
   const [form, setForm] = useState({
     name: "",
     email: "",
@@ -85,12 +90,20 @@ export default function WorkshopBookingForm({
     setLoading(false);
 
     if (res.ok) {
-      trackWorkshopEnquiry(workshopId);
-      gtagEvent("generate_lead", {
-        event_category: "workshop",
-        event_label: "workshop_application_form",
-        workshop_id: workshopId,
-      });
+      // Only after the API confirms the registration was saved, and only with
+      // consent: marketing for the Meta Pixel (same check as its PageView),
+      // analytics for GA4 (same check as its page_view).
+      if (consent.marketing) {
+        trackWorkshopEnquiry(workshopId, leadName);
+      }
+      if (consent.analytics) {
+        gtagEvent("generate_lead", {
+          event_category: "workshop",
+          event_label: "workshop_application_form",
+          workshop_id: workshopId,
+          content_name: leadName,
+        });
+      }
       setSubmitted(true);
     } else {
       const body = await res.json().catch(() => ({}));

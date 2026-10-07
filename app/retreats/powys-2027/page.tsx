@@ -657,7 +657,11 @@ export default function Powys2027Page() {
             Complete the form below to request a place. Your booking request is reviewed before your
             place is confirmed — we&rsquo;ll be in touch within 48 hours.
           </p>
-          <WorkshopBookingForm workshopId={WORKSHOP_ID} earlyBird={isEarlyBird} />
+          <WorkshopBookingForm
+            workshopId={WORKSHOP_ID}
+            earlyBird={isEarlyBird}
+            leadName="Powys 2027 retreat registration"
+          />
         </div>
       </section>
 
