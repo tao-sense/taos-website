@@ -3,7 +3,7 @@
 import { useCookieConsent } from "@/context/CookieConsent";
 import { trackWorkshopEnquiry } from "@/lib/fpixel";
 import { event as gtagEvent } from "@/lib/gtag";
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 export default function WorkshopBookingForm({
   workshopId,
@@ -45,6 +45,19 @@ export default function WorkshopBookingForm({
   const [loading, setLoading] = useState(false);
   const [submitted, setSubmitted] = useState(false);
   const [errorMsg, setErrorMsg] = useState("");
+  const successRef = useRef<HTMLDivElement>(null);
+
+  // The long form unmounts on success, so the page gets shorter and the browser
+  // leaves the visitor below the message. Bring it into view and move focus to it.
+  useEffect(() => {
+    if (!submitted || !successRef.current) return;
+    const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    successRef.current.scrollIntoView({
+      behavior: reduceMotion ? "auto" : "smooth",
+      block: "start",
+    });
+    successRef.current.focus({ preventScroll: true });
+  }, [submitted]);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -115,7 +128,13 @@ export default function WorkshopBookingForm({
 
   if (submitted) {
     return (
-      <div className="text-center space-y-3 py-8">
+      <div
+        ref={successRef}
+        tabIndex={-1}
+        role="status"
+        aria-live="polite"
+        className="text-center space-y-3 py-8 scroll-mt-24 focus:outline-none"
+      >
         <p className="text-xl text-gold font-medium">Booking request received.</p>
         <p className="text-white/80">
           Thank you, {form.name.split(" ")[0]}. We&rsquo;ll review your booking request
