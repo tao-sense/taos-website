@@ -3,9 +3,33 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import WorkshopBookingForm from "./workshop-booking-form";
-import { notFound } from "next/navigation";
+import { notFound, redirect } from "next/navigation";
 import JsonLd from "@/components/JsonLd";
 import { breadcrumbJsonLd, OFFERINGS_CRUMB, WORKSHOPS_CRUMB } from "@/lib/structured-data";
+
+type SearchParams = Record<string, string | string[] | undefined>;
+
+// A workshop with an internal `link` (e.g. /retreats/powys-2027) has its own
+// landing page, so this ID page hands off to it. Returns the target path, or
+// null when the page should render as normal: no link, an external link, or a
+// link back into /offerings/workshops/ (which could loop).
+function internalLinkTarget(link: string | null, searchParams: SearchParams = {}): string | null {
+  const target = link?.trim();
+  if (!target || !target.startsWith("/") || target.startsWith("//")) return null;
+
+  // Resolve against a dummy origin so odd paths (e.g. "/\\host") can't escape to another site.
+  const url = new URL(target, "http://internal.invalid");
+  if (url.origin !== "http://internal.invalid") return null;
+  if (url.pathname.startsWith("/offerings/workshops/")) return null;
+
+  // Carry the visitor's query string (utm parameters etc.) over to the target.
+  for (const [key, value] of Object.entries(searchParams)) {
+    for (const v of Array.isArray(value) ? value : value === undefined ? [] : [value]) {
+      url.searchParams.append(key, v);
+    }
+  }
+  return `${url.pathname}${url.search}${url.hash}`;
+}
 
 export async function generateMetadata({
   params,
@@ -21,7 +45,12 @@ export async function generateMetadata({
   const description = workshop.description
     ? workshop.description.slice(0, 155)
     : `Join ${workshop.title} — a Tantra Massage Workshop by The Art of Sensuality (TAOS).`;
-  const url = `https://theartofsensuality.com/offerings/workshops/${id}`;
+  // When the page redirects to the workshop's own landing page, point the
+  // canonical (and share URL) there too, without any query string.
+  const linkTarget = internalLinkTarget(workshop.link);
+  const url = linkTarget
+    ? `https://theartofsensuality.com${linkTarget}`
+    : `https://theartofsensuality.com/offerings/workshops/${id}`;
 
   return {
     title,
@@ -56,8 +85,10 @@ export async function generateMetadata({
 
 export default async function WorkshopPage({
   params,
+  searchParams,
 }: {
   params: Promise<{ id: string }>;
+  searchParams: Promise<SearchParams>;
 }) {
   const { id } = await params;
 
@@ -66,6 +97,10 @@ export default async function WorkshopPage({
   });
 
   if (!workshop || !workshop.published) return notFound();
+
+  // Temporary (307) so it stops as soon as the link is removed from the workshop.
+  const linkTarget = internalLinkTarget(workshop.link, await searchParams);
+  if (linkTarget) redirect(linkTarget);
 
   const jsonLd = {
     "@context": "https://schema.org",
