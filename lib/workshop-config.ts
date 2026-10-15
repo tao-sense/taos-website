@@ -22,7 +22,7 @@ export const WORKSHOP_PRICING: Record<string, WorkshopPricing> = {
     earlyBirdDiscountPence: 5000,  // £50
     earlyBirdDeadline:     new Date("2026-10-31T23:59:59Z"),
     depositPence:          20000,  // £200
-    balanceDueDaysBefore:  21,
+    balanceDueDaysBefore:  42,     // six weeks → 31 Dec 2026
     startDate:             new Date("2027-02-11"),
   },
 };

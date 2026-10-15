@@ -137,13 +137,13 @@ export const workshopFaqs: FaqItem[] = [
   {
     question: "What happens after I submit my registration?",
     answer: [
-      ["We review every registration individually, partly to keep the group balanced. Once confirmed, you’ll be asked for a £200 per person deposit by bank transfer within 7 days of confirmation. The balance is due by bank transfer three weeks before the event — we’ll email a packing list and directions to the venue at that point."],
+      ["We review every registration individually, partly to keep the group balanced. Once confirmed, you’ll be asked for a £200 per person deposit by bank transfer within 7 days of confirmation. The balance is due by bank transfer six weeks before the event. We’ll email a packing list and directions to the venue four weeks before."],
     ],
   },
   {
     question: "What’s your cancellation policy?",
     answer: [
-      ["If you cancel 70 or more days before the event starts, a £100 per person administration fee will be deducted from the deposit. Between 30 and 69 days before, 50% of your total cost. With less than 30 days’ notice, 90% of your total cost."],
+      ["If you cancel 70 or more days before the event starts, your £200 per person deposit is non-refundable. Between 30 and 69 days before, 50% of your total cost. With less than 30 days’ notice, 90% of your total cost."],
     ],
   },
   {

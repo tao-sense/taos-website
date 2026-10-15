@@ -528,7 +528,7 @@ export default function Powys2027Page() {
               About 2 miles from Llanidloes, Mid Wales. Nearest train station: Caersws (about 8 miles).
             </p>
             <p className="text-white/70 text-sm leading-relaxed mb-4">
-              Full directions and arrival details are sent with your joining information three weeks before the retreat.
+              Full directions and arrival details are sent with your joining information four weeks before the retreat.
             </p>
             <a
               href="https://www.google.com/maps/search/?api=1&query=Garth+Barns+Llanidloes+SY18+6NN"
@@ -605,8 +605,8 @@ export default function Powys2027Page() {
             we&rsquo;ve reviewed your registration and sent confirmation, which we aim to do
             within 48 hours. Once confirmed, we&rsquo;ll ask for a
             deposit of £200 per person by bank transfer within 7 days of confirmation. The balance
-            is due by bank transfer three weeks before the seminar begins — we&rsquo;ll also email
-            a packing list and directions to the venue at that point.
+            is due by bank transfer six weeks before the seminar begins (by 31 December 2026).
+            We&rsquo;ll email a packing list and directions to the venue four weeks before.
           </p>
         </div>
       </section>
@@ -618,7 +618,7 @@ export default function Powys2027Page() {
           <div className="space-y-3 text-black/80">
             <div className="flex gap-4 border-b border-black/10 pb-3">
               <span className="w-56 shrink-0 font-medium">70+ days before</span>
-              <span>£100 per person administration fee deducted from the deposit</span>
+              <span>Your £200 per person deposit is non-refundable</span>
             </div>
             <div className="flex gap-4 border-b border-black/10 pb-3">
               <span className="w-56 shrink-0 font-medium">30–69 days before</span>

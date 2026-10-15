@@ -9,7 +9,7 @@ export default function TermsPage() {
         </h1>
 
         <p className="mb-8 text-sm text-gray-500">
-          Last updated: {new Date().toLocaleDateString("en-GB")}
+          Last updated: 15/10/2026
         </p>
 
         <section className="space-y-6 leading-relaxed">
@@ -80,16 +80,15 @@ export default function TermsPage() {
           <p>
             Once your place is confirmed, a deposit of £200 per person is
             payable by bank transfer within 7 days of confirmation. The balance
-            is due by bank transfer no later than three weeks before the event
-            begins — we&rsquo;ll also email a packing list and any final
-            practical details at that point.
+            is due by bank transfer no later than six weeks before the event
+            begins. We&rsquo;ll email a packing list and any final practical
+            details four weeks before.
           </p>
 
           <p className="font-semibold mt-4">Cancellation</p>
           <p>
-            If you cancel 70 or more days before the event starts, a £100
-            per person administration fee will be deducted
-            from the deposit. Between 30 and 69 days before, 50% of the total
+            If you cancel 70 or more days before the event starts, your £200
+            per person deposit is non-refundable. Between 30 and 69 days before, 50% of the total
             price. With less than 30 days&rsquo; notice, 90% of the total
             price.
           </p>
