@@ -154,6 +154,10 @@ model WorkshopEnquiry {
   early_bird_override    Boolean?  // null = auto (based on registration date), true/false = manual
   payment_status         String?   // null | "refunded" | "cancelled" — derived statuses computed from payments
   accepted_at            DateTime? @db.Timestamptz(6)
+  // Admin-agreed fee — replaces the advertised price (early bird not applied on top)
+  fee_override_pp        Int?      // pence per person; null = use agreed_price_pp
+  fee_override_reason    String?   // e.g. "returning participant", "work exchange"
+  catered                Boolean   @default(true) // applies to everyone on the booking; cost only, not fee
 
   payments               BookingPayment[]
 

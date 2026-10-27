@@ -172,6 +172,9 @@ export default async function ApplicantPage({
             roomType={enquiry.room_type}
             peopleCount={enquiry.people_count}
             agreedPricePp={enquiry.agreed_price_pp}
+            feeOverridePp={enquiry.fee_override_pp}
+            feeOverrideReason={enquiry.fee_override_reason}
+            catered={enquiry.catered}
             earlyBirdOverride={enquiry.early_bird_override}
             manualPaymentStatus={enquiry.payment_status}
             acceptedAt={enquiry.accepted_at?.toISOString() ?? null}

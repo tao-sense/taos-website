@@ -87,6 +87,39 @@ export async function PATCH(
     update.early_bird_override =
       data.early_bird_override === null ? null : Boolean(data.early_bird_override);
   }
+  // Agreed fee per person (pence, whole pounds only). null clears it and its reason.
+  if (data.fee_override_pp !== undefined) {
+    if (data.fee_override_pp === null) {
+      update.fee_override_pp = null;
+      update.fee_override_reason = null;
+    } else {
+      const n = Number(data.fee_override_pp);
+      if (!Number.isInteger(n) || n < 0 || n % 100 !== 0 || n > 10_000_000) {
+        return NextResponse.json(
+          { error: "Agreed fee must be a whole number of pounds, £0 or more." },
+          { status: 400 }
+        );
+      }
+      update.fee_override_pp = n;
+    }
+  }
+  if (data.fee_override_reason !== undefined && update.fee_override_pp !== null) {
+    if (data.fee_override_reason !== null && typeof data.fee_override_reason !== "string") {
+      return NextResponse.json({ error: "fee_override_reason must be text." }, { status: 400 });
+    }
+    const reason = data.fee_override_reason?.trim() ?? "";
+    if (reason.length > 200) {
+      return NextResponse.json({ error: "Reason must be 200 characters or fewer." }, { status: 400 });
+    }
+    update.fee_override_reason = reason || null;
+  }
+  if (data.catered !== undefined) {
+    if (typeof data.catered !== "boolean") {
+      return NextResponse.json({ error: "catered must be true or false." }, { status: 400 });
+    }
+    update.catered = data.catered;
+  }
+
   if (data.payment_status !== undefined) {
     if (
       data.payment_status !== null &&

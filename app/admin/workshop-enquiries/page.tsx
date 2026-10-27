@@ -4,12 +4,12 @@ import { authOptions } from "@/lib/auth";
 import { redirect } from "next/navigation";
 import Link from "next/link";
 import {
-  derivePaymentStatus,
+  bookingTotals,
   PAYMENT_STATUS_LABELS,
   PAYMENT_STATUS_COLOURS,
   pence2gbp,
 } from "@/lib/payment-utils";
-import { getWorkshopPricing } from "@/lib/workshop-config";
+import { getWorkshopCosts, getWorkshopPricing } from "@/lib/workshop-config";
 
 export const dynamic = "force-dynamic";
 
@@ -70,26 +70,45 @@ export default async function WorkshopEnquiriesPage({
       room_type: true,
       people_count: true,
       agreed_price_pp: true,
+      fee_override_pp: true,
+      fee_override_reason: true,
+      catered: true,
       payment_status: true,
       payments: { select: { amount_pence: true } },
     },
   });
 
+  // Per-booking money (agreed fee if set, else advertised) — null until set up
+  const totalsById = new Map(
+    enquiries.map((e) => [
+      e.id,
+      bookingTotals({
+        agreedPricePp: e.agreed_price_pp,
+        feeOverridePp: e.fee_override_pp,
+        peopleCount: e.people_count,
+        depositPerPersonPence: (e.workshop_id && getWorkshopPricing(e.workshop_id)?.depositPence) || 0,
+        paymentsPence: e.payments.map((p) => p.amount_pence),
+        manualStatus: e.payment_status,
+      }),
+    ])
+  );
+
   // Summary cards — accepted records only, for each workshop
   const acceptedByWorkshop: Record<
     string,
-    { people: number; expectedPence: number; receivedPence: number }
+    { people: number; cateredPeople: number; expectedPence: number; receivedPence: number }
   > = {};
   for (const e of enquiries) {
     if (e.status !== "accepted") continue;
     const wid = e.workshop_id ?? "unknown";
     if (!acceptedByWorkshop[wid]) {
-      acceptedByWorkshop[wid] = { people: 0, expectedPence: 0, receivedPence: 0 };
+      acceptedByWorkshop[wid] = { people: 0, cateredPeople: 0, expectedPence: 0, receivedPence: 0 };
     }
     const s = acceptedByWorkshop[wid];
     const pc = e.people_count ?? 1;
     s.people += pc;
-    if (e.agreed_price_pp) s.expectedPence += e.agreed_price_pp * pc;
+    if (e.catered) s.cateredPeople += pc;
+    s.expectedPence += totalsById.get(e.id)?.totalDue ?? 0;
     s.receivedPence += e.payments.reduce((t, p) => t + p.amount_pence, 0);
   }
 
@@ -127,8 +146,18 @@ export default async function WorkshopEnquiriesPage({
           <h2 className="text-white/40 text-xs uppercase tracking-widest mb-3">Accepted bookings summary</h2>
           {Object.entries(acceptedByWorkshop).map(([wid, s]) => {
             const cfg = getWorkshopPricing(wid);
+            const costs = getWorkshopCosts(wid);
+            const cateringPence = costs ? costs.cateringPerPersonPence * s.cateredPeople : 0;
+            const totalCostsPence = costs
+              ? costs.venueHirePence + cateringPence + costs.advertisingTravelPence
+              : 0;
+            const profitPence = s.expectedPence - totalCostsPence;
+            const cashPence = s.receivedPence - totalCostsPence;
+            const signed = (p: number) => (p < 0 ? `−${pence2gbp(-p)}` : pence2gbp(p));
+            const tone = (p: number) => (p >= 0 ? "text-green-400" : "text-red-400");
             return (
-              <div key={wid} className="bg-white/5 rounded-lg p-5 flex flex-wrap gap-8 items-center">
+              <div key={wid} className="bg-white/5 rounded-lg p-5 space-y-5">
+              <div className="flex flex-wrap gap-8 items-center">
                 <div>
                   <p className="text-white/40 text-xs mb-1">Workshop</p>
                   <p className="text-white/80 text-sm font-medium">{workshopMap[wid] ?? wid}</p>
@@ -163,6 +192,37 @@ export default async function WorkshopEnquiriesPage({
                     ).toLocaleDateString("en-GB", { day: "numeric", month: "long", year: "numeric" })}
                   </p>
                 )}
+              </div>
+
+              {/* Profit — costs from lib/workshop-config.ts */}
+              {costs && (
+                <div className="flex flex-wrap gap-8 items-start border-t border-white/10 pt-4">
+                  <div>
+                    <p className="text-white/40 text-xs mb-1">Total costs</p>
+                    <p className="text-white/80 font-semibold">{pence2gbp(totalCostsPence)}</p>
+                    <p className="text-white/30 text-xs mt-1">
+                      Venue {pence2gbp(costs.venueHirePence)} · Catering {pence2gbp(cateringPence)} ({s.cateredPeople}{" "}
+                      {s.cateredPeople === 1 ? "person" : "people"} × {pence2gbp(costs.cateringPerPersonPence)}) ·
+                      Advertising &amp; travel {pence2gbp(costs.advertisingTravelPence)}
+                    </p>
+                  </div>
+                  <div>
+                    <p className="text-white/40 text-xs mb-1">Projected profit</p>
+                    <p className={`font-bold text-xl ${tone(profitPence)}`}>{signed(profitPence)}</p>
+                    <p className="text-white/30 text-xs mt-1">
+                      Margin{" "}
+                      {s.expectedPence > 0
+                        ? `${((profitPence / s.expectedPence) * 100).toFixed(1)}%`
+                        : "—"}
+                    </p>
+                  </div>
+                  <div>
+                    <p className="text-white/40 text-xs mb-1">Cash position today</p>
+                    <p className={`font-semibold ${tone(cashPence)}`}>{signed(cashPence)}</p>
+                    <p className="text-white/30 text-xs mt-1">Received − total costs</p>
+                  </div>
+                </div>
+              )}
               </div>
             );
           })}
@@ -233,6 +293,7 @@ export default async function WorkshopEnquiriesPage({
                 <th className="py-3 pr-6">EB</th>
                 <th className="py-3 pr-6">Room</th>
                 <th className="py-3 pr-6">Ppl</th>
+                <th className="py-3 pr-6">Catered</th>
                 <th className="py-3 pr-6">Pay</th>
                 <th className="py-3 pr-6">Paid</th>
                 <th className="py-3 pr-6">Owes</th>
@@ -278,34 +339,45 @@ export default async function WorkshopEnquiriesPage({
                   <td className="py-3 pr-6 text-white/50 text-xs">
                     {e.people_count ?? <span className="text-white/20">—</span>}
                   </td>
+                  <td className="py-3 pr-6 text-xs">
+                    {e.catered ? (
+                      <span className="text-white/50">Yes</span>
+                    ) : (
+                      <span className="text-yellow-400 font-semibold">No</span>
+                    )}
+                  </td>
                   <td className="py-3 pr-6">
-                    {e.agreed_price_pp != null ? (() => {
-                      const pc = e.people_count ?? 1;
-                      const totalDue = e.agreed_price_pp * pc;
-                      const cfg = e.workshop_id ? getWorkshopPricing(e.workshop_id) : null;
-                      const depositDue = cfg ? cfg.depositPence * pc : 0;
-                      const totalPaid = e.payments.reduce((t, p) => t + p.amount_pence, 0);
-                      const ds = derivePaymentStatus(e.payment_status, totalPaid, totalDue, depositDue);
+                    {(() => {
+                      const t = totalsById.get(e.id);
+                      if (!t) return <span className="text-white/20 text-xs">—</span>;
                       return (
-                        <span className={`px-2 py-0.5 rounded text-xs font-semibold whitespace-nowrap ${PAYMENT_STATUS_COLOURS[ds]}`}>
-                          {PAYMENT_STATUS_LABELS[ds]}
+                        <span className={`px-2 py-0.5 rounded text-xs font-semibold whitespace-nowrap ${PAYMENT_STATUS_COLOURS[t.status]}`}>
+                          {PAYMENT_STATUS_LABELS[t.status]}
                         </span>
                       );
-                    })() : <span className="text-white/20 text-xs">—</span>}
+                    })()}
                   </td>
                   <td className="py-3 pr-6 text-green-400 text-xs font-semibold">
                     {e.payments.length > 0
                       ? pence2gbp(e.payments.reduce((t, p) => t + p.amount_pence, 0))
                       : <span className="text-white/20">—</span>}
                   </td>
-                  <td className="py-3 pr-6 text-xs">
-                    {e.agreed_price_pp != null ? (() => {
-                      const pc = e.people_count ?? 1;
-                      const owing = e.agreed_price_pp * pc - e.payments.reduce((t, p) => t + p.amount_pence, 0);
+                  <td className="py-3 pr-6 text-xs whitespace-nowrap">
+                    {(() => {
+                      const t = totalsById.get(e.id);
+                      const owing = t?.outstanding ?? 0;
                       return owing > 0
                         ? <span className="text-yellow-400 font-semibold">{pence2gbp(owing)}</span>
                         : <span className="text-white/20">—</span>;
-                    })() : <span className="text-white/20">—</span>}
+                    })()}
+                    {e.fee_override_pp != null && (
+                      <span
+                        className="ml-1.5 px-1 py-0.5 rounded bg-gold/20 text-gold text-[10px] font-semibold uppercase"
+                        title={`Agreed fee ${pence2gbp(e.fee_override_pp)} pp${e.fee_override_reason ? ` — ${e.fee_override_reason}` : ""}`}
+                      >
+                        Agreed
+                      </span>
+                    )}
                   </td>
                   <td className="py-3">
                     <Link

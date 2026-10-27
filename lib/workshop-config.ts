@@ -27,7 +27,26 @@ export const WORKSHOP_PRICING: Record<string, WorkshopPricing> = {
   },
 };
 
+// Running costs per workshop, used for the admin profit summary.
+export interface WorkshopCosts {
+  venueHirePence: number;          // fixed, total
+  cateringPerPersonPence: number;  // per catered participant
+  advertisingTravelPence: number;  // fixed, total
+}
+
+export const WORKSHOP_COSTS: Record<string, WorkshopCosts> = {
+  [POWYS_2027_ID]: {
+    venueHirePence:         390000,  // £3,900 — includes the £1,170 venue deposit
+    cateringPerPersonPence:  13500,  // £135 per catered participant
+    advertisingTravelPence:  25000,  // £250
+  },
+};
+
 // Helpers -------------------------------------------------------------------
+
+export function getWorkshopCosts(workshopId: string): WorkshopCosts | null {
+  return WORKSHOP_COSTS[workshopId] ?? null;
+}
 
 export function getWorkshopPricing(workshopId: string): WorkshopPricing | null {
   return WORKSHOP_PRICING[workshopId] ?? null;

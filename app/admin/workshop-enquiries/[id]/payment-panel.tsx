@@ -3,7 +3,7 @@
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import {
-  derivePaymentStatus,
+  bookingTotals,
   PAYMENT_STATUS_LABELS,
   PAYMENT_STATUS_COLOURS,
   pence2gbp,
@@ -24,6 +24,9 @@ interface Props {
   roomType: string | null;
   peopleCount: number | null;
   agreedPricePp: number | null;
+  feeOverridePp: number | null;
+  feeOverrideReason: string | null;
+  catered: boolean;
   earlyBirdOverride: boolean | null;
   manualPaymentStatus: string | null;
   acceptedAt: string | null;
@@ -63,6 +66,19 @@ export default function PaymentPanel(props: Props) {
   );
   const [setupSaved, setSetupSaved] = useState(!!props.roomType);
 
+  // ── Agreed fee (replaces the advertised price for this booking) ──────────
+  const [feeOverridePp, setFeeOverridePp] = useState<number | null>(props.feeOverridePp);
+  const [feeOverrideReason, setFeeOverrideReason] = useState<string | null>(props.feeOverrideReason);
+  const [editingFee, setEditingFee] = useState(false);
+  const [feeInput, setFeeInput] = useState("");
+  const [reasonInput, setReasonInput] = useState("");
+  const [feeSaving, setFeeSaving] = useState(false);
+  const [feeErr, setFeeErr] = useState("");
+
+  // ── Catering ─────────────────────────────────────────────────────────────
+  const [catered, setCatered] = useState<boolean>(props.catered);
+  const [cateredSaving, setCateredSaving] = useState(false);
+
   // ── Quick-record state ───────────────────────────────────────────────────
   const [showAddForm, setShowAddForm] = useState(false);
   const [addAmount, setAddAmount] = useState("");
@@ -79,15 +95,19 @@ export default function PaymentPanel(props: Props) {
 
   // ── Derived values ────────────────────────────────────────────────────────
   const effectiveEarlyBird = earlyBirdOverride !== null ? earlyBirdOverride : props.earlyBirdAuto;
+  const totals = bookingTotals({
+    agreedPricePp,
+    feeOverridePp,
+    peopleCount,
+    depositPerPersonPence: props.depositPence,
+    paymentsPence: props.payments.map((p) => p.amount_pence),
+    manualStatus,
+  });
   const totalPaidPence = props.payments.reduce((s, p) => s + p.amount_pence, 0);
-  const totalDuePence = agreedPricePp != null ? agreedPricePp * peopleCount : null;
-  const depositDuePence = props.depositPence * peopleCount;
-  const outstandingPence = totalDuePence != null ? totalDuePence - totalPaidPence : null;
-
-  const derivedStatus: DerivedPaymentStatus | null =
-    totalDuePence != null
-      ? derivePaymentStatus(manualStatus, totalPaidPence, totalDuePence, depositDuePence)
-      : null;
+  const totalDuePence = totals?.totalDue ?? null;
+  const depositDuePence = totals?.depositDue ?? props.depositPence * peopleCount;
+  const outstandingPence = totals?.outstanding ?? null;
+  const derivedStatus: DerivedPaymentStatus | null = totals?.status ?? null;
 
   const isOverdue =
     props.balanceDueDateIso &&
@@ -163,6 +183,76 @@ export default function PaymentPanel(props: Props) {
       setSaving(false);
     }
   }
+
+  function startEditFee() {
+    setFeeInput(feeOverridePp != null ? String(feeOverridePp / 100) : "");
+    setReasonInput(feeOverrideReason ?? "");
+    setFeeErr("");
+    setEditingFee(true);
+  }
+
+  async function saveFee(clear = false) {
+    const raw = feeInput.trim();
+    if (!clear && raw !== "" && !/^\d+$/.test(raw)) {
+      setFeeErr("Enter a whole number of pounds, e.g. 600 (or clear to use the advertised fee).");
+      return;
+    }
+    const pence = clear || raw === "" ? null : Number(raw) * 100;
+    const reason = pence == null ? null : reasonInput.trim() || null;
+    setFeeSaving(true);
+    setFeeErr("");
+    try {
+      await patchEnquiry({ fee_override_pp: pence, fee_override_reason: reason });
+      setFeeOverridePp(pence);
+      setFeeOverrideReason(reason);
+      setEditingFee(false);
+      router.refresh();
+    } catch (e: any) {
+      setFeeErr(e.message);
+    } finally {
+      setFeeSaving(false);
+    }
+  }
+
+  async function saveCatered(val: boolean) {
+    setCateredSaving(true);
+    try {
+      await patchEnquiry({ catered: val });
+      setCatered(val);
+      router.refresh();
+    } catch (e: any) {
+      alert(e.message);
+    } finally {
+      setCateredSaving(false);
+    }
+  }
+
+  // Catering toggle — available before and after payment setup
+  const cateredControl = (
+    <div>
+      <p className="text-white/40 text-xs mb-1">Catered</p>
+      <div className="flex flex-wrap items-center gap-2">
+        {([true, false] as const).map((val) => (
+          <button
+            key={String(val)}
+            type="button"
+            disabled={cateredSaving}
+            onClick={() => saveCatered(val)}
+            className={`px-2 py-0.5 rounded text-xs transition ${
+              catered === val
+                ? "bg-gold text-black"
+                : "bg-white/10 text-white/50 hover:bg-white/20"
+            }`}
+          >
+            {val ? "yes" : "no"}
+          </button>
+        ))}
+        <span className="text-white/30 text-xs">
+          Applies to all {peopleCount} on this booking. A cost to you only — it doesn&rsquo;t change the fee.
+        </span>
+      </div>
+    </div>
+  );
 
   async function quickRecord(amountPence: number) {
     setAddAmount(String(amountPence / 100));
@@ -339,6 +429,8 @@ export default function PaymentPanel(props: Props) {
             </div>
           </div>
 
+          {cateredControl}
+
           {roomType && (
             <p className="text-white/40 text-xs">
               Price per person:{" "}
@@ -388,6 +480,9 @@ export default function PaymentPanel(props: Props) {
                   {earlyBirdOverride !== null && (
                     <span className="text-white/30 font-normal text-xs ml-1">(manual)</span>
                   )}
+                  {feeOverridePp != null && (
+                    <span className="text-white/30 font-normal text-xs ml-1">(not applied — agreed fee set)</span>
+                  )}
                 </p>
                 <div className="flex gap-1">
                   {(["auto", "yes", "no"] as const).map((opt) => {
@@ -421,6 +516,8 @@ export default function PaymentPanel(props: Props) {
               </div>
             </div>
           </div>
+
+          {cateredControl}
 
           <hr className="border-white/10" />
 
@@ -474,11 +571,90 @@ export default function PaymentPanel(props: Props) {
 
           <hr className="border-white/10" />
 
-          {/* Price per person note */}
-          <p className="text-xs text-white/30">
-            Price per person: {agreedPricePp != null ? pence2gbp(agreedPricePp) : "—"}
-            {" "}(locked at setup)
-          </p>
+          {/* Price per person: advertised (locked at setup) and any agreed fee */}
+          <div className="space-y-2">
+            <div className="flex flex-wrap items-center gap-x-3 gap-y-1 text-xs">
+              <p className="text-white/30">
+                Advertised: {agreedPricePp != null ? pence2gbp(agreedPricePp) : "—"} (locked at setup)
+                {feeOverridePp != null && (
+                  <>
+                    {" · "}
+                    <span className="text-gold font-semibold">Agreed: {pence2gbp(feeOverridePp)}</span>
+                    {feeOverrideReason && <span className="text-white/50"> ({feeOverrideReason})</span>}
+                  </>
+                )}
+              </p>
+              {!editingFee && (
+                <button
+                  type="button"
+                  onClick={startEditFee}
+                  className="text-gold hover:underline"
+                >
+                  {feeOverridePp != null ? "Edit agreed fee" : "Set agreed fee"}
+                </button>
+              )}
+            </div>
+
+            {editingFee && (
+              <div className="bg-black/40 rounded p-3 space-y-2 max-w-sm">
+                <div>
+                  <label className="text-xs text-white/50 block mb-1">Agreed fee per person (£, whole pounds)</label>
+                  <input
+                    type="number"
+                    min="0"
+                    step="1"
+                    value={feeInput}
+                    onChange={(e) => setFeeInput(e.target.value)}
+                    className="w-full bg-black border border-white/20 text-white rounded px-3 py-1.5 text-sm focus:outline-none focus:border-gold"
+                    placeholder="e.g. 600"
+                  />
+                </div>
+                <div>
+                  <label className="text-xs text-white/50 block mb-1">Reason</label>
+                  <input
+                    type="text"
+                    maxLength={200}
+                    value={reasonInput}
+                    onChange={(e) => setReasonInput(e.target.value)}
+                    className="w-full bg-black border border-white/20 text-white rounded px-3 py-1.5 text-sm focus:outline-none focus:border-gold"
+                    placeholder="e.g. returning participant, work exchange"
+                  />
+                </div>
+                <p className="text-xs text-white/30">
+                  Replaces the advertised fee for this booking; early bird isn&rsquo;t applied on top.
+                  Leave blank to use the advertised fee.
+                </p>
+                {feeErr && <p className="text-red-400 text-xs">{feeErr}</p>}
+                <div className="flex flex-wrap gap-2">
+                  <button
+                    type="button"
+                    disabled={feeSaving}
+                    onClick={() => saveFee()}
+                    className="px-3 py-1.5 bg-gold text-black rounded font-semibold text-xs hover:bg-white transition disabled:opacity-50"
+                  >
+                    {feeSaving ? "Saving…" : "Save"}
+                  </button>
+                  {feeOverridePp != null && (
+                    <button
+                      type="button"
+                      disabled={feeSaving}
+                      onClick={() => saveFee(true)}
+                      className="px-3 py-1.5 border border-white/30 text-white/60 rounded text-xs hover:border-white hover:text-white transition"
+                    >
+                      Clear agreed fee
+                    </button>
+                  )}
+                  <button
+                    type="button"
+                    onClick={() => setEditingFee(false)}
+                    className="px-3 py-1.5 text-white/40 text-xs hover:text-white transition"
+                  >
+                    Cancel
+                  </button>
+                </div>
+              </div>
+            )}
+          </div>
         </div>
       </div>
 
@@ -516,14 +692,16 @@ export default function PaymentPanel(props: Props) {
       <div>
         <h2 className={SECTION}>Record Payment</h2>
         <div className="flex flex-wrap gap-3 mb-4">
-          {/* Deposit quick button */}
-          <button
-            type="button"
-            onClick={() => quickRecord(depositDuePence)}
-            className="px-4 py-2 border border-gold text-gold rounded text-sm font-semibold hover:bg-gold hover:text-black transition"
-          >
-            + Deposit ({pence2gbp(depositDuePence)})
-          </button>
+          {/* Deposit quick button — hidden when nothing is due (e.g. £0 agreed fee) */}
+          {depositDuePence > 0 && (
+            <button
+              type="button"
+              onClick={() => quickRecord(depositDuePence)}
+              className="px-4 py-2 border border-gold text-gold rounded text-sm font-semibold hover:bg-gold hover:text-black transition"
+            >
+              + Deposit ({pence2gbp(depositDuePence)})
+            </button>
+          )}
           {/* Full balance quick button — only shown when something is outstanding */}
           {outstandingPence != null && outstandingPence > 0 && (
             <button

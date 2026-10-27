@@ -13,9 +13,48 @@ export function derivePaymentStatus(
 ): DerivedPaymentStatus {
   if (manualStatus === "refunded") return "refunded";
   if (manualStatus === "cancelled") return "cancelled";
-  if (totalDuePence > 0 && totalPaidPence >= totalDuePence) return "paid_in_full";
+  // A £0 total (e.g. an agreed work-exchange fee) has nothing left to pay
+  if (totalDuePence >= 0 && totalPaidPence >= totalDuePence) return "paid_in_full";
   if (depositDuePence > 0 && totalPaidPence >= depositDuePence) return "deposit_paid";
   return "unpaid";
+}
+
+export interface BookingTotals {
+  pricePp: number;        // effective price per person (agreed fee, else advertised)
+  totalDue: number;
+  depositDue: number;
+  totalPaid: number;
+  outstanding: number;    // may be negative if overpaid
+  status: DerivedPaymentStatus;
+}
+
+// Single place for the money maths used by the detail panel, the list and the summary.
+// An agreed fee (fee_override_pp) replaces the advertised price outright — the early
+// bird is already reflected in agreed_price_pp and is not applied on top of it.
+// Returns null until the booking has been set up (no advertised price locked yet).
+export function bookingTotals(b: {
+  agreedPricePp: number | null;
+  feeOverridePp: number | null;
+  peopleCount: number | null;
+  depositPerPersonPence: number;
+  paymentsPence: number[];
+  manualStatus: string | null;
+}): BookingTotals | null {
+  if (b.agreedPricePp == null) return null;
+  const people = b.peopleCount ?? 1;
+  const pricePp = b.feeOverridePp ?? b.agreedPricePp;
+  const totalDue = pricePp * people;
+  // £200 per person, unless the whole booking costs less than that
+  const depositDue = Math.min(b.depositPerPersonPence * people, totalDue);
+  const totalPaid = b.paymentsPence.reduce((t, p) => t + p, 0);
+  return {
+    pricePp,
+    totalDue,
+    depositDue,
+    totalPaid,
+    outstanding: totalDue - totalPaid,
+    status: derivePaymentStatus(b.manualStatus, totalPaid, totalDue, depositDue),
+  };
 }
 
 export const PAYMENT_STATUS_LABELS: Record<DerivedPaymentStatus, string> = {
